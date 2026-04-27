@@ -69,6 +69,9 @@ export default function Hero() {
                 src={ASSET_CONFIG.hero.mainImage} 
                 alt="Soft care"
                 referrerPolicy="no-referrer"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 grayscale-[0.2]"
               />
             </div>

@@ -9,6 +9,7 @@ export default function ProductSection() {
   const t = translations[language].products;
   const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>('incontinence');
+  const polaroidTilt = ['-rotate-2', 'rotate-2', '-rotate-1'];
 
   // Map category IDs to icons
   const categoryIcons:Record<string, any> = {
@@ -102,13 +103,19 @@ export default function ProductSection() {
                 <div className="aspect-[3/4] bg-white flex flex-col p-5 sm:p-6 md:p-8 transition-all duration-700 group-hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)] relative overflow-hidden border border-black/5">
                   <div className="absolute inset-0 bg-brand-muted opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
                   <div className="flex-1 flex items-center justify-center relative z-10">
-                    <div className="w-full h-full relative p-3 sm:p-4 md:p-6 transition-transform duration-1000 ease-[0.16, 1, 0.3, 1] group-hover:scale-[1.03]">
-                      <img 
-                        src={getProductImage(product.id)} 
-                        alt={product.name}
-                        referrerPolicy="no-referrer"
-                        className="w-full h-full object-cover grayscale-[0.8] group-hover:grayscale-0 transition-all duration-1000"
-                      />
+                    <div className={`w-full h-full relative p-1 sm:p-2 md:p-4 transition-transform duration-1000 ease-[0.16, 1, 0.3, 1] group-hover:scale-[1.03] flex items-center justify-center ${polaroidTilt[index % polaroidTilt.length]}`}>
+                      <div className="w-full max-w-[250px] bg-white p-3 sm:p-4 pb-7 sm:pb-8 shadow-[0_20px_45px_-25px_rgba(0,0,0,0.35)] border border-black/8">
+                        <div className="aspect-[3/4] bg-[#faf8f2] overflow-hidden flex items-center justify-center">
+                          <img 
+                            src={getProductImage(product.id)} 
+                            alt={product.name}
+                            referrerPolicy="no-referrer"
+                            loading="lazy"
+                            decoding="async"
+                            className="w-full h-full object-contain grayscale-[0.15] group-hover:grayscale-0 group-hover:scale-[1.02] transition-all duration-1000"
+                          />
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div className="mt-8 relative z-10">
@@ -150,6 +157,7 @@ export default function ProductSection() {
                 <img 
                   src={getProductImage(selectedProduct.id)} 
                   alt={selectedProduct.name}
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
                 <button 
