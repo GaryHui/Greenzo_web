@@ -1,9 +1,13 @@
-import heroMainImage from './photo/1c6a56ee-2360-44e4-bbb3-f61122079614.png';
+import heroMainImage from './photo/new1.png';
 import diaperImage from './photo/Adult/Adult2.png';
 import padImage from './photo/Adult/4.png';
 import softTissueImage from './photo/Dairy/D1.png';
 import wipeImage from './photo/Personal/P1.png';
 import brandStoryImage from './photo/14d39408-f98b-449a-ad77-38595a108046.png';
+import detailImage1 from './photo/Detail/Picture1.png';
+import detailImage2 from './photo/Detail/Picture2.png';
+import detailImage3 from './photo/Detail/Picture3.png';
+import detailImage4 from './photo/Detail/Picture4.png';
 
 /**
  * Greenzo Asset Configuration
@@ -24,10 +28,10 @@ export const ASSET_CONFIG = {
   },
 
   gallery: [
-    "https://images.unsplash.com/photo-1583912267550-d44d4a3c5a71?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1505751172107-5962250d33c9?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1516733725897-1aa73b87c7e8?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1576014457313-094191fe7db8?auto=format&fit=crop&q=80&w=800",
+    detailImage1,
+    detailImage2,
+    detailImage3,
+    detailImage4,
   ],
 
   videos: {
