@@ -31,7 +31,7 @@ export default function BrandStory() {
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover grayscale-[0.4]"
               />
-              <div className="absolute top-8 left-8 bg-brand-green/90 backdrop-blur-md text-white p-8 pr-12 shadow-2xl">
+              <div className="absolute top-8 right-8 bg-brand-green/35 backdrop-blur-md text-white p-8 pr-12 shadow-xl border border-white/20">
                 <span className="text-5xl font-serif block mb-1">20+</span>
                 <span className="text-[10px] uppercase tracking-[0.3em] font-bold opacity-80">{t.experience}</span>
               </div>
