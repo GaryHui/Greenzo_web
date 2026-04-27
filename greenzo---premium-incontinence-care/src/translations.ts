@@ -1,15 +1,77 @@
 import { create } from 'zustand';
 
-type Language = 'zh' | 'en' | 'ja' | 'hk';
+export type Language = 'zh' | 'en' | 'ja' | 'hk';
+
+const LANGUAGE_STORAGE_KEY = 'greenzo-language';
+const VALID_LANGUAGES: Language[] = ['zh', 'en', 'ja', 'hk'];
 
 interface LanguageState {
   language: Language;
   setLanguage: (lang: Language) => void;
+  setDetectedLanguage: (lang: Language) => void;
+}
+
+function isLanguage(value: string | null | undefined): value is Language {
+  return !!value && VALID_LANGUAGES.includes(value as Language);
+}
+
+function getStoredLanguage(): Language | null {
+  if (typeof window === 'undefined') return null;
+
+  const storedLanguage = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
+  return isLanguage(storedLanguage) ? storedLanguage : null;
+}
+
+function detectLanguageFromLocale(locale: string | undefined): Language {
+  const normalizedLocale = (locale || '').toLowerCase().replace('_', '-');
+
+  if (normalizedLocale.startsWith('ja')) {
+    return 'ja';
+  }
+
+  if (normalizedLocale.startsWith('zh')) {
+    if (
+      normalizedLocale.includes('-tw') ||
+      normalizedLocale.includes('-hk') ||
+      normalizedLocale.includes('-mo') ||
+      normalizedLocale.includes('hant')
+    ) {
+      return 'hk';
+    }
+
+    return 'zh';
+  }
+
+  return 'en';
+}
+
+function detectBrowserLanguage(): Language {
+  if (typeof navigator === 'undefined') return 'en';
+
+  const preferredLocales = navigator.languages?.length
+    ? navigator.languages
+    : [navigator.language];
+
+  return detectLanguageFromLocale(preferredLocales.find(Boolean));
+}
+
+function getInitialLanguage(): Language {
+  return getStoredLanguage() || detectBrowserLanguage();
+}
+
+export function hasStoredLanguagePreference(): boolean {
+  return getStoredLanguage() !== null;
 }
 
 export const useLanguageStore = create<LanguageState>((set) => ({
-  language: 'zh',
-  setLanguage: (lang) => set({ language: lang }),
+  language: getInitialLanguage(),
+  setLanguage: (lang) => {
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem(LANGUAGE_STORAGE_KEY, lang);
+    }
+    set({ language: lang });
+  },
+  setDetectedLanguage: (lang) => set({ language: lang }),
 }));
 
 export const translations = {

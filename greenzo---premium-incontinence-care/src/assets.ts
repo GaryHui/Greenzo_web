@@ -3,6 +3,7 @@ import diaperImage from './photo/Adult/Adult2.png';
 import padImage from './photo/Adult/4.png';
 import softTissueImage from './photo/Dairy/D1.png';
 import wipeImage from './photo/Personal/P1.png';
+import brandStoryImage from './photo/14d39408-f98b-449a-ad77-38595a108046.png';
 
 /**
  * Greenzo Asset Configuration
@@ -37,6 +38,6 @@ export const ASSET_CONFIG = {
   },
 
   brand: {
-    story: "https://images.unsplash.com/photo-1516733725897-1aa73b87c7e8?auto=format&fit=crop&q=80&w=800",
+    story: brandStoryImage,
   }
 };
