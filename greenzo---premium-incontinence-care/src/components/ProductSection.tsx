@@ -33,9 +33,9 @@ export default function ProductSection() {
       diaper: ASSET_CONFIG.products.diaper,
       pad: ASSET_CONFIG.products.pad,
       wipe: ASSET_CONFIG.products.wipe,
-      'soft-tissue': "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800", // placeholder
+      'soft-tissue': ASSET_CONFIG.products.softTissue,
     };
-    return configImages[productId] || "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800";
+    return configImages[productId] || ASSET_CONFIG.products.softTissue;
   };
 
   return (

@@ -1,3 +1,9 @@
+import heroMainImage from './photo/1c6a56ee-2360-44e4-bbb3-f61122079614.png';
+import diaperImage from './photo/Adult/Adult2.png';
+import padImage from './photo/Adult/4.png';
+import softTissueImage from './photo/Dairy/D1.png';
+import wipeImage from './photo/Personal/P1.png';
+
 /**
  * Greenzo Asset Configuration
  * Use this file to manage all media content (images, videos).
@@ -6,13 +12,14 @@
 
 export const ASSET_CONFIG = {
   hero: {
-    mainImage: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&q=80&w=800",
+    mainImage: heroMainImage,
   },
   
   products: {
-    diaper: "https://images.unsplash.com/photo-1563453392212-326f5e854473?auto=format&fit=crop&q=80&w=800",
-    pad: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800",
-    wipe: "https://images.unsplash.com/photo-1584305650960-6c9cc747517c?auto=format&fit=crop&q=80&w=800",
+    diaper: diaperImage,
+    pad: padImage,
+    softTissue: softTissueImage,
+    wipe: wipeImage,
   },
 
   gallery: [
