@@ -15,17 +15,17 @@ export default function StandardsSection() {
   ];
 
   return (
-    <section className="py-32 bg-white border-t border-black/5">
-      <div className="max-w-7xl mx-auto px-10 md:px-16 text-center">
+    <section className="py-20 md:py-32 bg-white border-t border-black/5">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 lg:px-16 text-center">
         <div className="text-[10px] uppercase tracking-[0.5em] text-brand-green font-bold mb-6">Certified Excellence</div>
-        <h2 className="text-4xl font-serif text-brand-dark mb-10 leading-tight tracking-tighter max-w-2xl mx-auto">
+        <h2 className="text-3xl sm:text-4xl font-serif text-brand-dark mb-6 md:mb-10 leading-tight tracking-tighter max-w-2xl mx-auto">
           {t.title}
         </h2>
-        <p className="text-sm text-black/50 font-sans leading-relaxed tracking-wide mb-24 max-w-xl mx-auto">
+        <p className="text-sm text-black/50 font-sans leading-relaxed tracking-wide mb-12 md:mb-24 max-w-xl mx-auto">
           {t.subtitle}
         </p>
 
-        <div className="grid md:grid-cols-3 gap-16">
+        <div className="grid md:grid-cols-3 gap-10 md:gap-16">
           {standards.map((s, i) => (
             <motion.div
               key={i}

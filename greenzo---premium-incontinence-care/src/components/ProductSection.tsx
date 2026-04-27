@@ -39,12 +39,12 @@ export default function ProductSection() {
   };
 
   return (
-    <section id="products" className="py-32 bg-brand-cream border-t border-black/5">
-      <div className="max-w-7xl mx-auto px-10 md:px-16">
+    <section id="products" className="py-20 md:py-32 bg-brand-cream border-t border-black/5">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 lg:px-16">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <div>
             <div className="text-[10px] uppercase tracking-[0.4em] text-brand-green font-bold mb-4">The Collection</div>
-            <h2 className="text-5xl font-serif text-brand-dark leading-tight">{t.title}</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-brand-dark leading-tight">{t.title}</h2>
           </div>
           <div className="h-px flex-1 bg-black/10 mx-12 hidden lg:block mb-4"></div>
           <p className="text-xs uppercase tracking-widest text-black/40 font-sans max-w-[200px] mb-2">
@@ -53,7 +53,7 @@ export default function ProductSection() {
         </div>
 
         {/* Category Tabs */}
-        <div className="flex flex-wrap gap-4 mb-20">
+        <div className="flex flex-wrap gap-3 md:gap-4 mb-12 md:mb-20">
           {categories.map((category) => {
             const Icon = category.icon;
             const isActive = activeCategory === category.id;
@@ -61,14 +61,14 @@ export default function ProductSection() {
               <button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
-                className={`flex items-center gap-4 px-8 py-5 border transition-all duration-500 relative overflow-hidden group ${
+                className={`w-full sm:w-auto justify-center sm:justify-start flex items-center gap-3 px-5 sm:px-6 md:px-8 py-4 md:py-5 border transition-all duration-500 relative overflow-hidden group ${
                   isActive 
                     ? 'bg-brand-dark text-white border-brand-dark' 
                     : 'bg-white text-brand-dark border-black/5 hover:border-brand-green'
                 }`}
               >
                 <Icon className={`w-5 h-5 transition-transform duration-500 group-hover:scale-110 ${isActive ? 'text-brand-green' : 'text-black/20'}`} />
-                <span className="text-xs uppercase tracking-[0.2em] font-bold">{category.name}</span>
+                <span className="text-[11px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.2em] font-bold text-center sm:text-left">{category.name}</span>
                 {isActive && (
                   <motion.div 
                     layoutId="activeTab"
@@ -88,7 +88,7 @@ export default function ProductSection() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5 }}
-            className="grid md:grid-cols-3 gap-12"
+            className="grid md:grid-cols-3 gap-8 md:gap-12"
           >
             {activeCategoryData?.items.map((product: any, index: number) => (
               <motion.div
@@ -99,10 +99,10 @@ export default function ProductSection() {
                 className="flex flex-col group cursor-pointer"
                 onClick={() => setSelectedProduct(product)}
               >
-                <div className="aspect-[3/4] bg-white flex flex-col p-8 transition-all duration-700 group-hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)] relative overflow-hidden border border-black/5">
+                <div className="aspect-[3/4] bg-white flex flex-col p-5 sm:p-6 md:p-8 transition-all duration-700 group-hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)] relative overflow-hidden border border-black/5">
                   <div className="absolute inset-0 bg-brand-muted opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
                   <div className="flex-1 flex items-center justify-center relative z-10">
-                    <div className="w-full h-full relative p-6 transition-transform duration-1000 ease-[0.16, 1, 0.3, 1] group-hover:scale-[1.03]">
+                    <div className="w-full h-full relative p-3 sm:p-4 md:p-6 transition-transform duration-1000 ease-[0.16, 1, 0.3, 1] group-hover:scale-[1.03]">
                       <img 
                         src={getProductImage(product.id)} 
                         alt={product.name}
@@ -115,10 +115,10 @@ export default function ProductSection() {
                     <div className="text-[9px] uppercase font-bold text-brand-green tracking-[0.3em] mb-2 opacity-60">
                       {index < 9 ? `Series 0${index + 1}` : `Series ${index + 1}`}
                     </div>
-                    <h3 className="text-2xl font-serif font-light text-brand-dark transition-colors duration-500">{product.name}</h3>
+                    <h3 className="text-xl sm:text-2xl font-serif font-light text-brand-dark transition-colors duration-500">{product.name}</h3>
                   </div>
                 </div>
-                <p className="mt-6 text-[11px] text-black/40 uppercase tracking-widest font-bold group-hover:text-brand-green transition-colors">
+                <p className="mt-4 md:mt-6 text-[11px] text-black/40 uppercase tracking-[0.2em] sm:tracking-widest font-bold group-hover:text-brand-green transition-colors">
                   View Details & Specs —
                 </p>
               </motion.div>
@@ -130,7 +130,7 @@ export default function ProductSection() {
       {/* Product Detail Modal */}
       <AnimatePresence>
         {selectedProduct && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 md:p-12 overflow-hidden">
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-12 overflow-hidden">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -161,11 +161,11 @@ export default function ProductSection() {
               </div>
 
               {/* Product Info in Modal */}
-              <div className="md:w-1/2 p-10 md:p-16 overflow-y-auto flex flex-col">
+              <div className="md:w-1/2 p-6 sm:p-8 md:p-16 overflow-y-auto flex flex-col">
                 <div className="flex justify-between items-start mb-8">
                   <div>
                     <div className="text-[10px] uppercase tracking-[0.4em] text-brand-green font-bold mb-4">Product Detail</div>
-                    <h3 className="text-4xl font-serif text-brand-dark leading-tight">
+                    <h3 className="text-3xl sm:text-4xl font-serif text-brand-dark leading-tight">
                       {selectedProduct.name}
                     </h3>
                   </div>

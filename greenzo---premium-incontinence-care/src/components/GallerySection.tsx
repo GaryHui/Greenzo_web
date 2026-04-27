@@ -10,12 +10,12 @@ export default function GallerySection() {
   if (!t) return null;
 
   return (
-    <section id="gallery" className="py-32 bg-brand-cream border-t border-black/5">
-      <div className="max-w-7xl mx-auto px-10 md:px-16">
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-20 gap-8">
+    <section id="gallery" className="py-20 md:py-32 bg-brand-cream border-t border-black/5">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 lg:px-16">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 md:mb-20 gap-8">
           <div className="max-w-xl">
             <div className="text-[10px] uppercase tracking-[0.5em] text-brand-green font-bold mb-6">Gallery & Motion</div>
-            <h2 className="text-5xl font-serif text-brand-dark mb-8 leading-tight tracking-tighter">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-brand-dark mb-6 md:mb-8 leading-tight tracking-tighter">
               {t.title}
             </h2>
             <p className="text-sm text-black/50 font-sans leading-relaxed tracking-wide">
@@ -25,7 +25,7 @@ export default function GallerySection() {
           <div className="h-px bg-black/10 flex-1 mx-12 hidden lg:block mb-4"></div>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-8">
+        <div className="grid lg:grid-cols-12 gap-6 md:gap-8">
           <div className="lg:col-span-8 grid md:grid-cols-2 gap-8">
             {ASSET_CONFIG.gallery.map((img, i) => (
               <motion.div
@@ -50,11 +50,11 @@ export default function GallerySection() {
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-4 aspect-[4/5] lg:aspect-auto bg-brand-muted relative overflow-hidden border border-black/5 shadow-sm group cursor-pointer"
+            className="lg:col-span-4 aspect-[4/5] sm:aspect-[5/4] lg:aspect-auto bg-brand-muted relative overflow-hidden border border-black/5 shadow-sm group cursor-pointer min-h-[280px] sm:min-h-[360px] lg:min-h-0"
           >
             {/* Video Placeholder */}
             <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/20 group-hover:bg-black/10 transition-colors duration-700">
-              <div className="w-20 h-20 rounded-full border border-white/40 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-700 backdrop-blur-sm">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-white/40 flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-700 backdrop-blur-sm">
                 <Play className="text-white fill-white w-6 h-6 ml-1" />
               </div>
               <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-white shadow-xl">{t.videoLabel}</span>

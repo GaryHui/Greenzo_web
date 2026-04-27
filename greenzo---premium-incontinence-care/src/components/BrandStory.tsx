@@ -9,21 +9,21 @@ export default function BrandStory() {
   const tc = translations[language].channels;
 
   return (
-    <section id="story" className="py-32 bg-brand-cream relative overflow-hidden border-t border-black/5">
+    <section id="story" className="py-20 md:py-32 bg-brand-cream relative overflow-hidden border-t border-black/5">
       {/* Decorative text watermark */}
-      <div className="absolute -right-24 top-40 text-[200px] font-bold text-black/[0.02] select-none whitespace-nowrap pointer-events-none rotate-90 uppercase">
+      <div className="absolute -right-24 top-40 hidden lg:block text-[200px] font-bold text-black/[0.02] select-none whitespace-nowrap pointer-events-none rotate-90 uppercase">
         HISTORY
       </div>
 
-      <div className="max-w-7xl mx-auto px-10 md:px-16">
-        <div className="grid lg:grid-cols-12 gap-24 items-center">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 lg:px-16">
+        <div className="grid lg:grid-cols-12 gap-12 md:gap-16 lg:gap-24 items-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             className="lg:col-span-5 relative"
           >
-            <div className="absolute -top-10 -left-10 w-40 h-40 border-t border-l border-black/10" />
+            <div className="absolute -top-6 -left-6 md:-top-10 md:-left-10 w-24 h-24 md:w-40 md:h-40 border-t border-l border-black/10" />
             <div className="aspect-[4/5] bg-brand-muted relative border border-black/5 shadow-sm overflow-hidden">
               <img 
                 src={ASSET_CONFIG.brand.story} 
@@ -31,8 +31,8 @@ export default function BrandStory() {
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover grayscale-[0.4]"
               />
-              <div className="absolute top-8 right-8 bg-brand-green/35 backdrop-blur-md text-white p-8 pr-12 shadow-xl border border-white/20">
-                <span className="text-5xl font-serif block mb-1">20+</span>
+              <div className="absolute top-4 right-4 md:top-8 md:right-8 bg-brand-green/35 backdrop-blur-md text-white px-5 py-4 md:p-8 md:pr-12 shadow-xl border border-white/20">
+                <span className="text-3xl sm:text-4xl md:text-5xl font-serif block mb-1">20+</span>
                 <span className="text-[10px] uppercase tracking-[0.3em] font-bold opacity-80">{t.experience}</span>
               </div>
             </div>
@@ -40,15 +40,15 @@ export default function BrandStory() {
 
           <div className="lg:col-span-7">
             <div className="text-[10px] uppercase tracking-[0.4em] text-brand-green font-bold mb-6">Our Legacy</div>
-            <h2 className="text-5xl font-serif text-brand-dark mb-10 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-brand-dark mb-6 md:mb-10 leading-tight">
               {t.title}
             </h2>
-            <div className="space-y-8 text-lg text-black/70 font-light leading-relaxed font-sans max-w-2xl">
+            <div className="space-y-6 md:space-y-8 text-base md:text-lg text-black/70 font-light leading-relaxed font-sans max-w-2xl">
               <p>{t.content1}</p>
               <p>{t.content2}</p>
             </div>
 
-            <div className="grid grid-cols-2 gap-8 pt-10 border-t border-black/5 mt-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 pt-8 md:pt-10 border-t border-black/5 mt-8 md:mt-10">
               <div>
                 <motion.div 
                   initial={{ opacity: 0, y: 10 }}

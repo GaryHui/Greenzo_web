@@ -7,9 +7,9 @@ export default function Hero() {
   const t = translations[language].hero;
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-24 overflow-hidden bg-brand-cream">
+    <section id="home" className="relative min-h-screen flex items-center pt-20 md:pt-24 overflow-hidden bg-brand-cream">
       {/* Background Decorative Elements */}
-      <div className="absolute -left-12 top-48 text-[240px] font-bold text-black/[0.02] leading-none select-none pointer-events-none uppercase">
+      <div className="absolute -left-10 top-32 hidden md:block text-[180px] lg:text-[240px] font-bold text-black/[0.02] leading-none select-none pointer-events-none uppercase">
         Care
       </div>
       
@@ -21,36 +21,36 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-10 md:px-16 grid md:grid-cols-12 gap-12 items-center relative z-10 w-full">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 lg:px-16 grid md:grid-cols-12 gap-10 md:gap-12 items-center relative z-10 w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="md:col-span-6 lg:col-span-5"
         >
-          <div className="text-[10px] font-sans uppercase tracking-[0.5em] text-brand-green mb-8 font-bold">
+          <div className="text-[9px] sm:text-[10px] font-sans uppercase tracking-[0.35em] sm:tracking-[0.5em] text-brand-green mb-6 md:mb-8 font-bold">
             Redefining Personal Care • World-Class Standards
           </div>
-          <h1 className="text-6xl md:text-8xl font-serif text-brand-dark leading-[0.95] mb-10 font-extralight tracking-tighter">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif text-brand-dark leading-[1] md:leading-[0.95] mb-6 md:mb-10 font-extralight tracking-tighter">
             {t.title.split(' ').map((word, i) => (
               <span key={i} className={word === 'Comfort' || word === 'Dignity' || word === '舒适' || word === '尊严' || word === '心地' ? 'italic text-brand-green' : ''}>
                 {word}{' '}
               </span>
             ))}
           </h1>
-          <p className="text-sm leading-relaxed text-black/60 max-w-sm font-sans mb-14 tracking-wide">
+          <p className="text-sm leading-relaxed text-black/60 max-w-md font-sans mb-8 md:mb-14 tracking-wide">
             {t.subtitle}
           </p>
-          <div className="flex items-center gap-10">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 md:gap-10">
             <button 
               onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
-              className="px-12 py-5 bg-brand-green text-white text-[10px] uppercase tracking-[0.3em] font-sans font-bold hover:shadow-2xl hover:translate-y-[-2px] transition-all duration-500"
+              className="w-full sm:w-auto px-8 sm:px-10 md:px-12 py-4 sm:py-5 bg-brand-green text-white text-[10px] uppercase tracking-[0.25em] sm:tracking-[0.3em] font-sans font-bold hover:shadow-2xl hover:translate-y-[-2px] transition-all duration-500"
             >
               {t.cta}
             </button>
             <div 
               onClick={() => document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' })}
-              className="text-[10px] font-sans border-b border-black/40 pb-1 cursor-pointer font-bold tracking-[0.2em] hover:text-brand-green hover:border-brand-green transition-all"
+              className="self-start text-[10px] font-sans border-b border-black/40 pb-1 cursor-pointer font-bold tracking-[0.2em] hover:text-brand-green hover:border-brand-green transition-all"
             >
               GALLERY
             </div>
@@ -61,9 +61,9 @@ export default function Hero() {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="md:col-span-6 lg:col-span-7 flex justify-end"
+          className="md:col-span-6 lg:col-span-7 flex justify-center md:justify-end"
         >
-          <div className="relative w-full max-w-[500px]">
+          <div className="relative w-full max-w-[440px] sm:max-w-[500px]">
             <div className="aspect-[4/5] bg-brand-muted rounded-none overflow-hidden group shadow-sm border border-black/5">
               <img 
                 src={ASSET_CONFIG.hero.mainImage} 
