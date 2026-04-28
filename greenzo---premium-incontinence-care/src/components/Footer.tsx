@@ -182,9 +182,7 @@ export default function Footer() {
             <ul className="space-y-4 text-white/60 text-xs uppercase tracking-widest font-bold">
               <li><a href="#home" className="hover:text-white transition-colors">{nav.home}</a></li>
               <li><a href="#products" className="hover:text-white transition-colors">{nav.products}</a></li>
-              <li><a href="#quality" className="hover:text-white transition-colors">{(nav as any).quality}</a></li>
               <li><a href="#gallery" className="hover:text-white transition-colors">{(nav as any).gallery}</a></li>
-              <li><a href="#standards" className="hover:text-white transition-colors">{(nav as any).standards}</a></li>
               <li><a href="#story" className="hover:text-white transition-colors">{nav.story}</a></li>
             </ul>
           </div>

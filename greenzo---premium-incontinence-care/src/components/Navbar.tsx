@@ -39,13 +39,7 @@ export default function Navbar() {
               <a href="#products" className="hover:text-brand-dark transition-colors">{t.products}</a>
             </li>
             <li className="group">
-              <a href="#quality" className="hover:text-brand-dark transition-colors">{(t as any).quality}</a>
-            </li>
-            <li className="group">
               <a href="#gallery" className="hover:text-brand-dark transition-colors">{(t as any).gallery}</a>
-            </li>
-            <li className="group">
-              <a href="#standards" className="hover:text-brand-dark transition-colors">{(t as any).standards}</a>
             </li>
             <li className="group">
               <a href="#story" className="hover:text-brand-dark transition-colors">{t.story}</a>
@@ -89,9 +83,7 @@ export default function Navbar() {
           >
             <a href="#home" onClick={() => setIsOpen(false)} className="text-lg font-medium">{t.home}</a>
             <a href="#products" onClick={() => setIsOpen(false)} className="text-lg font-medium">{t.products}</a>
-            <a href="#quality" onClick={() => setIsOpen(false)} className="text-lg font-medium">{(t as any).quality}</a>
             <a href="#gallery" onClick={() => setIsOpen(false)} className="text-lg font-medium">{(t as any).gallery}</a>
-            <a href="#standards" onClick={() => setIsOpen(false)} className="text-lg font-medium">{(t as any).standards}</a>
             <a href="#story" onClick={() => setIsOpen(false)} className="text-lg font-medium">{t.story}</a>
             <a href="#contact" onClick={() => setIsOpen(false)} className="text-lg font-medium">{t.contact}</a>
             <div className="flex flex-wrap gap-3 mt-4 pt-4 border-t border-black/5">
