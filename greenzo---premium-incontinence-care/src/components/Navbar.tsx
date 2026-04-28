@@ -18,14 +18,16 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 w-full z-50 bg-brand-cream/90 backdrop-blur-md border-b border-black/5">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 lg:px-16 h-20 md:h-24 flex items-center justify-between gap-4">
-        <div className="flex items-center gap-3 md:gap-6 min-w-0">
+        <div className="flex flex-col items-start min-w-0">
           <div className="flex items-center gap-2">
             <span className="text-xl sm:text-2xl font-bold tracking-tighter uppercase text-brand-green">Greenzo</span>
             <span className="text-base sm:text-xl font-light opacity-60 ml-1 hidden sm:block">莞众</span>
           </div>
-          <div className="hidden lg:flex flex-col gap-2 min-w-0">
-            <div className="h-px w-8 bg-black/10"></div>
-            <div className="text-[10px] tracking-[0.3em] text-black/40 font-bold whitespace-nowrap">{t.tagline}</div>
+          <div className="mt-1 flex items-center gap-2 min-w-0">
+            <div className="h-px w-6 bg-black/10 shrink-0"></div>
+            <div className="text-[9px] sm:text-[10px] tracking-[0.22em] sm:tracking-[0.3em] text-black/40 font-bold whitespace-nowrap">
+              {t.tagline}
+            </div>
           </div>
         </div>
 

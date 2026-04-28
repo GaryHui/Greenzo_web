@@ -10,6 +10,7 @@ export default function GallerySection() {
   const polaroidTilt = ['rotate-0'];
   const images = useMemo(() => ASSET_CONFIG.gallery ?? [], []);
   const [viewerIndex, setViewerIndex] = useState<number | null>(null);
+  const previewVideoRef = useRef<HTMLVideoElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const videos = useMemo(() => {
     const list = (ASSET_CONFIG as any)?.videos?.playlist ?? [];
@@ -107,6 +108,15 @@ export default function GallerySection() {
     el.volume = Math.min(1, Math.max(0, volume));
   }, [volume]);
 
+  useEffect(() => {
+    const el = previewVideoRef.current;
+    if (!el) return;
+    const playPromise = el.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {});
+    }
+  }, [activeVideoIndex, videos.length]);
+
   return (
     <section id="gallery" className="py-20 md:py-32 bg-brand-cream border-t border-black/5">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 lg:px-16">
@@ -174,12 +184,21 @@ export default function GallerySection() {
             <div className="flex-1 relative">
               {videos.length > 0 ? (
                 <video
+                  ref={previewVideoRef}
                   key={videos[activeVideoIndex]?.src}
                   src={videos[activeVideoIndex]?.src}
                   autoPlay
                   muted
+                  defaultMuted
                   playsInline
+                  preload="metadata"
                   loop={videos.length === 1}
+                  onCanPlay={(e) => {
+                    const playPromise = e.currentTarget.play();
+                    if (playPromise !== undefined) {
+                      playPromise.catch(() => {});
+                    }
+                  }}
                   onEnded={() => {
                     if (videos.length <= 1) return;
                     setActiveVideoIndex((idx) => (idx + 1) % videos.length);
