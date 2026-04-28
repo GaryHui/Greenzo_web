@@ -1,0 +1,47 @@
+{
+  "id": "personal-facial-cleaning-towels-200x200-60",
+  "name": {
+    "zh": "洗脸柔巾",
+    "hk": "洗臉柔巾",
+    "en": "Facial Cleaning Towels",
+    "ja": "フェイシャルクレンジングタオル"
+  },
+  "desc": {
+    "zh": "200mm×200mm｜60抽｜24包/箱",
+    "hk": "200mm×200mm｜60抽｜24包/箱",
+    "en": "200mm×200mm | 60 pulls | 24 packs/case",
+    "ja": "200mm×200mm｜60枚｜24パック/ケース"
+  },
+  "features": {
+    "zh": "亲肤不掉絮，无添加；厚实耐用，湿水不易破，擦拭更安心。",
+    "hk": "親膚不掉絮，無添加；厚實耐用，濕水不易破，擦拭更安心。",
+    "en": "Skin-friendly and lint-free with no additives; thick and durable, stays strong when wet for confident wiping.",
+    "ja": "肌にやさしく、毛羽立ちにくい。無添加で、厚手で丈夫。濡れても破れにくく安心して使えます。"
+  },
+  "specs": {
+    "zh": ["200mm×200mm", "60抽", "24包/箱", "亲肤不掉絮", "无添加", "厚实耐用", "湿水不易破"],
+    "hk": ["200mm×200mm", "60抽", "24包/箱", "親膚不掉絮", "無添加", "厚實耐用", "濕水不易破"],
+    "en": ["200mm×200mm", "60 pulls", "24 packs/case", "Lint-free", "No additives", "Thick & durable", "Wet strength"],
+    "ja": ["200mm×200mm", "60枚", "24パック/ケース", "毛羽立ちにくい", "無添加", "厚手で丈夫", "濡れても破れにくい"]
+  },
+  "images": [
+    {
+      "file": "P1.png",
+      "caption": {
+        "zh": "洗脸柔巾 · 产品展示",
+        "hk": "洗臉柔巾 · 產品展示",
+        "en": "Facial Cleaning Towels | Product View",
+        "ja": "フェイシャルクレンジングタオル｜製品イメージ"
+      }
+    },
+    {
+      "file": "Picture11.png",
+      "caption": {
+        "zh": "洗脸柔巾 · 细节展示",
+        "hk": "洗臉柔巾 · 細節展示",
+        "en": "Facial Cleaning Towels | Detail View",
+        "ja": "フェイシャルクレンジングタオル｜ディテール"
+      }
+    }
+  ]
+}

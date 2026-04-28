@@ -1,0 +1,38 @@
+{
+  "id": "personal-laundry-detergent-floral-2kg",
+  "name": {
+    "zh": "百花香洗衣液",
+    "hk": "百花香洗衣液",
+    "en": "Floral Laundry Detergent",
+    "ja": "フローラル洗濯洗剤"
+  },
+  "desc": {
+    "zh": "2kg/瓶｜6瓶/箱",
+    "hk": "2kg/瓶｜6瓶/箱",
+    "en": "2kg/bottle | 6 bottles/case",
+    "ja": "2kg/本｜6本/ケース"
+  },
+  "features": {
+    "zh": "无荧光，除菌去渍；72小时留香，进口香料，衣物清新更持久。",
+    "hk": "無螢光，除菌去漬；72小時留香，進口香料，衣物清新更持久。",
+    "en": "No fluorescent brighteners, helps remove stains and bacteria; 72-hour lasting fragrance with imported perfume ingredients.",
+    "ja": "蛍光剤不使用。除菌・汚れ落ちに配慮し、輸入香料で72時間続く香り。清潔感が長持ちします。"
+  },
+  "specs": {
+    "zh": ["2kg/瓶", "6瓶/箱", "无荧光", "除菌去渍", "72小时留香", "进口香料"],
+    "hk": ["2kg/瓶", "6瓶/箱", "無螢光", "除菌去漬", "72小時留香", "進口香料"],
+    "en": ["2kg/bottle", "6 bottles/case", "No fluorescent brighteners", "Stain removal", "72-hour lasting fragrance", "Imported fragrance"],
+    "ja": ["2kg/本", "6本/ケース", "蛍光剤不使用", "汚れ落ち", "72時間香り持続", "輸入香料"]
+  },
+  "images": [
+    {
+      "file": "P2.png",
+      "caption": {
+        "zh": "百花香洗衣液 · 产品展示",
+        "hk": "百花香洗衣液 · 產品展示",
+        "en": "Floral Laundry Detergent | Product View",
+        "ja": "フローラル洗濯洗剤｜製品イメージ"
+      }
+    }
+  ]
+}

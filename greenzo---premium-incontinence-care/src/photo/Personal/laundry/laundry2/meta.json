@@ -1,0 +1,38 @@
+{
+  "id": "personal-laundry-detergent-fragrance-5kg",
+  "name": {
+    "zh": "香氛洗衣液",
+    "hk": "香氛洗衣液",
+    "en": "Fragrance Laundry Detergent",
+    "ja": "フレグランス洗濯洗剤"
+  },
+  "desc": {
+    "zh": "5kg/瓶｜3瓶/箱",
+    "hk": "5kg/瓶｜3瓶/箱",
+    "en": "5kg/bottle | 3 bottles/case",
+    "ja": "5kg/本｜3本/ケース"
+  },
+  "features": {
+    "zh": "无荧光，除菌去渍；72小时留香，进口香料，洗后清新不刺鼻。",
+    "hk": "無螢光，除菌去漬；72小時留香，進口香料，洗後清新不刺鼻。",
+    "en": "No fluorescent brighteners, helps remove stains and bacteria; 72-hour lasting fragrance with imported perfume ingredients, fresh without being overpowering.",
+    "ja": "蛍光剤不使用。除菌・汚れ落ちに配慮し、輸入香料で72時間香りが持続。強すぎない爽やかな香りです。"
+  },
+  "specs": {
+    "zh": ["5kg/瓶", "3瓶/箱", "无荧光", "除菌去渍", "72小时留香", "进口香料"],
+    "hk": ["5kg/瓶", "3瓶/箱", "無螢光", "除菌去漬", "72小時留香", "進口香料"],
+    "en": ["5kg/bottle", "3 bottles/case", "No fluorescent brighteners", "Stain removal", "72-hour lasting fragrance", "Imported fragrance"],
+    "ja": ["5kg/本", "3本/ケース", "蛍光剤不使用", "汚れ落ち", "72時間香り持続", "輸入香料"]
+  },
+  "images": [
+    {
+      "file": "P4.png",
+      "caption": {
+        "zh": "香氛洗衣液 · 产品展示",
+        "hk": "香氛洗衣液 · 產品展示",
+        "en": "Fragrance Laundry Detergent | Product View",
+        "ja": "フレグランス洗濯洗剤｜製品イメージ"
+      }
+    }
+  ]
+}

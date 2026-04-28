@@ -1,0 +1,47 @@
+{
+  "id": "dairy-toilet-paper-110x138-150",
+  "name": {
+    "zh": "卫生卷纸",
+    "hk": "衛生卷紙",
+    "en": "Toilet Paper",
+    "ja": "トイレットペーパー"
+  },
+  "desc": {
+    "zh": "110mm×138mm/节｜150节/卷｜5层｜10卷/提｜6提/件",
+    "hk": "110mm×138mm/節｜150節/卷｜5層｜10卷/提｜6提/件",
+    "en": "110mm×138mm/sheet | 150 sheets/roll | 5-ply | 10 rolls/bundle | 6 bundles/case",
+    "ja": "110mm×138mm/枚｜150枚/ロール｜5層｜10ロール/束｜6束/ケース"
+  },
+  "features": {
+    "zh": "五层加厚，柔软亲肤；纸质细腻，拉力更佳，日常使用更舒适。",
+    "hk": "五層加厚，柔軟親膚；紙質細膩，拉力更佳，日常使用更舒適。",
+    "en": "Thickened 5-ply rolls with a soft feel; fine texture and better tensile strength for comfortable daily use.",
+    "ja": "5層厚手でやわらかな肌触り。きめ細かく、強度もしっかり。毎日の使用に快適です。"
+  },
+  "specs": {
+    "zh": ["110mm×138mm/节", "150节/卷", "5层", "10卷/提", "6提/件", "五层加厚", "柔软亲肤", "拉力更佳"],
+    "hk": ["110mm×138mm/節", "150節/卷", "5層", "10卷/提", "6提/件", "五層加厚", "柔軟親膚", "拉力更佳"],
+    "en": ["110mm×138mm/sheet", "150 sheets/roll", "5-ply", "10 rolls/bundle", "6 bundles/case", "Extra thick 5-ply", "Soft feel", "Better tensile strength"],
+    "ja": ["110mm×138mm/枚", "150枚/ロール", "5層", "10ロール/束", "6束/ケース", "厚手5層", "やわらかい", "しっかり強度"]
+  },
+  "images": [
+    {
+      "file": "Picture8.png",
+      "caption": {
+        "zh": "卫生卷纸 · 产品展示",
+        "hk": "衛生卷紙 · 產品展示",
+        "en": "Toilet Paper | Product View",
+        "ja": "トイレットペーパー｜製品イメージ"
+      }
+    },
+    {
+      "file": "D4.png",
+      "caption": {
+        "zh": "卫生卷纸 · 规格展示",
+        "hk": "衛生卷紙 · 規格展示",
+        "en": "Toilet Paper | Spec View",
+        "ja": "トイレットペーパー｜仕様"
+      }
+    }
+  ]
+}

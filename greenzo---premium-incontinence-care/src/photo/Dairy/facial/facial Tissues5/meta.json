@@ -1,0 +1,38 @@
+{
+  "id": "dairy-unscented-facial-tissues-156-96-8x5",
+  "name": {
+    "zh": "天然无香抽纸",
+    "hk": "天然無香抽紙",
+    "en": "Unscented Facial Tissue",
+    "ja": "無香料ティッシュ"
+  },
+  "desc": {
+    "zh": "180mm×156mm｜5层96抽｜8包/提｜5提/件",
+    "hk": "180mm×156mm｜5層96抽｜8包/提｜5提/件",
+    "en": "180mm×156mm | 5-ply 96 pulls | 8 packs/bundle | 5 bundles/case",
+    "ja": "180mm×156mm｜5層96回｜8パック/束｜5束/ケース"
+  },
+  "features": {
+    "zh": "天然无香，亲肤不刺激；五层加厚，柔韧耐用，日常抽取更安心。",
+    "hk": "天然無香，親膚不刺激；五層加厚，柔韌耐用，日常抽取更安心。",
+    "en": "Naturally unscented and gentle on skin; thickened 5-ply sheets with good softness and strength for everyday use.",
+    "ja": "無香料で肌にやさしい。5層厚手で、やわらかく丈夫。毎日の使用に安心です。"
+  },
+  "specs": {
+    "zh": ["180mm×156mm", "5层96抽", "8包/提", "5提/件", "天然无香", "亲肤不刺激", "五层加厚", "柔韧耐用"],
+    "hk": ["180mm×156mm", "5層96抽", "8包/提", "5提/件", "天然無香", "親膚不刺激", "五層加厚", "柔韌耐用"],
+    "en": ["180mm×156mm", "5-ply 96 pulls", "8 packs/bundle", "5 bundles/case", "Unscented", "Gentle on skin", "Extra thick 5-ply", "Durable"],
+    "ja": ["180mm×156mm", "5層96回", "8パック/束", "5束/ケース", "無香料", "肌にやさしい", "厚手5層", "丈夫"]
+  },
+  "images": [
+    {
+      "file": "Picture6.png",
+      "caption": {
+        "zh": "天然无香抽纸 · 产品展示",
+        "hk": "天然無香抽紙 · 產品展示",
+        "en": "Unscented Facial Tissue | Product View",
+        "ja": "無香料ティッシュ｜製品イメージ"
+      }
+    }
+  ]
+}
