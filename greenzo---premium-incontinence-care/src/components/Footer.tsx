@@ -35,21 +35,42 @@ export default function Footer() {
 
   const [activeQrSrc, setActiveQrSrc] = useState<string | null>(null);
 
-  const activeQr = qrImages.find((item) => item.src === activeQrSrc) ?? qrImages[0];
+  const activeQr = qrImages.find((item) => item.src === activeQrSrc);
 
   const getDisplayLabel = (label: string) => {
     const normalized = label.toLowerCase();
-    return normalized === 'tmall'
-      ? '天猫'
-      : normalized === 'jd'
-        ? '京东'
-        : normalized === 'pdd'
-          ? '拼多多'
-          : normalized === 'douyin'
-            ? '抖音'
-            : normalized === 'redbook'
-              ? '小红书'
-              : label;
+    const labelMap = {
+      zh: {
+        tmall: '天猫',
+        jd: '京东',
+        pdd: '拼多多',
+        douyin: '抖音',
+        redbook: '小红书',
+      },
+      hk: {
+        tmall: '天貓',
+        jd: '京東',
+        pdd: '拼多多',
+        douyin: '抖音',
+        redbook: '小紅書',
+      },
+      en: {
+        tmall: 'Tmall',
+        jd: 'JD',
+        pdd: 'Pinduoduo',
+        douyin: 'Douyin',
+        redbook: 'Redbook',
+      },
+      ja: {
+        tmall: '天猫',
+        jd: '京東',
+        pdd: '拼多多',
+        douyin: '抖音',
+        redbook: '小紅書',
+      },
+    } as const;
+
+    return labelMap[language][normalized as keyof typeof labelMap.zh] ?? label;
   };
 
   const getQrHref = (label: string) => {
@@ -129,8 +150,7 @@ export default function Footer() {
                           target="_blank"
                           rel="noreferrer noopener"
                           onMouseEnter={() => setActiveQrSrc(src)}
-                          onFocus={() => setActiveQrSrc(src)}
-                          onBlur={() => setActiveQrSrc(null)}
+                          onMouseLeave={() => setActiveQrSrc(null)}
                           className="flex flex-col items-center gap-2"
                           aria-label={`${displayLabel} 二维码（打开链接）`}
                         >
@@ -144,8 +164,7 @@ export default function Footer() {
                         key={src}
                         type="button"
                         onMouseEnter={() => setActiveQrSrc(src)}
-                        onFocus={() => setActiveQrSrc(src)}
-                        onBlur={() => setActiveQrSrc(null)}
+                        onMouseLeave={() => setActiveQrSrc(null)}
                         className="flex flex-col items-center gap-2"
                         aria-label={`${displayLabel} 二维码`}
                       >
