@@ -1,6 +1,6 @@
 import heroMainImage from './photo/new1.png';
 import brandStoryImage from './photo/14d39408-f98b-449a-ad77-38595a108046.png';
-import dairyPicture6 from './photo/Dairy/facial Tissues5/Picture6.png';
+import dairyPicture6 from './photo/Dairy/facial/facial Tissues5/Picture6.png';
 import videoPlaylist from './videoList.json';
 
 type LocalizedText = string | Partial<Record<'zh' | 'en' | 'ja' | 'hk', string>>;
@@ -40,7 +40,7 @@ type VideoPlaylistItem = {
 };
 
 const detailImages = Object.entries(
-  import.meta.glob('./photo/Detail/Picture*.{png,jpg,jpeg,webp,avif}', {
+  import.meta.glob('./photo/Detail/*.{png,jpg,jpeg,webp,avif}', {
     eager: true,
     import: 'default',
   }) as Record<string, string>,
@@ -138,10 +138,17 @@ const productCatalog = (() => {
       continue;
     }
 
-    const productFolder = parts[photoIndex + 2];
-    const file = parts[photoIndex + 3];
-    if (!productFolder || !file) continue;
-    const productDir = `./photo/${main}/${productFolder}`;
+    const subOrFolder = parts[photoIndex + 2];
+    const maybeFolder = parts[photoIndex + 3];
+    const file = parts[photoIndex + 4] ?? parts[photoIndex + 3];
+    if (!subOrFolder || !file) continue;
+
+    const productDir = parts[photoIndex + 4]
+      ? maybeFolder
+        ? `./photo/${main}/${subOrFolder}/${maybeFolder}`
+        : `./photo/${main}/${subOrFolder}`
+      : `./photo/${main}/${subOrFolder}`;
+
     (imagesByProductDir[productDir] ??= []).push([path, src]);
   }
 
@@ -179,8 +186,16 @@ const productCatalog = (() => {
       folderId = segments[photoIndex + 3] ?? '';
       productKey = `${subCategory}/${folderId}`;
     } else {
-      folderId = segments[photoIndex + 2] ?? '';
-      productKey = folderId;
+      const maybeSub = segments[photoIndex + 2] ?? '';
+      const maybeFolder = segments[photoIndex + 3];
+      if (maybeFolder) {
+        subCategory = maybeSub.toLowerCase() || 'all';
+        folderId = maybeFolder;
+        productKey = `${subCategory}/${folderId}`;
+      } else {
+        folderId = maybeSub;
+        productKey = folderId;
+      }
     }
 
     if (!folderId) continue;
