@@ -80,6 +80,12 @@ export default function ProductSection() {
   const polaroidTilt = ['rotate-0'];
 
   const getProductImage = () => ASSET_CONFIG.hero.mainImage;
+  const scrollCarouselToIndex = (index: number) => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const width = el.clientWidth || 1;
+    el.scrollTo({ left: width * index, behavior: 'smooth' });
+  };
 
   const products: DisplayProduct[] = useMemo(() => {
     const catalog = (ASSET_CONFIG.productCatalog ?? []) as ProductCatalogItem[];
@@ -245,8 +251,7 @@ export default function ProductSection() {
   useEffect(() => {
     const el = carouselRef.current;
     if (!el) return;
-    const width = el.clientWidth;
-    el.scrollTo({ left: width * selectedProductImageIndex, behavior: 'smooth' });
+    scrollCarouselToIndex(selectedProductImageIndex);
   }, [selectedProductImageIndex]);
 
   useEffect(() => {
@@ -401,7 +406,26 @@ export default function ProductSection() {
                   <div
                     ref={carouselRef}
                     onPointerDown={() => setLastUserScrollAt(Date.now())}
-                    onWheel={() => setLastUserScrollAt(Date.now())}
+                    onWheel={(e) => {
+                      setLastUserScrollAt(Date.now());
+                      const el = carouselRef.current;
+                      if (!el) return;
+                      const length = selectedProduct.images.length;
+                      if (length <= 1) return;
+                      const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+                      const maxScrollLeft = Math.max(0, el.scrollWidth - el.clientWidth);
+                      const atStart = el.scrollLeft <= 2;
+                      const atEnd = el.scrollLeft >= maxScrollLeft - 2;
+
+                      if (delta > 0 && atEnd) {
+                        setSelectedProductImageIndex(0);
+                        scrollCarouselToIndex(0);
+                      } else if (delta < 0 && atStart) {
+                        const lastIndex = length - 1;
+                        setSelectedProductImageIndex(lastIndex);
+                        scrollCarouselToIndex(lastIndex);
+                      }
+                    }}
                     onTouchStart={() => setLastUserScrollAt(Date.now())}
                     onScroll={() => {
                       const el = carouselRef.current;

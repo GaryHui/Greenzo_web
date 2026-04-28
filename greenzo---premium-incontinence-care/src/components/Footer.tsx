@@ -73,22 +73,48 @@ export default function Footer() {
                 {qrImages.length > 0 && (
                   <div className="pt-2 mt-auto">
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-[280px]">
-                      {qrImages.map(({ src, label }) => (
-                        <div key={src} className="flex flex-col items-center gap-2">
-                          <div className="w-20 h-20 bg-white rounded-lg p-2 flex items-center justify-center">
-                            <img
-                              src={src}
-                              alt={`${label} QR`}
-                              loading="lazy"
-                              decoding="async"
-                              className="w-full h-full object-contain"
-                            />
+                      {qrImages.map(({ src, label }) => {
+                        const normalized = label.toLowerCase();
+                        const displayLabel =
+                          normalized === 'tmall'
+                            ? '天猫'
+                            : normalized === 'jd'
+                              ? '京东'
+                              : normalized === 'pdd'
+                                ? '拼多多'
+                                : normalized === 'douyin'
+                                  ? '抖音'
+                                  : normalized === 'redbook'
+                                    ? '小红书'
+                                    : label;
+
+                        return (
+                          <div key={src} className="relative flex flex-col items-center gap-2 group">
+                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20">
+                              <div className="bg-white rounded-xl p-3 shadow-2xl">
+                                <img
+                                  src={src}
+                                  alt={`${displayLabel} 原图`}
+                                  decoding="async"
+                                  className="w-52 h-52 object-contain"
+                                />
+                              </div>
+                            </div>
+                            <div className="w-20 h-20 bg-white rounded-lg p-2 flex items-center justify-center">
+                              <img
+                                src={src}
+                                alt={`${displayLabel} QR`}
+                                loading="lazy"
+                                decoding="async"
+                                className="w-full h-full object-contain"
+                              />
+                            </div>
+                            <span className="text-[9px] uppercase tracking-[0.25em] text-white/35 font-bold text-center">
+                              {displayLabel}
+                            </span>
                           </div>
-                          <span className="text-[9px] uppercase tracking-[0.25em] text-white/35 font-bold text-center">
-                            {label}
-                          </span>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   </div>
                 )}

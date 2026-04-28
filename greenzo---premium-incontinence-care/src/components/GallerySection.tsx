@@ -1,8 +1,8 @@
 import { useLanguageStore, translations } from '../translations';
 import { AnimatePresence, motion } from 'motion/react';
-import { ChevronLeft, ChevronRight, Play, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play, Volume2, VolumeX, X } from 'lucide-react';
 import { ASSET_CONFIG } from '../assets';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 export default function GallerySection() {
   const { language } = useLanguageStore();
@@ -10,12 +10,25 @@ export default function GallerySection() {
   const polaroidTilt = ['rotate-0'];
   const images = useMemo(() => ASSET_CONFIG.gallery ?? [], []);
   const [viewerIndex, setViewerIndex] = useState<number | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const videos = useMemo(() => {
+    const list = (ASSET_CONFIG as any)?.videos?.playlist ?? [];
+    if (Array.isArray(list) && list.length > 0) return list.filter((v) => v?.src);
+    const fallbackSrc = (ASSET_CONFIG as any)?.videos?.mainDemo?.url;
+    return typeof fallbackSrc === 'string' && fallbackSrc !== '#' ? [{ src: fallbackSrc }] : [];
+  }, []);
+  const [videoIndex, setVideoIndex] = useState(0);
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const [volume, setVolume] = useState(0.6);
 
   if (!t) return null;
 
   const currentIndex = viewerIndex ?? 0;
 
   const closeViewer = () => setViewerIndex(null);
+
+  const closeVideo = () => setIsVideoOpen(false);
 
   const goPrev = () => {
     setViewerIndex((idx) => {
@@ -45,6 +58,21 @@ export default function GallerySection() {
   }, [viewerIndex, images.length]);
 
   useEffect(() => {
+    if (!isVideoOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeVideo();
+      if (e.key === 'ArrowLeft' && videos.length > 1) {
+        setVideoIndex((idx) => (idx - 1 + videos.length) % videos.length);
+      }
+      if (e.key === 'ArrowRight' && videos.length > 1) {
+        setVideoIndex((idx) => (idx + 1) % videos.length);
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [isVideoOpen, videos.length]);
+
+  useEffect(() => {
     if (viewerIndex === null) return;
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
@@ -52,6 +80,27 @@ export default function GallerySection() {
       document.body.style.overflow = originalOverflow;
     };
   }, [viewerIndex]);
+
+  useEffect(() => {
+    if (!isVideoOpen) return;
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [isVideoOpen]);
+
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el) return;
+    el.muted = isMuted;
+  }, [isMuted]);
+
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el) return;
+    el.volume = Math.min(1, Math.max(0, volume));
+  }, [volume]);
 
   return (
     <section id="gallery" className="py-20 md:py-32 bg-brand-cream border-t border-black/5">
@@ -102,6 +151,13 @@ export default function GallerySection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             className="lg:col-span-4 aspect-[4/5] sm:aspect-[5/4] lg:aspect-auto bg-brand-muted relative overflow-hidden border border-black/5 shadow-sm group cursor-pointer min-h-[280px] sm:min-h-[360px] lg:min-h-0"
+            onClick={() => {
+              if (videos.length <= 0) return;
+              setVideoIndex(0);
+              setIsMuted(true);
+              setVolume(0.6);
+              setIsVideoOpen(true);
+            }}
           >
             {/* Video Placeholder */}
             <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/20 group-hover:bg-black/10 transition-colors duration-700">
@@ -210,6 +266,108 @@ export default function GallerySection() {
                   </div>
                 </div>
               )}
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {isVideoOpen && videos.length > 0 && (
+          <div className="fixed inset-0 z-[210] flex items-center justify-center p-4 sm:p-6 md:p-12 overflow-hidden">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeVideo}
+              className="absolute inset-0 bg-brand-dark/30 backdrop-blur-md"
+            />
+            <motion.div
+              initial={{ opacity: 0, y: 30, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 30, scale: 0.98 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="relative w-full max-w-6xl bg-brand-cream shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between px-4 sm:px-6 py-4 border-b border-black/10">
+                <div className="text-[10px] uppercase tracking-[0.4em] text-brand-green font-bold">
+                  {videoIndex + 1}/{videos.length}
+                </div>
+                <button
+                  type="button"
+                  onClick={closeVideo}
+                  className="p-2 rounded-full bg-white/80 hover:bg-white border border-black/10"
+                >
+                  <X className="w-5 h-5 text-brand-dark" />
+                </button>
+              </div>
+
+              <div className="relative flex-1 bg-black overflow-hidden flex items-center justify-center">
+                {videos.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={() => setVideoIndex((idx) => (idx - 1 + videos.length) % videos.length)}
+                    className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 z-10 p-2 sm:p-3 rounded-full bg-white/85 hover:bg-white border border-black/10 shadow-lg"
+                  >
+                    <ChevronLeft className="w-5 h-5 text-brand-dark" />
+                  </button>
+                )}
+
+                <video
+                  ref={videoRef}
+                  key={videos[videoIndex]?.src}
+                  src={videos[videoIndex]?.src}
+                  autoPlay
+                  muted={isMuted}
+                  playsInline
+                  loop={videos.length === 1}
+                  onEnded={() => {
+                    if (videos.length <= 1) return;
+                    setVideoIndex((idx) => (idx + 1) % videos.length);
+                  }}
+                  onCanPlay={() => {
+                    const el = videoRef.current;
+                    if (!el) return;
+                    el.volume = Math.min(1, Math.max(0, volume));
+                  }}
+                  className="w-full h-full object-contain"
+                  controls
+                  controlsList="nodownload noplaybackrate"
+                />
+
+                {videos.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={() => setVideoIndex((idx) => (idx + 1) % videos.length)}
+                    className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 z-10 p-2 sm:p-3 rounded-full bg-white/85 hover:bg-white border border-black/10 shadow-lg"
+                  >
+                    <ChevronRight className="w-5 h-5 text-brand-dark" />
+                  </button>
+                )}
+              </div>
+
+              <div className="px-4 sm:px-6 py-4 border-t border-black/10 flex items-center gap-4">
+                <button
+                  type="button"
+                  onClick={() => setIsMuted((m) => !m)}
+                  className="p-2 rounded-full bg-white/80 hover:bg-white border border-black/10"
+                >
+                  {isMuted ? (
+                    <VolumeX className="w-5 h-5 text-brand-dark" />
+                  ) : (
+                    <Volume2 className="w-5 h-5 text-brand-dark" />
+                  )}
+                </button>
+                <input
+                  type="range"
+                  min={0}
+                  max={1}
+                  step={0.01}
+                  value={volume}
+                  onChange={(e) => setVolume(Number(e.target.value))}
+                  className="w-full accent-brand-green"
+                />
+              </div>
             </motion.div>
           </div>
         )}

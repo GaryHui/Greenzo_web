@@ -1,6 +1,7 @@
 import heroMainImage from './photo/new1.png';
 import brandStoryImage from './photo/14d39408-f98b-449a-ad77-38595a108046.png';
 import dairyPicture6 from './photo/Dairy/facial Tissues5/Picture6.png';
+import videoPlaylist from './videoList.json';
 
 type LocalizedText = string | Partial<Record<'zh' | 'en' | 'ja' | 'hk', string>>;
 type LocalizedTextArray =
@@ -32,6 +33,10 @@ type RawProductMeta = {
   specs?: LocalizedTextArray;
   images?: Array<{ file: string; caption?: LocalizedText }>;
   gallery?: Array<{ file: string; caption?: LocalizedText }>;
+};
+
+type VideoPlaylistItem = {
+  src: string;
 };
 
 const detailImages = Object.entries(
@@ -270,8 +275,9 @@ export const ASSET_CONFIG = {
   videos: {
     mainDemo: {
       thumbnail: "https://images.unsplash.com/photo-1544178170-c97216dc8f3e?auto=format&fit=crop&q=80&w=800",
-      url: "#", // Replace with your video URL
-    }
+      url: (videoPlaylist as VideoPlaylistItem[] | undefined)?.[0]?.src ?? "#",
+    },
+    playlist: (videoPlaylist as VideoPlaylistItem[] | undefined) ?? [],
   },
 
   brand: {
