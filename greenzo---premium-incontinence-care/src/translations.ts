@@ -81,19 +81,19 @@ export const translations = {
       products: '产品中心',
       story: '品牌故事',
       contact: '联系我们',
+      tagline: '令生活更轻松。',
     },
     hero: {
       title: '守护每一份尊严与舒适',
-      subtitle: '专注失禁护理，为晚年生活带来体贴入微的关怀。',
+      subtitle: '专注失禁护理，为生活带来体贴入微的关怀。',
       cta: '了解更多',
       quote: '让舒适触及生活的每一个角落。',
-      quote2: '莞众，让生活更轻松。',
     },
     story: {
       title: '品牌故事',
-      content1: 'Greenzo（莞众）成立于2015年12月，由深耕失禁护理行业20余年的资深专家创立。我们深知高品质护理产品对提升生活质量的重要性。',
+      content1: 'Greenzo（莞众）成立于2015年12月，由深耕失禁护理行业20余年的资深专家胡剑欢先生创立。我们深知高品质护理产品对提升生活质量的重要性。',
       content2: '我们的设计理念源自对生命的尊重，追求简洁、洁净、可靠的产品表达。我们不仅提供产品，更致力于为家庭和养老机构提供专业的护理解决方案。',
-      experience: '20年行业底蕴',
+      experience: '20多年行业底蕴',
       milestone: '1000万+',
       milestoneDesc: '成人纸尿片售出',
       trust: '守护千万家庭',
@@ -110,7 +110,7 @@ export const translations = {
     },
     gallery: {
       title: '视觉呈现',
-      subtitle: '全方位的细节展示，让每一份用心清晰可见。',
+      subtitle: '全方位的细节，让每一份用心清晰可见。',
       videoLabel: '产品演示视频',
     },
     standards: {
@@ -189,13 +189,13 @@ export const translations = {
       products: 'Products',
       story: 'Brand Story',
       contact: 'Contact',
+      tagline: 'Make life easier.',
     },
     hero: {
       title: 'Embracing Comfort and Dignity',
       subtitle: 'Premium incontinence care designed for specialized comfort and protection.',
       cta: 'Learn More',
       quote: 'Bringing comfort to every corner of your life.',
-      quote2: 'Greenzo, making life easier.',
     },
     story: {
       title: 'Our Story',
@@ -296,13 +296,13 @@ export const translations = {
       products: '製品紹介',
       story: 'ブランドストーリー',
       contact: 'お問い合わせ',
+      tagline: '暮らしをもっと楽に。',
     },
     hero: {
       title: '尊厳を守り、心地よさを届ける',
       subtitle: '20年の経験に基づいた、究極の優しさと機能性を追求した介護ケア。',
       cta: '詳細を見る',
       quote: '暮らしのあらゆる瞬間に、心地よさを。',
-      quote2: '莞衆、暮らしをもっと楽に。',
     },
     story: {
       title: 'ブランド物語',
@@ -403,13 +403,13 @@ export const translations = {
       products: '產品中心',
       story: '品牌故事',
       contact: '聯絡我們',
+      tagline: '令生活更輕鬆。',
     },
     hero: {
       title: '守護每一份尊嚴與舒適',
       subtitle: '專注失禁護理，為晚年生活帶來體貼入微的關懷。',
       cta: '了解更多',
       quote: '讓舒適觸及生活的每一個角落。',
-      quote2: '莞眾，讓生活更輕鬆。',
     },
     story: {
       title: '品牌故事',

@@ -10,8 +10,8 @@ export default function Navbar() {
 
   const languages = [
     { code: 'zh', name: '简体' },
-    { code: 'hk', name: '繁體' },
-    { code: 'ja', name: '日本語' },
+    { code: 'hk', name: '繁体' },
+    { code: 'ja', name: '日本语' },
     { code: 'en', name: 'EN' },
   ] as const;
 
@@ -23,7 +23,10 @@ export default function Navbar() {
             <span className="text-xl sm:text-2xl font-bold tracking-tighter uppercase text-brand-green">Greenzo</span>
             <span className="text-base sm:text-xl font-light opacity-60 ml-1 hidden sm:block">莞众</span>
           </div>
-          <div className="h-px w-8 bg-black/10 hidden lg:block"></div>
+          <div className="hidden lg:flex flex-col gap-2 min-w-0">
+            <div className="h-px w-8 bg-black/10"></div>
+            <div className="text-[10px] tracking-[0.3em] text-black/40 font-bold whitespace-nowrap">{t.tagline}</div>
+          </div>
         </div>
 
         {/* Desktop Nav */}
@@ -54,7 +57,7 @@ export default function Navbar() {
                   : ''
                 }`}
               >
-                {lang.code.toUpperCase()}
+                {lang.name}
               </button>
             ))}
           </div>

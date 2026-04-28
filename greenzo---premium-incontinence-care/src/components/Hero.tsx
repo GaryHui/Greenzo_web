@@ -1,25 +1,10 @@
 import { useLanguageStore, translations } from '../translations';
 import { motion } from 'motion/react';
 import { ASSET_CONFIG } from '../assets';
-import { useEffect, useMemo, useState } from 'react';
 
 export default function Hero() {
   const { language } = useLanguageStore();
   const t = translations[language].hero;
-  const quotes = useMemo(() => [t.quote, (t as any).quote2].filter(Boolean), [t]);
-  const [quoteIndex, setQuoteIndex] = useState(0);
-
-  useEffect(() => {
-    setQuoteIndex(0);
-  }, [language]);
-
-  useEffect(() => {
-    if (quotes.length <= 1) return;
-    const id = window.setInterval(() => {
-      setQuoteIndex((current) => (current + 1) % quotes.length);
-    }, 2000);
-    return () => window.clearInterval(id);
-  }, [quotes]);
 
   return (
     <section id="home" className="relative min-h-screen flex items-center pt-20 md:pt-24 overflow-hidden bg-brand-cream">
@@ -92,7 +77,7 @@ export default function Hero() {
             </div>
             {/* Minimalist Accent Box */}
             <div className="absolute -bottom-10 -left-10 bg-brand-cream/80 backdrop-blur-md border border-black/5 p-10 shadow-sm max-w-[280px] hidden lg:block">
-              <p className="text-brand-dark font-serif italic text-xl leading-snug">"{quotes[quoteIndex] ?? t.quote}"</p>
+              <p className="text-brand-dark font-serif italic text-xl leading-snug">"{t.quote}"</p>
             </div>
           </div>
         </motion.div>
