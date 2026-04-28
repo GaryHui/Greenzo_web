@@ -53,7 +53,7 @@ export default function Footer() {
             </div>
             {qrImages.length > 0 && (
               <div className="mt-10">
-                <div className="flex gap-4 overflow-x-auto pb-1">
+                <div className="grid grid-cols-3 sm:grid-cols-5 gap-3">
                   {qrImages.map(({ src, label }) => {
                     const normalized = label.toLowerCase();
                     const displayLabel =
@@ -70,7 +70,7 @@ export default function Footer() {
                                 : label;
 
                     return (
-                      <div key={src} className="relative flex flex-col items-center gap-2 group shrink-0">
+                      <div key={src} className="relative flex flex-col items-center gap-2 group">
                         <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20">
                           <div className="bg-white rounded-xl p-3 shadow-2xl">
                             <img
@@ -81,7 +81,7 @@ export default function Footer() {
                             />
                           </div>
                         </div>
-                        <div className="w-20 h-20 bg-white rounded-lg p-2 flex items-center justify-center">
+                        <div className="w-12 h-12 bg-white rounded-lg p-1.5 flex items-center justify-center">
                           <img
                             src={src}
                             alt={`${displayLabel} QR`}

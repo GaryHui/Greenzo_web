@@ -1,7 +1,7 @@
 import { useLanguageStore, translations } from '../translations';
 import { motion, AnimatePresence } from 'motion/react';
 import { Shield, X, ShoppingBag, Wind } from 'lucide-react';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ASSET_CONFIG, type ProductCatalogItem } from '../assets';
 
 type DisplayProductImage = {
@@ -74,18 +74,9 @@ export default function ProductSection() {
   const [selectedProductImageIndex, setSelectedProductImageIndex] = useState(0);
   const [activeMainCategory, setActiveMainCategory] = useState<string>('Adult');
   const [activeSubCategory, setActiveSubCategory] = useState<string>('diaper');
-  const [lastUserScrollAt, setLastUserScrollAt] = useState(0);
-  const carouselRef = useRef<HTMLDivElement | null>(null);
-  const carouselScrollRafRef = useRef<number | null>(null);
   const polaroidTilt = ['rotate-0'];
 
   const getProductImage = () => ASSET_CONFIG.hero.mainImage;
-  const scrollCarouselToIndex = (index: number) => {
-    const el = carouselRef.current;
-    if (!el) return;
-    const width = el.clientWidth || 1;
-    el.scrollTo({ left: width * index, behavior: 'smooth' });
-  };
 
   const products: DisplayProduct[] = useMemo(() => {
     const catalog = (ASSET_CONFIG.productCatalog ?? []) as ProductCatalogItem[];
@@ -229,39 +220,17 @@ export default function ProductSection() {
 
   useEffect(() => {
     if (!selectedProduct) return;
-    setLastUserScrollAt(0);
-  }, [selectedProduct?.id]);
-
-  useEffect(() => {
-    if (!selectedProduct) return;
     if (selectedProduct.images.length <= 1) return;
 
     const id = window.setInterval(() => {
-      const now = Date.now();
-      if (now - lastUserScrollAt < 2500) return;
       setSelectedProductImageIndex((current) => {
         const next = (current + 1) % selectedProduct.images.length;
         return next;
       });
-    }, 2000);
+    }, 5000);
 
     return () => window.clearInterval(id);
-  }, [selectedProduct?.id, selectedProduct?.images.length, lastUserScrollAt]);
-
-  useEffect(() => {
-    const el = carouselRef.current;
-    if (!el) return;
-    scrollCarouselToIndex(selectedProductImageIndex);
-  }, [selectedProductImageIndex]);
-
-  useEffect(() => {
-    return () => {
-      if (carouselScrollRafRef.current) {
-        window.cancelAnimationFrame(carouselScrollRafRef.current);
-        carouselScrollRafRef.current = null;
-      }
-    };
-  }, []);
+  }, [selectedProduct?.id, selectedProduct?.images.length]);
 
   return (
     <section id="products" className="py-20 md:py-32 bg-brand-cream border-t border-black/5">
@@ -403,99 +372,31 @@ export default function ProductSection() {
               {/* Product Image in Modal */}
               <div className="md:w-1/2 bg-brand-muted relative overflow-hidden flex flex-col">
                 <div className="flex-1 flex flex-col">
-                  <div
-                    ref={carouselRef}
-                    onPointerDown={() => setLastUserScrollAt(Date.now())}
-                    onWheel={(e) => {
-                      setLastUserScrollAt(Date.now());
-                      const el = carouselRef.current;
-                      if (!el) return;
-                      const length = selectedProduct.images.length;
-                      if (length <= 1) return;
-                      const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-                      const maxScrollLeft = Math.max(0, el.scrollWidth - el.clientWidth);
-                      const atStart = el.scrollLeft <= 2;
-                      const atEnd = el.scrollLeft >= maxScrollLeft - 2;
-
-                      if (delta > 0 && atEnd) {
-                        setSelectedProductImageIndex(0);
-                        scrollCarouselToIndex(0);
-                      } else if (delta < 0 && atStart) {
-                        const lastIndex = length - 1;
-                        setSelectedProductImageIndex(lastIndex);
-                        scrollCarouselToIndex(lastIndex);
-                      }
-                    }}
-                    onTouchStart={() => setLastUserScrollAt(Date.now())}
-                    onScroll={() => {
-                      const el = carouselRef.current;
-                      if (!el) return;
-                      if (carouselScrollRafRef.current) {
-                        window.cancelAnimationFrame(carouselScrollRafRef.current);
-                      }
-                      carouselScrollRafRef.current = window.requestAnimationFrame(() => {
-                        const width = el.clientWidth || 1;
-                        const nextIndex = Math.round(el.scrollLeft / width);
-                        if (Number.isFinite(nextIndex)) {
-                          setSelectedProductImageIndex((current) =>
-                            current === nextIndex ? current : nextIndex,
-                          );
-                        }
-                      });
-                    }}
-                    className="flex-1 overflow-x-auto flex snap-x snap-mandatory"
-                  >
-                    {selectedProduct.images.map((img, i) => (
-                      <div
-                        key={`${img.src}-${i}`}
-                        className="w-full shrink-0 snap-center flex items-center justify-center p-6 sm:p-8"
+                  <div className="flex-1 flex items-center justify-center px-6 sm:px-8 py-8 sm:py-10">
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={selectedProduct.images[selectedProductImageIndex]?.src}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                        className={`w-full max-w-[520px] bg-white p-3 sm:p-4 pb-10 sm:pb-12 shadow-[0_40px_90px_-55px_rgba(0,0,0,0.55)] border border-black/10 ${polaroidTilt[0]}`}
                       >
-                        <img
-                          src={img.src}
-                          alt={`${selectedProduct.name} ${i + 1}`}
-                          decoding="async"
-                          className="w-full h-full object-contain"
-                        />
-                      </div>
-                    ))}
+                        <div className="w-full bg-[#faf8f2] overflow-hidden flex items-center justify-center h-[42vh] sm:h-[46vh] max-h-[560px]">
+                          <img
+                            src={selectedProduct.images[selectedProductImageIndex]?.src}
+                            alt={`${selectedProduct.name} ${selectedProductImageIndex + 1}`}
+                            decoding="async"
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
+                      </motion.div>
+                    </AnimatePresence>
                   </div>
 
                   {selectedProduct.images[selectedProductImageIndex]?.caption && (
                     <div className="px-6 pb-3 sm:px-8 text-[11px] text-black/55 tracking-wide">
                       {selectedProduct.images[selectedProductImageIndex]?.caption}
-                    </div>
-                  )}
-
-                  {selectedProduct.images.length > 1 && (
-                    <div className="px-5 pb-5 sm:px-6 sm:pb-6">
-                      <div className="flex gap-3 overflow-x-auto">
-                        {selectedProduct.images.map((img, i) => {
-                          const isActive = i === selectedProductImageIndex;
-                          return (
-                            <button
-                              key={`${img.src}-${i}`}
-                              type="button"
-                              onClick={() => {
-                                setLastUserScrollAt(Date.now());
-                                setSelectedProductImageIndex(i);
-                              }}
-                              className={`shrink-0 w-20 h-16 rounded-md overflow-hidden border transition-colors ${
-                                isActive
-                                  ? 'border-brand-green'
-                                  : 'border-black/10 hover:border-black/30'
-                              }`}
-                            >
-                              <img
-                                src={img.src}
-                                alt={`${selectedProduct.name} ${i + 1}`}
-                                loading="lazy"
-                                decoding="async"
-                                className="w-full h-full object-cover"
-                              />
-                            </button>
-                          );
-                        })}
-                      </div>
                     </div>
                   )}
                 </div>
