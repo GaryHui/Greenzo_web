@@ -1,0 +1,38 @@
+{
+  "id": "adult-diaper-standard",
+  "name": {
+    "zh": "莞众牌成人纸尿裤（中端款）",
+    "hk": "莞眾牌成人紙尿褲（中端款）",
+    "en": "Guanzhong Adult Diaper (Standard)",
+    "ja": "莞衆 成人用紙おむつ（スタンダード）"
+  },
+  "desc": {
+    "zh": "中码/大码/加大码｜10片/包｜8包/箱",
+    "hk": "中碼/大碼/加大碼｜10片/包｜8包/箱",
+    "en": "M/L/XL | 10 pcs/bag | 8 bags/carton",
+    "ja": "M/L/XL｜10枚/パック｜8パック/カートン"
+  },
+  "features": {
+    "zh": "干爽舒适，贴合不易移位；PE底膜防漏，日常护理更安心。",
+    "hk": "乾爽舒適，貼合不易移位；PE底膜防漏，日常護理更安心。",
+    "en": "Dry and comfortable with a snug fit; PE backsheet helps prevent leaks for everyday care.",
+    "ja": "さらっと快適でフィット感に優れズレにくい。PEバックシートで漏れを防ぎ、日常ケアも安心。"
+  },
+  "specs": {
+    "zh": ["中码/大码/加大码", "10片/包", "8包/箱", "干爽", "舒适", "贴合", "PE底膜"],
+    "hk": ["中碼/大碼/加大碼", "10片/包", "8包/箱", "乾爽", "舒適", "貼合", "PE底膜"],
+    "en": ["M/L/XL", "10 pcs/bag", "8 bags/carton", "Dry", "Comfortable", "Snug fit", "PE backsheet"],
+    "ja": ["M/L/XL", "10枚/パック", "8パック/カートン", "さらっと", "快適", "フィット", "PEバックシート"]
+  },
+  "images": [
+    {
+      "file": "Adult2.png",
+      "caption": {
+        "zh": "中端款 · 中码/大码/加大码",
+        "hk": "中端款 · 中碼/大碼/加大碼",
+        "en": "Standard | M/L/XL",
+        "ja": "スタンダード｜M/L/XL"
+      }
+    }
+  ]
+}
