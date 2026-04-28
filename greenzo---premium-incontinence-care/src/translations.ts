@@ -100,6 +100,8 @@ export const translations = {
       milestone: '1000万+',
       milestoneDesc: '成人纸尿片售出',
       trust: '守护千万家庭',
+      valuesTitle: '公司价值观',
+      values: ['品质', '诚信', '服务', '关爱'],
     },
     quality: {
       title: '工艺与细节',
@@ -229,6 +231,8 @@ export const translations = {
       milestone: '10M+',
       milestoneDesc: 'Diapers Sold',
       trust: 'Caring for Families',
+      valuesTitle: 'Our Values',
+      values: ['Quality', 'Integrity', 'Service', 'Care'],
     },
     quality: {
       title: 'Craftsmanship & Detail',
@@ -357,6 +361,8 @@ export const translations = {
       milestone: '1,000万+',
       milestoneDesc: '累計販売枚数',
       trust: '多くの家族に寄り添う',
+      valuesTitle: '企業理念',
+      values: ['品質', '誠実', 'サービス', '思いやり'],
     },
     quality: {
       title: '職人技と細部へのこだわり',
@@ -485,6 +491,8 @@ export const translations = {
       milestone: '1000萬+',
       milestoneDesc: '成人紙尿片售出',
       trust: '守護千萬家庭',
+      valuesTitle: '公司價值觀',
+      values: ['品質', '誠信', '服務', '關愛'],
     },
     quality: {
       title: '工藝與細節',

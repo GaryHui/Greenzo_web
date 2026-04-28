@@ -1,6 +1,6 @@
 import { useLanguageStore, translations } from '../translations';
 import { Mail, Phone, MapPin, Linkedin, Facebook, Instagram } from 'lucide-react';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 export default function Footer() {
   const { language } = useLanguageStore();
@@ -33,6 +33,31 @@ export default function Footer() {
       });
   }, []);
 
+  const [activeQrSrc, setActiveQrSrc] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!activeQrSrc && qrImages.length > 0) {
+      setActiveQrSrc(qrImages[0].src);
+    }
+  }, [activeQrSrc, qrImages]);
+
+  const activeQr = qrImages.find((item) => item.src === activeQrSrc) ?? qrImages[0];
+
+  const getDisplayLabel = (label: string) => {
+    const normalized = label.toLowerCase();
+    return normalized === 'tmall'
+      ? '天猫'
+      : normalized === 'jd'
+        ? '京东'
+        : normalized === 'pdd'
+          ? '拼多多'
+          : normalized === 'douyin'
+            ? '抖音'
+            : normalized === 'redbook'
+              ? '小红书'
+              : label;
+  };
+
   return (
     <footer id="contact" className="bg-[#1A2616] text-white/90 pt-16 md:pt-24 pb-10 md:pb-12">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 lg:px-16">
@@ -55,33 +80,24 @@ export default function Footer() {
               <div className="mt-10">
                 <div className="grid grid-cols-3 sm:grid-cols-5 gap-3">
                   {qrImages.map(({ src, label }) => {
-                    const normalized = label.toLowerCase();
-                    const displayLabel =
-                      normalized === 'tmall'
-                        ? '天猫'
-                        : normalized === 'jd'
-                          ? '京东'
-                          : normalized === 'pdd'
-                            ? '拼多多'
-                            : normalized === 'douyin'
-                              ? '抖音'
-                              : normalized === 'redbook'
-                                ? '小红书'
-                                : label;
+                    const displayLabel = getDisplayLabel(label);
+                    const isActive = src === activeQrSrc;
 
                     return (
-                      <div key={src} className="relative flex flex-col items-center gap-2 group">
-                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20">
-                          <div className="bg-white rounded-xl p-3 shadow-2xl">
-                            <img
-                              src={src}
-                              alt={`${displayLabel} 原图`}
-                              decoding="async"
-                              className="w-64 h-64 sm:w-72 sm:h-72 object-contain"
-                            />
-                          </div>
-                        </div>
-                        <div className="w-12 h-12 bg-white rounded-lg p-1.5 flex items-center justify-center">
+                      <button
+                        key={src}
+                        type="button"
+                        onMouseEnter={() => setActiveQrSrc(src)}
+                        onFocus={() => setActiveQrSrc(src)}
+                        onClick={() => setActiveQrSrc(src)}
+                        className="flex flex-col items-center gap-2"
+                        aria-label={`${displayLabel} 二维码`}
+                      >
+                        <div
+                          className={`w-12 h-12 bg-white rounded-lg p-1.5 flex items-center justify-center transition-all ${
+                            isActive ? 'ring-2 ring-brand-green ring-offset-2 ring-offset-[#1A2616]' : ''
+                          }`}
+                        >
                           <img
                             src={src}
                             alt={`${displayLabel} QR`}
@@ -93,10 +109,26 @@ export default function Footer() {
                         <span className="text-[9px] uppercase tracking-[0.25em] text-white/35 font-bold text-center">
                           {displayLabel}
                         </span>
-                      </div>
+                      </button>
                     );
                   })}
                 </div>
+
+                {activeQr && (
+                  <div className="mt-5 rounded-2xl border border-white/10 bg-white/5 p-3">
+                    <div className="text-[10px] uppercase tracking-[0.25em] text-white/45 font-bold mb-3">
+                      {getDisplayLabel(activeQr.label)}
+                    </div>
+                    <div className="bg-white rounded-xl p-3 shadow-2xl w-fit">
+                      <img
+                        src={activeQr.src}
+                        alt={`${getDisplayLabel(activeQr.label)} 原图`}
+                        decoding="async"
+                        className="w-64 h-64 sm:w-72 sm:h-72 object-contain"
+                      />
+                    </div>
+                  </div>
+                )}
               </div>
             )}
           </div>
