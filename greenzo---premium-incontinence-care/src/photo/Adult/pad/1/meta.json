@@ -1,0 +1,38 @@
+{
+  "id": "adult-pad-bed-mat",
+  "name": {
+    "zh": "护理床垫",
+    "hk": "護理床墊",
+    "en": "Nursing Bed Mat",
+    "ja": "介護用ベッドパッド"
+  },
+  "desc": {
+    "zh": "60cm×90cm｜5片/10片/包｜12包/箱",
+    "hk": "60cm×90cm｜5片/10片/包｜12包/箱",
+    "en": "60cm×90cm | 5/10 pcs/bag | 12 bags/carton",
+    "ja": "60cm×90cm｜5枚/10枚/パック｜12パック/カートン"
+  },
+  "features": {
+    "zh": "网格疏导，棉柔透气；快速吸收，固定防移位，使用更安心。",
+    "hk": "網格疏導，棉柔透氣；快速吸收，固定防移位，使用更安心。",
+    "en": "Grid channeling with soft, breathable surface; fast absorption with secure fixation to help prevent shifting.",
+    "ja": "格子状の導流で拡散しやすく、やわらかく通気性。素早く吸収し、固定でズレにくく安心。"
+  },
+  "specs": {
+    "zh": ["60cm×90cm", "5片/包", "10片/包", "12包/箱", "网格疏导", "棉柔透气", "快速吸收", "固定防移位"],
+    "hk": ["60cm×90cm", "5片/包", "10片/包", "12包/箱", "網格疏導", "棉柔透氣", "快速吸收", "固定防移位"],
+    "en": ["60cm×90cm", "5 pcs/bag", "10 pcs/bag", "12 bags/carton", "Grid channeling", "Soft & breathable", "Fast absorption", "Anti-shift fixation"],
+    "ja": ["60cm×90cm", "5枚/パック", "10枚/パック", "12パック/カートン", "導流", "やわらか・通気性", "速吸収", "ズレ防止"]
+  },
+  "images": [
+    {
+      "file": "4.png",
+      "caption": {
+        "zh": "护理床垫 · 60cm×90cm",
+        "hk": "護理床墊 · 60cm×90cm",
+        "en": "Nursing Bed Mat | 60×90cm",
+        "ja": "介護用ベッドパッド｜60×90cm"
+      }
+    }
+  ]
+}
