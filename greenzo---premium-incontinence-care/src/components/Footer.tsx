@@ -58,6 +58,12 @@ export default function Footer() {
               : label;
   };
 
+  const getQrHref = (label: string) => {
+    const normalized = label.toLowerCase();
+    if (normalized === 'jd') return 'https://mall.jd.com/index-11412427.html?from=pc&cid=0';
+    return undefined;
+  };
+
   return (
     <footer id="contact" className="bg-[#1A2616] text-white/90 pt-16 md:pt-24 pb-10 md:pb-12">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 lg:px-16">
@@ -77,22 +83,30 @@ export default function Footer() {
               <a href="#" className="p-2 border border-white/10 hover:bg-white/5 rounded-full transition-colors"><Instagram size={16} /></a>
             </div>
             {qrImages.length > 0 && (
-              <div className="mt-10">
+              <div className="mt-10 relative">
+                {activeQr && (
+                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-5 z-30 pointer-events-none">
+                    <div className="bg-white rounded-2xl p-3 shadow-2xl border border-black/5">
+                      <div className="text-[10px] uppercase tracking-[0.25em] text-black/50 font-bold mb-3 text-center">
+                        {getDisplayLabel(activeQr.label)}
+                      </div>
+                      <img
+                        src={activeQr.src}
+                        alt={`${getDisplayLabel(activeQr.label)} 原图`}
+                        decoding="async"
+                        className="w-64 h-64 sm:w-72 sm:h-72 object-contain"
+                      />
+                    </div>
+                  </div>
+                )}
                 <div className="grid grid-cols-3 sm:grid-cols-5 gap-3">
                   {qrImages.map(({ src, label }) => {
                     const displayLabel = getDisplayLabel(label);
                     const isActive = src === activeQrSrc;
+                    const href = getQrHref(label);
 
-                    return (
-                      <button
-                        key={src}
-                        type="button"
-                        onMouseEnter={() => setActiveQrSrc(src)}
-                        onFocus={() => setActiveQrSrc(src)}
-                        onClick={() => setActiveQrSrc(src)}
-                        className="flex flex-col items-center gap-2"
-                        aria-label={`${displayLabel} 二维码`}
-                      >
+                    const content = (
+                      <>
                         <div
                           className={`w-12 h-12 bg-white rounded-lg p-1.5 flex items-center justify-center transition-all ${
                             isActive ? 'ring-2 ring-brand-green ring-offset-2 ring-offset-[#1A2616]' : ''
@@ -109,26 +123,42 @@ export default function Footer() {
                         <span className="text-[9px] uppercase tracking-[0.25em] text-white/35 font-bold text-center">
                           {displayLabel}
                         </span>
+                      </>
+                    );
+
+                    if (href) {
+                      return (
+                        <a
+                          key={src}
+                          href={href}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                          onMouseEnter={() => setActiveQrSrc(src)}
+                          onFocus={() => setActiveQrSrc(src)}
+                          onClick={() => setActiveQrSrc(src)}
+                          className="flex flex-col items-center gap-2"
+                          aria-label={`${displayLabel} 二维码（打开链接）`}
+                        >
+                          {content}
+                        </a>
+                      );
+                    }
+
+                    return (
+                      <button
+                        key={src}
+                        type="button"
+                        onMouseEnter={() => setActiveQrSrc(src)}
+                        onFocus={() => setActiveQrSrc(src)}
+                        onClick={() => setActiveQrSrc(src)}
+                        className="flex flex-col items-center gap-2"
+                        aria-label={`${displayLabel} 二维码`}
+                      >
+                        {content}
                       </button>
                     );
                   })}
                 </div>
-
-                {activeQr && (
-                  <div className="mt-5 rounded-2xl border border-white/10 bg-white/5 p-3">
-                    <div className="text-[10px] uppercase tracking-[0.25em] text-white/45 font-bold mb-3">
-                      {getDisplayLabel(activeQr.label)}
-                    </div>
-                    <div className="bg-white rounded-xl p-3 shadow-2xl w-fit">
-                      <img
-                        src={activeQr.src}
-                        alt={`${getDisplayLabel(activeQr.label)} 原图`}
-                        decoding="async"
-                        className="w-64 h-64 sm:w-72 sm:h-72 object-contain"
-                      />
-                    </div>
-                  </div>
-                )}
               </div>
             )}
           </div>
