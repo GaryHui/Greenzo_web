@@ -51,7 +51,7 @@ export default function Footer() {
                 </div>
                 <div>
                   <span className="text-[10px] uppercase tracking-widest text-white/30 mb-2 block">{t.email}</span>
-                  <span className="text-sm font-bold tracking-tighter">info@greenzo.com.cn</span>
+                  <span className="text-sm font-bold tracking-tighter">hujianhuan@163.com</span>
                 </div>
               </div>
             </div>
