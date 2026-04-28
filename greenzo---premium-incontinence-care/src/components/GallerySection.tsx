@@ -1,6 +1,6 @@
 import { useLanguageStore, translations } from '../translations';
 import { AnimatePresence, motion } from 'motion/react';
-import { ChevronLeft, ChevronRight, Play, Volume2, VolumeX, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Volume2, VolumeX, X } from 'lucide-react';
 import { ASSET_CONFIG } from '../assets';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
@@ -10,7 +10,6 @@ export default function GallerySection() {
   const polaroidTilt = ['rotate-0'];
   const images = useMemo(() => ASSET_CONFIG.gallery ?? [], []);
   const [viewerIndex, setViewerIndex] = useState<number | null>(null);
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const videos = useMemo(() => {
     const list = (ASSET_CONFIG as any)?.videos?.playlist ?? [];
@@ -27,7 +26,7 @@ export default function GallerySection() {
   if (!t) return null;
 
   const currentIndex = viewerIndex ?? 0;
-  const currentPreviewIndex = Math.min(Math.max(activeImageIndex, 0), Math.max(0, images.length - 1));
+  const gridImages = Array.from({ length: 4 }, (_, i) => images[i] ?? null);
 
   const closeViewer = () => setViewerIndex(null);
 
@@ -124,71 +123,46 @@ export default function GallerySection() {
           <div className="h-px bg-black/10 flex-1 mx-12 hidden lg:block mb-4"></div>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-6 md:gap-8">
-          <div className="lg:col-span-8">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.98 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1 }}
-              onClick={() => {
-                if (images.length <= 0) return;
-                setViewerIndex(currentPreviewIndex);
-              }}
-              className="min-h-[320px] sm:min-h-[360px] md:min-h-[420px] bg-brand-muted relative overflow-hidden border border-black/5 shadow-sm group flex items-center justify-center p-4 sm:p-6 md:p-8 cursor-zoom-in"
-            >
-              {images.length > 0 && (
-                <div className={`w-full max-w-[420px] sm:max-w-none sm:w-[70%] bg-white p-3 sm:p-4 pb-8 sm:pb-10 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.35)] border border-black/8 transition-all duration-700 group-hover:-translate-y-1 ${polaroidTilt[0]}`}>
-                  <div className="aspect-[3/4] bg-[#faf8f2] overflow-hidden flex items-center justify-center">
-                    <img 
-                      src={images[currentPreviewIndex]} 
-                      alt={`Gallery ${currentPreviewIndex + 1}`}
-                      referrerPolicy="no-referrer"
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-contain grayscale-[0.1] group-hover:grayscale-0 group-hover:scale-[1.02] transition-all duration-1000"
-                    />
+        <div className="grid lg:grid-cols-2 gap-6 md:gap-8 items-stretch">
+          <div className="grid grid-cols-2 grid-rows-2 gap-6 md:gap-8 h-full">
+            {gridImages.map((img, i) => (
+              <motion.div
+                key={`${img ?? 'empty'}-${i}`}
+                initial={{ opacity: 0, scale: 0.98 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: i * 0.06 }}
+                onClick={() => {
+                  if (!img) return;
+                  setViewerIndex(i);
+                }}
+                className={`bg-brand-muted relative overflow-hidden border border-black/5 shadow-sm flex items-center justify-center p-4 sm:p-5 md:p-6 h-full ${
+                  img ? 'group cursor-zoom-in' : ''
+                }`}
+              >
+                {img && (
+                  <div className={`w-full h-full bg-white p-2 sm:p-3 pb-7 sm:pb-8 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.35)] border border-black/8 transition-all duration-700 group-hover:-translate-y-1 ${polaroidTilt[i % polaroidTilt.length]}`}>
+                    <div className="w-full h-full bg-[#faf8f2] overflow-hidden flex items-center justify-center">
+                      <img
+                        src={img}
+                        alt={`Gallery ${i + 1}`}
+                        referrerPolicy="no-referrer"
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-full object-contain grayscale-[0.1] group-hover:grayscale-0 group-hover:scale-[1.02] transition-all duration-1000"
+                      />
+                    </div>
                   </div>
-                </div>
-              )}
-            </motion.div>
-
-            {images.length > 1 && (
-              <div className="mt-6 md:mt-8">
-                <div className="flex gap-3 overflow-x-auto pb-1">
-                  {images.map((src, i) => {
-                    const isActive = i === currentPreviewIndex;
-                    return (
-                      <button
-                        key={`${src}-${i}`}
-                        type="button"
-                        onClick={() => setActiveImageIndex(i)}
-                        className={`shrink-0 w-20 h-16 rounded-md overflow-hidden border transition-colors bg-white ${
-                          isActive ? 'border-brand-green' : 'border-black/10 hover:border-black/30'
-                        }`}
-                      >
-                        <div className="w-full h-full bg-[#faf8f2] flex items-center justify-center p-1">
-                          <img
-                            src={src}
-                            alt={`Gallery thumb ${i + 1}`}
-                            loading="lazy"
-                            decoding="async"
-                            className="w-full h-full object-contain"
-                          />
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
+                )}
+              </motion.div>
+            ))}
           </div>
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-4 aspect-[4/5] sm:aspect-[5/4] lg:aspect-auto bg-brand-muted relative overflow-hidden border border-black/5 shadow-sm group cursor-pointer min-h-[280px] sm:min-h-[360px] lg:min-h-0"
+            className="bg-brand-muted relative overflow-hidden border border-black/5 shadow-sm min-h-[320px] sm:min-h-[360px] md:min-h-[420px] flex flex-col group cursor-pointer"
             onClick={() => {
               if (videos.length <= 0) return;
               setVideoIndex(activeVideoIndex);
@@ -197,21 +171,30 @@ export default function GallerySection() {
               setIsVideoOpen(true);
             }}
           >
-            {/* Video Placeholder */}
-            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/20 group-hover:bg-black/10 transition-colors duration-700">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-white/40 flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-700 backdrop-blur-sm">
-                <Play className="text-white fill-white w-6 h-6 ml-1" />
+            <div className="flex-1 relative">
+              {videos.length > 0 ? (
+                <video
+                  key={videos[activeVideoIndex]?.src}
+                  src={videos[activeVideoIndex]?.src}
+                  autoPlay
+                  muted
+                  playsInline
+                  loop={videos.length === 1}
+                  onEnded={() => {
+                    if (videos.length <= 1) return;
+                    setActiveVideoIndex((idx) => (idx + 1) % videos.length);
+                  }}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-black/40">{t.videoLabel}</span>
+                </div>
+              )}
+              <div className="absolute inset-x-0 bottom-0 px-5 py-4 bg-gradient-to-t from-black/45 to-transparent">
+                <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-white/90">{t.videoLabel}</span>
               </div>
-              <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-white shadow-xl">{t.videoLabel}</span>
             </div>
-            <img 
-              src={ASSET_CONFIG.videos.mainDemo.thumbnail} 
-              alt="Video Thumbnail"
-              referrerPolicy="no-referrer"
-              loading="lazy"
-              decoding="async"
-              className="w-full h-full object-cover grayscale-[0.6] blur-[2px] transition-all duration-1000 group-hover:scale-105"
-            />
           </motion.div>
         </div>
 
@@ -282,13 +265,19 @@ export default function GallerySection() {
                   </button>
                 )}
 
-                <img
-                  src={images[currentIndex]}
-                  alt={`Gallery ${currentIndex + 1}`}
-                  referrerPolicy="no-referrer"
-                  decoding="async"
-                  className="w-full h-full object-contain p-4 sm:p-8"
-                />
+                <div className="w-full h-full flex items-center justify-center px-4 sm:px-8 py-6 sm:py-10">
+                  <div className="w-full max-w-[560px] sm:max-w-[720px] bg-white p-3 sm:p-4 pb-10 sm:pb-12 shadow-[0_40px_90px_-50px_rgba(0,0,0,0.6)] border border-black/10">
+                    <div className="w-full bg-[#faf8f2] overflow-hidden flex items-center justify-center h-[52vh] sm:h-[56vh] max-h-[720px]">
+                      <img
+                        src={images[currentIndex]}
+                        alt={`Gallery ${currentIndex + 1}`}
+                        referrerPolicy="no-referrer"
+                        decoding="async"
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                  </div>
+                </div>
 
                 {images.length > 1 && (
                   <button

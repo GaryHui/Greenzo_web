@@ -1,0 +1,38 @@
+{
+  "id": "dairy-hanging-box-tissues-400",
+  "name": {
+    "zh": "悬挂式抽纸",
+    "hk": "懸掛式抽紙",
+    "en": "Hanging Tissue",
+    "ja": "吊り下げ式ティッシュ"
+  },
+  "desc": {
+    "zh": "180mm×140mm｜5层｜400抽/提｜10提/件",
+    "hk": "180mm×140mm｜5層｜400抽/提｜10提/件",
+    "en": "180mm×140mm | 5-ply | 400 pulls/pack | 10 packs/case",
+    "ja": "180mm×140mm｜5層｜400回/パック｜10パック/ケース"
+  },
+  "features": {
+    "zh": "干湿两用，五层加厚；悬挂式设计，抽取顺畅更省心。",
+    "hk": "乾濕兩用，五層加厚；懸掛式設計，抽取順暢更省心。",
+    "en": "Wet & dry dual-use, thickened 5-ply sheets; hanging design for smooth dispensing.",
+    "ja": "乾湿両用で5層厚手。吊り下げ式で取り出しやすく、スムーズに使えます。"
+  },
+  "specs": {
+    "zh": ["180mm×140mm", "5层", "400抽/提", "10提/件", "干湿两用", "五层加厚", "悬挂式设计"],
+    "hk": ["180mm×140mm", "5層", "400抽/提", "10提/件", "乾濕兩用", "五層加厚", "懸掛式設計"],
+    "en": ["180mm×140mm", "5-ply", "400 pulls/pack", "10 packs/case", "Wet & dry dual-use", "Extra thick", "Hanging design"],
+    "ja": ["180mm×140mm", "5層", "400回/パック", "10パック/ケース", "乾湿両用", "厚手", "吊り下げ式"]
+  },
+  "images": [
+    {
+      "file": "D3.png",
+      "caption": {
+        "zh": "悬挂式抽纸 · 产品展示",
+        "hk": "懸掛式抽紙 · 產品展示",
+        "en": "Hanging Tissue | Product View",
+        "ja": "吊り下げ式ティッシュ｜製品イメージ"
+      }
+    }
+  ]
+}

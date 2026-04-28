@@ -1,0 +1,47 @@
+{
+  "id": "dairy-unscented-facial-tissues-128",
+  "name": {
+    "zh": "天然无香抽纸",
+    "hk": "天然無香抽紙",
+    "en": "Unscented Facial Tissue",
+    "ja": "無香料ティッシュ"
+  },
+  "desc": {
+    "zh": "180mm×128mm｜5层80抽｜6包/提｜10提/件",
+    "hk": "180mm×128mm｜5層80抽｜6包/提｜10提/件",
+    "en": "180mm×128mm | 5-ply 80 pulls | 6 packs/pack | 10 packs/case",
+    "ja": "180mm×128mm｜5層80回｜6パック/束｜10束/ケース"
+  },
+  "features": {
+    "zh": "天然无香，干湿两用；五层加厚，柔韧耐用，抽取更顺畅。",
+    "hk": "天然無香，乾濕兩用；五層加厚，柔韌耐用，抽取更順暢。",
+    "en": "Naturally unscented, wet & dry dual-use; thickened 5-ply sheets with good softness and strength.",
+    "ja": "無香料で乾湿両用。5層厚手で、やわらかく丈夫。スムーズに取り出せます。"
+  },
+  "specs": {
+    "zh": ["180mm×128mm", "5层80抽", "6包/提", "10提/件", "天然无香", "干湿两用", "五层加厚"],
+    "hk": ["180mm×128mm", "5層80抽", "6包/提", "10提/件", "天然無香", "乾濕兩用", "五層加厚"],
+    "en": ["180mm×128mm", "5-ply 80 pulls", "6 packs/pack", "10 packs/case", "Unscented", "Wet & dry dual-use", "Extra thick 5-ply"],
+    "ja": ["180mm×128mm", "5層80回", "6パック/束", "10束/ケース", "無香料", "乾湿両用", "厚手5層"]
+  },
+  "images": [
+    {
+      "file": "Picture4.png",
+      "caption": {
+        "zh": "天然无香抽纸 · 产品展示",
+        "hk": "天然無香抽紙 · 產品展示",
+        "en": "Unscented Facial Tissue | Product View",
+        "ja": "無香料ティッシュ｜製品イメージ"
+      }
+    },
+    {
+      "file": "D2.png",
+      "caption": {
+        "zh": "天然无香抽纸 · 规格展示",
+        "hk": "天然無香抽紙 · 規格展示",
+        "en": "Unscented Facial Tissue | Spec View",
+        "ja": "無香料ティッシュ｜仕様"
+      }
+    }
+  ]
+}
