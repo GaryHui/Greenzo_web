@@ -38,6 +38,24 @@ export default function BrandStory() {
                 <span className="text-[10px] uppercase tracking-[0.3em] font-bold opacity-80">{t.experience}</span>
               </div>
             </div>
+
+            {Array.isArray((t as any).values) && (
+              <div className="mt-6">
+                <div className="text-[10px] uppercase tracking-[0.3em] font-bold text-black/40 mb-4">
+                  {(t as any).valuesTitle}
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  {(t as any).values.map((value: string) => (
+                    <div
+                      key={value}
+                      className="px-4 py-2 bg-white border border-black/5 text-[10px] font-bold uppercase tracking-widest text-black/60 hover:bg-brand-green hover:text-white transition-all cursor-default"
+                    >
+                      {value}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </motion.div>
 
           <div className="lg:col-span-7">
@@ -49,24 +67,6 @@ export default function BrandStory() {
               <p>{t.content1}</p>
               <p>{t.content2}</p>
             </div>
-
-            {Array.isArray((t as any).values) && (
-              <div className="mt-10">
-                <div className="text-[10px] uppercase tracking-[0.3em] font-bold text-black/40 mb-5">
-                  {(t as any).valuesTitle}
-                </div>
-                <div className="flex flex-wrap gap-3">
-                  {(t as any).values.map((value: string) => (
-                    <div
-                      key={value}
-                      className="px-4 py-2 bg-brand-muted border border-black/5 text-[10px] font-bold uppercase tracking-widest text-black/60 hover:bg-brand-green hover:text-white transition-all cursor-default"
-                    >
-                      {value}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 pt-8 md:pt-10 border-t border-black/5 mt-8 md:mt-10">
               <div>
