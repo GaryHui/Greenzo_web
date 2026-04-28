@@ -121,9 +121,12 @@ const productCatalog = (() => {
 
     if (main === 'Adult') {
       const sub = parts[photoIndex + 2];
-      const productFolder = parts[photoIndex + 3];
-      const file = parts[photoIndex + 4];
-      if (!sub || !productFolder || !file) continue;
+      const maybeProductFolder = parts[photoIndex + 3];
+      const file = parts[photoIndex + 4] ?? parts[photoIndex + 3];
+      if (!sub || !file) continue;
+      const productFolder = parts[photoIndex + 4]
+        ? (maybeProductFolder ?? file.replace(/\.[^.]+$/, ''))
+        : file.replace(/\.[^.]+$/, '');
       const productDir = `./photo/Adult/${sub}/${productFolder}`;
       (imagesByProductDir[productDir] ??= []).push([path, src]);
       continue;
