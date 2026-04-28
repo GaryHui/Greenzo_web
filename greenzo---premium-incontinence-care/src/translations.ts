@@ -122,6 +122,19 @@ export const translations = {
     },
     products: {
       title: '产品中心',
+      tabs: {
+        main: {
+          Adult: '成人护理',
+          Dairy: '生活用纸',
+          Personal: '个人护理',
+        },
+        sub: {
+          diaper: '纸尿裤',
+          pad: '护理垫',
+          urinal: '便盆便壶',
+          all: '全部',
+        },
+      },
       categories: {
         incontinence: {
           name: '失禁护理系统',
@@ -189,7 +202,7 @@ export const translations = {
       products: 'Products',
       story: 'Brand Story',
       contact: 'Contact',
-      tagline: 'Make life easier.',
+      tagline: 'Make life comfortable.',
     },
     hero: {
       title: 'Embracing Comfort and Dignity',
@@ -218,6 +231,19 @@ export const translations = {
     },
     products: {
       title: 'Our Products',
+      tabs: {
+        main: {
+          Adult: 'Adult',
+          Dairy: 'Dairy',
+          Personal: 'Personal',
+        },
+        sub: {
+          diaper: 'Diaper',
+          pad: 'Pad',
+          urinal: 'Urinal',
+          all: 'All',
+        },
+      },
       categories: {
         incontinence: {
           name: 'Incontinence Care',
@@ -325,6 +351,19 @@ export const translations = {
     },
     products: {
       title: '製品紹介',
+      tabs: {
+        main: {
+          Adult: '介護',
+          Dairy: '日用品',
+          Personal: 'パーソナル',
+        },
+        sub: {
+          diaper: 'おむつ',
+          pad: 'パッド',
+          urinal: '便器',
+          all: 'すべて',
+        },
+      },
       categories: {
         incontinence: {
           name: '失禁ケアシステム',
@@ -432,6 +471,19 @@ export const translations = {
     },
     products: {
       title: '產品中心',
+      tabs: {
+        main: {
+          Adult: '成人護理',
+          Dairy: '生活用紙',
+          Personal: '個人護理',
+        },
+        sub: {
+          diaper: '紙尿褲',
+          pad: '護理墊',
+          urinal: '便盆便壺',
+          all: '全部',
+        },
+      },
       categories: {
         incontinence: {
           name: '失禁護理系統',

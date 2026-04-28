@@ -1,14 +1,57 @@
 import { useLanguageStore, translations } from '../translations';
-import { motion } from 'motion/react';
-import { Play } from 'lucide-react';
+import { AnimatePresence, motion } from 'motion/react';
+import { ChevronLeft, ChevronRight, Play, X } from 'lucide-react';
 import { ASSET_CONFIG } from '../assets';
+import { useEffect, useMemo, useState } from 'react';
 
 export default function GallerySection() {
   const { language } = useLanguageStore();
   const t = (translations[language] as any).gallery;
   const polaroidTilt = ['rotate-0'];
+  const images = useMemo(() => ASSET_CONFIG.gallery ?? [], []);
+  const [viewerIndex, setViewerIndex] = useState<number | null>(null);
 
   if (!t) return null;
+
+  const currentIndex = viewerIndex ?? 0;
+
+  const closeViewer = () => setViewerIndex(null);
+
+  const goPrev = () => {
+    setViewerIndex((idx) => {
+      if (idx === null) return 0;
+      if (images.length <= 0) return 0;
+      return (idx - 1 + images.length) % images.length;
+    });
+  };
+
+  const goNext = () => {
+    setViewerIndex((idx) => {
+      if (idx === null) return 0;
+      if (images.length <= 0) return 0;
+      return (idx + 1) % images.length;
+    });
+  };
+
+  useEffect(() => {
+    if (viewerIndex === null) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeViewer();
+      if (e.key === 'ArrowLeft') goPrev();
+      if (e.key === 'ArrowRight') goNext();
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [viewerIndex, images.length]);
+
+  useEffect(() => {
+    if (viewerIndex === null) return;
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [viewerIndex]);
 
   return (
     <section id="gallery" className="py-20 md:py-32 bg-brand-cream border-t border-black/5">
@@ -28,20 +71,21 @@ export default function GallerySection() {
 
         <div className="grid lg:grid-cols-12 gap-6 md:gap-8">
           <div className="lg:col-span-8 grid md:grid-cols-2 gap-8">
-            {ASSET_CONFIG.gallery.map((img, i) => (
+            {images.map((img, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, scale: 0.98 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, delay: i * 0.1 }}
-                className="min-h-[320px] sm:min-h-[360px] md:min-h-[420px] bg-brand-muted relative overflow-hidden border border-black/5 shadow-sm group flex items-center justify-center p-4 sm:p-6 md:p-8"
+                onClick={() => setViewerIndex(i)}
+                className="min-h-[320px] sm:min-h-[360px] md:min-h-[420px] bg-brand-muted relative overflow-hidden border border-black/5 shadow-sm group flex items-center justify-center p-4 sm:p-6 md:p-8 cursor-zoom-in"
               >
                 <div className={`w-full max-w-[320px] sm:max-w-none sm:w-[88%] bg-white p-3 sm:p-4 pb-8 sm:pb-10 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.35)] border border-black/8 transition-all duration-700 group-hover:-translate-y-1 ${polaroidTilt[i % polaroidTilt.length]}`}>
                   <div className="aspect-[3/4] bg-[#faf8f2] overflow-hidden flex items-center justify-center">
                     <img 
                       src={img} 
-                      alt="Product Detail"
+                      alt={`Gallery ${i + 1}`}
                       referrerPolicy="no-referrer"
                       loading="lazy"
                       decoding="async"
@@ -77,6 +121,99 @@ export default function GallerySection() {
           </motion.div>
         </div>
       </div>
+
+      <AnimatePresence>
+        {viewerIndex !== null && images.length > 0 && (
+          <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-6 md:p-12 overflow-hidden">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeViewer}
+              className="absolute inset-0 bg-brand-dark/30 backdrop-blur-md"
+            />
+            <motion.div
+              initial={{ opacity: 0, y: 30, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 30, scale: 0.98 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="relative w-full max-w-6xl bg-brand-cream shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between px-4 sm:px-6 py-4 border-b border-black/10">
+                <div className="text-[10px] uppercase tracking-[0.4em] text-brand-green font-bold">
+                  {currentIndex + 1}/{images.length}
+                </div>
+                <button
+                  type="button"
+                  onClick={closeViewer}
+                  className="p-2 rounded-full bg-white/80 hover:bg-white border border-black/10"
+                >
+                  <X className="w-5 h-5 text-brand-dark" />
+                </button>
+              </div>
+
+              <div className="relative flex-1 bg-brand-muted overflow-hidden flex items-center justify-center">
+                {images.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={goPrev}
+                    className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 z-10 p-2 sm:p-3 rounded-full bg-white/85 hover:bg-white border border-black/10 shadow-lg"
+                  >
+                    <ChevronLeft className="w-5 h-5 text-brand-dark" />
+                  </button>
+                )}
+
+                <img
+                  src={images[currentIndex]}
+                  alt={`Gallery ${currentIndex + 1}`}
+                  referrerPolicy="no-referrer"
+                  decoding="async"
+                  className="w-full h-full object-contain p-4 sm:p-8"
+                />
+
+                {images.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={goNext}
+                    className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 z-10 p-2 sm:p-3 rounded-full bg-white/85 hover:bg-white border border-black/10 shadow-lg"
+                  >
+                    <ChevronRight className="w-5 h-5 text-brand-dark" />
+                  </button>
+                )}
+              </div>
+
+              {images.length > 1 && (
+                <div className="px-4 sm:px-6 py-4 border-t border-black/10">
+                  <div className="flex gap-3 overflow-x-auto">
+                    {images.map((src, i) => {
+                      const isActive = i === currentIndex;
+                      return (
+                        <button
+                          key={`${src}-${i}`}
+                          type="button"
+                          onClick={() => setViewerIndex(i)}
+                          className={`shrink-0 w-20 h-16 rounded-md overflow-hidden border transition-colors ${
+                            isActive ? 'border-brand-green' : 'border-black/10 hover:border-black/30'
+                          }`}
+                        >
+                          <img
+                            src={src}
+                            alt={`Gallery thumb ${i + 1}`}
+                            loading="lazy"
+                            decoding="async"
+                            className="w-full h-full object-cover"
+                          />
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

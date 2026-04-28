@@ -1,5 +1,6 @@
 import heroMainImage from './photo/new1.png';
 import brandStoryImage from './photo/14d39408-f98b-449a-ad77-38595a108046.png';
+import dairyPicture6 from './photo/Dairy/facial Tissues5/Picture6.png';
 
 type LocalizedText = string | Partial<Record<'zh' | 'en' | 'ja' | 'hk', string>>;
 type LocalizedTextArray =
@@ -263,6 +264,7 @@ export const ASSET_CONFIG = {
 
   gallery: [
     ...detailImages,
+    dairyPicture6,
   ],
 
   videos: {

@@ -65,6 +65,11 @@ function pickLocalizedTextArray(
 export default function ProductSection() {
   const { language } = useLanguageStore();
   const t = translations[language].products;
+  const tabLabels = (t as any).tabs as
+    | { main?: Record<string, string>; sub?: Record<string, string> }
+    | undefined;
+  const mainTabLabels = tabLabels?.main ?? {};
+  const subTabLabels = tabLabels?.sub ?? {};
   const [selectedProduct, setSelectedProduct] = useState<DisplayProduct | null>(null);
   const [selectedProductImageIndex, setSelectedProductImageIndex] = useState(0);
   const [activeMainCategory, setActiveMainCategory] = useState<string>('Adult');
@@ -285,7 +290,7 @@ export default function ProductSection() {
                   className={`w-5 h-5 transition-transform duration-500 group-hover:scale-110 ${isActive ? 'text-brand-green' : 'text-black/20'}`}
                 />
                 <span className="text-[11px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.2em] font-bold text-center sm:text-left">
-                  {categoryId}
+                  {mainTabLabels[categoryId] ?? categoryId}
                 </span>
                 {isActive && (
                   <motion.div
@@ -312,7 +317,7 @@ export default function ProductSection() {
                       : 'bg-white text-brand-dark border-black/5 hover:border-brand-green'
                   }`}
                 >
-                  {subId}
+                  {subTabLabels[subId] ?? subId}
                 </button>
               );
             })}

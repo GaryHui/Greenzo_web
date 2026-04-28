@@ -1,0 +1,47 @@
+{
+  "id": "dairy-hanging-box-tissues",
+  "name": {
+    "zh": "悬挂式抽纸",
+    "hk": "懸掛式抽紙",
+    "en": "Hanging Tissue",
+    "ja": "吊り下げ式ティッシュ"
+  },
+  "desc": {
+    "zh": "180mm×155mm｜5层｜1800张/提｜8提/件",
+    "hk": "180mm×155mm｜5層｜1800張/提｜8提/件",
+    "en": "180mm×155mm | 5-ply | 1800 sheets/pack | 8 packs/case",
+    "ja": "180mm×155mm｜5層｜1800枚/パック｜8パック/ケース"
+  },
+  "features": {
+    "zh": "百分之一百原木浆，湿水不易破；五层加厚，亲肤柔软，日常抽取更安心。",
+    "hk": "百分之一百原木漿，濕水不易破；五層加厚，親膚柔軟，日常抽取更安心。",
+    "en": "100% virgin wood pulp with strong wet strength; 5-ply thickened sheets, soft and skin-friendly for everyday use.",
+    "ja": "原生木材パルプ100%。濡れても破れにくく、5層厚手でやさしい肌触り。毎日の使用に安心です。"
+  },
+  "specs": {
+    "zh": ["180mm×155mm", "5层", "1800张/提", "8提/件", "100%原木浆", "湿水不易破", "五层加厚", "亲肤柔软"],
+    "hk": ["180mm×155mm", "5層", "1800張/提", "8提/件", "100%原木漿", "濕水不易破", "五層加厚", "親膚柔軟"],
+    "en": ["180mm×155mm", "5-ply", "1800 sheets/pack", "8 packs/case", "100% virgin wood pulp", "Wet strength", "Extra thick", "Soft & skin-friendly"],
+    "ja": ["180mm×155mm", "5層", "1800枚/パック", "8パック/ケース", "原生パルプ100%", "濡れても破れにくい", "厚手", "やさしい肌触り"]
+  },
+  "images": [
+    {
+      "file": "Picture7.png",
+      "caption": {
+        "zh": "悬挂式抽纸 · 产品展示",
+        "hk": "懸掛式抽紙 · 產品展示",
+        "en": "Hanging Tissue | Product View",
+        "ja": "吊り下げ式ティッシュ｜製品イメージ"
+      }
+    },
+    {
+      "file": "Picture8.png",
+      "caption": {
+        "zh": "悬挂式抽纸 · 细节展示",
+        "hk": "懸掛式抽紙 · 細節展示",
+        "en": "Hanging Tissue | Detail View",
+        "ja": "吊り下げ式ティッシュ｜ディテール"
+      }
+    }
+  ]
+}

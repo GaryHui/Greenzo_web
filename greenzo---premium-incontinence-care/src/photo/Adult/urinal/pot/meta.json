@@ -1,0 +1,56 @@
+{
+  "id": "adult-urinal-bedpan",
+  "name": {
+    "zh": "莞众牌便盆、便壶",
+    "hk": "莞眾牌便盆、便壺",
+    "en": "Guanzhong Bedpan & Urinal",
+    "ja": "莞衆 便器（便盆・尿器）"
+  },
+  "desc": {
+    "zh": "便盆 40个/箱｜便壶 50个/箱",
+    "hk": "便盆 40個/箱｜便壺 50個/箱",
+    "en": "Bedpan: 40 pcs/carton | Urinal: 50 pcs/carton",
+    "ja": "便盆：40個/箱｜尿器：50個/箱"
+  },
+  "features": {
+    "zh": "性价比高，方便卫生；适用于居家与护理场景，清洁更省心。",
+    "hk": "性價比高，方便衛生；適用於居家與護理場景，清潔更省心。",
+    "en": "High value, convenient and hygienic; suitable for home and care settings, making cleanup easier.",
+    "ja": "コスパが高く、便利で衛生的。ご家庭や介護シーンに適し、お手入れも簡単です。"
+  },
+  "specs": {
+    "zh": ["便盆", "40个/箱", "便壶", "50个/箱", "方便卫生", "性价比高"],
+    "hk": ["便盆", "40個/箱", "便壺", "50個/箱", "方便衛生", "性價比高"],
+    "en": ["Bedpan", "40 pcs/carton", "Urinal", "50 pcs/carton", "Convenient & hygienic", "Great value"],
+    "ja": ["便盆", "40個/箱", "尿器", "50個/箱", "衛生的", "高コスパ"]
+  },
+  "images": [
+    {
+      "file": "6.png",
+      "caption": {
+        "zh": "便盆/便壶 · 产品展示",
+        "hk": "便盆/便壺 · 產品展示",
+        "en": "Bedpan/Urinal | Product View",
+        "ja": "便盆・尿器｜製品イメージ"
+      }
+    },
+    {
+      "file": "7.png",
+      "caption": {
+        "zh": "便盆/便壶 · 细节展示",
+        "hk": "便盆/便壺 · 細節展示",
+        "en": "Bedpan/Urinal | Detail View",
+        "ja": "便盆・尿器｜ディテール"
+      }
+    },
+    {
+      "file": "8.png",
+      "caption": {
+        "zh": "便盆/便壶 · 使用场景参考",
+        "hk": "便盆/便壺 · 使用場景參考",
+        "en": "Bedpan/Urinal | Usage Reference",
+        "ja": "便盆・尿器｜使用イメージ"
+      }
+    }
+  ]
+}

@@ -1,10 +1,37 @@
 import { useLanguageStore, translations } from '../translations';
 import { Mail, Phone, MapPin, Linkedin, Facebook, Instagram } from 'lucide-react';
+import { useMemo } from 'react';
 
 export default function Footer() {
   const { language } = useLanguageStore();
   const t = translations[language].contact;
   const nav = translations[language].nav;
+  const qrImages = useMemo(() => {
+    const modules = import.meta.glob('../photo/QRcode/*.{png,jpg,jpeg,webp,avif}', {
+      eager: true,
+      import: 'default',
+    }) as Record<string, string>;
+
+    const qrOrder = ['tmall', 'jd', 'pdd', 'douyin', 'redbook'];
+
+    return Object.entries(modules)
+      .sort(([pathA], [pathB]) =>
+        pathA.localeCompare(pathB, undefined, { numeric: true, sensitivity: 'base' }),
+      )
+      .map(([path, src]) => {
+        const filename = path.split('/').pop() ?? '';
+        const label = filename.replace(/\.[^.]+$/, '');
+        return { src, label };
+      })
+      .sort((a, b) => {
+        const ai = qrOrder.indexOf(a.label.toLowerCase());
+        const bi = qrOrder.indexOf(b.label.toLowerCase());
+        const ap = ai === -1 ? 999 : ai;
+        const bp = bi === -1 ? 999 : bi;
+        if (ap !== bp) return ap - bp;
+        return a.label.localeCompare(b.label, undefined, { numeric: true, sensitivity: 'base' });
+      });
+  }, []);
 
   return (
     <footer id="contact" className="bg-[#1A2616] text-white/90 pt-16 md:pt-24 pb-10 md:pb-12">
@@ -38,11 +65,33 @@ export default function Footer() {
           <div className="col-span-full md:col-span-1 lg:col-span-2">
             <h4 className="text-white text-[10px] uppercase tracking-[0.4em] font-bold mb-8 opacity-40">{t.title}</h4>
             <div className="grid md:grid-cols-2 gap-8 md:gap-12">
-              <div className="space-y-6">
+              <div className="flex flex-col gap-6 h-full">
                 <div className="flex gap-3">
                   <MapPin className="w-4 h-4 text-white/30 shrink-0" />
                   <span className="text-xs font-light leading-relaxed tracking-wide text-white/70">{t.address}</span>
                 </div>
+                {qrImages.length > 0 && (
+                  <div className="pt-2 mt-auto">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-[280px]">
+                      {qrImages.map(({ src, label }) => (
+                        <div key={src} className="flex flex-col items-center gap-2">
+                          <div className="w-20 h-20 bg-white rounded-lg p-2 flex items-center justify-center">
+                            <img
+                              src={src}
+                              alt={`${label} QR`}
+                              loading="lazy"
+                              decoding="async"
+                              className="w-full h-full object-contain"
+                            />
+                          </div>
+                          <span className="text-[9px] uppercase tracking-[0.25em] text-white/35 font-bold text-center">
+                            {label}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
               <div className="space-y-6">
                 <div>
