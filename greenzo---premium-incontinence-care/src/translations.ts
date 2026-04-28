@@ -193,13 +193,13 @@ export const translations = {
     },
     hero: {
       title: 'Embracing Comfort and Dignity',
-      subtitle: 'Premium incontinence care designed for specialized comfort and protection.',
+      subtitle: 'Focused on incontinence care, bringing thoughtful and attentive support to everyday life.',
       cta: 'Learn More',
       quote: 'Bringing comfort to every corner of your life.',
     },
     story: {
       title: 'Our Story',
-      content1: 'Born from 20 years of deep industry expertise, Greenzo was founded in 2015 with a mission to redefine incontinence care through quality and compassion.',
+      content1: 'Greenzo (Guanzhong) was founded in December 2015 by Mr. Hu Jianhuan, a senior expert with over 20 years of experience in the incontinence care industry. We understand how vital high-quality care products are to improving quality of life.',
       content2: 'Our Japanese-inspired design philosophy focuses on simplicity, cleanliness, and reliability, serving both individual homes and professional care institutions.',
       experience: '20 Years of Expertise',
       milestone: '10M+',
@@ -269,7 +269,7 @@ export const translations = {
     },
     gallery: {
       title: 'Visual Experience',
-      subtitle: 'Detailed presentation of our commitment to excellence.',
+      subtitle: 'All-around details, making every bit of care clearly visible.',
       videoLabel: 'Product Demo Video',
     },
     standards: {
@@ -300,13 +300,13 @@ export const translations = {
     },
     hero: {
       title: '尊厳を守り、心地よさを届ける',
-      subtitle: '20年の経験に基づいた、究極の優しさと機能性を追求した介護ケア。',
+      subtitle: '失禁ケアに特化し、暮らしに寄り添うきめ細やかなケアをお届けします。',
       cta: '詳細を見る',
       quote: '暮らしのあらゆる瞬間に、心地よさを。',
     },
     story: {
       title: 'ブランド物語',
-      content1: 'ケア業界で20年以上の経験を持つ専門家によって2015年に設立されたGreenzoは、品質と信頼に情熱を注いでいます。',
+      content1: 'Greenzo（莞衆）は2015年12月、失禁ケア業界で20年以上の経験を持つ資深専門家・胡剣歓（ホゥ・ジエンフアン）氏により設立されました。高品質なケア製品が生活の質向上に欠かせないことを、私たちは深く理解しています。',
       content2: 'シンプルで清潔、そして信頼。日本的な美意識と革新を融合させ、より良い介護環境の実現を目指しています。',
       experience: '20年の実績',
       milestone: '1,000万+',
@@ -376,7 +376,7 @@ export const translations = {
     },
     gallery: {
       title: 'ビジュアルギャラリー',
-      subtitle: '細部までこだわった、妥協のないモノづくりを。',
+      subtitle: '全方位のディテールで、こだわりの一つひとつをわかりやすくお届けします。',
       videoLabel: '製品デモンストレーションビデオ',
     },
     standards: {
@@ -407,13 +407,13 @@ export const translations = {
     },
     hero: {
       title: '守護每一份尊嚴與舒適',
-      subtitle: '專注失禁護理，為晚年生活帶來體貼入微的關懷。',
+      subtitle: '專注失禁護理，為生活帶來體貼入微的關懷。',
       cta: '了解更多',
       quote: '讓舒適觸及生活的每一個角落。',
     },
     story: {
       title: '品牌故事',
-      content1: 'Greenzo（莞眾）成立於2015年12月，由深耕失禁護理行業20餘年的資深專家創立。我們深知高品質護理產品對提升生活質量的重要性。',
+      content1: 'Greenzo（莞眾）成立於2015年12月，由深耕失禁護理行業20餘年的資深專家胡劍歡先生創立。我們深知高品質護理產品對提升生活質量的重要性。',
       content2: '我們的設計理念源自對生命的尊重，追求簡潔、潔淨、可靠的產品表達。我們不僅提供產品，更致力於為家庭和養老機構提供專業的護理解決方案。',
       experience: '20年行業底蘊',
       milestone: '1000萬+',
@@ -483,7 +483,7 @@ export const translations = {
     },
     gallery: {
       title: '視覺呈現',
-      subtitle: '全方位的細節展示，讓每一份用心清晰可見。',
+      subtitle: '全方位的細節，讓每一份用心清晰可見。',
       videoLabel: '產品演示視頻',
     },
     standards: {
