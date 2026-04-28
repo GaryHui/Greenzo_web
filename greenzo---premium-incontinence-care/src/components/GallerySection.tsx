@@ -10,6 +10,7 @@ export default function GallerySection() {
   const polaroidTilt = ['rotate-0'];
   const images = useMemo(() => ASSET_CONFIG.gallery ?? [], []);
   const [viewerIndex, setViewerIndex] = useState<number | null>(null);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const videos = useMemo(() => {
     const list = (ASSET_CONFIG as any)?.videos?.playlist ?? [];
@@ -17,6 +18,7 @@ export default function GallerySection() {
     const fallbackSrc = (ASSET_CONFIG as any)?.videos?.mainDemo?.url;
     return typeof fallbackSrc === 'string' && fallbackSrc !== '#' ? [{ src: fallbackSrc }] : [];
   }, []);
+  const [activeVideoIndex, setActiveVideoIndex] = useState(0);
   const [videoIndex, setVideoIndex] = useState(0);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
@@ -25,10 +27,14 @@ export default function GallerySection() {
   if (!t) return null;
 
   const currentIndex = viewerIndex ?? 0;
+  const currentPreviewIndex = Math.min(Math.max(activeImageIndex, 0), Math.max(0, images.length - 1));
 
   const closeViewer = () => setViewerIndex(null);
 
-  const closeVideo = () => setIsVideoOpen(false);
+  const closeVideo = () => {
+    setIsVideoOpen(false);
+    setActiveVideoIndex(videoIndex);
+  };
 
   const goPrev = () => {
     setViewerIndex((idx) => {
@@ -119,22 +125,24 @@ export default function GallerySection() {
         </div>
 
         <div className="grid lg:grid-cols-12 gap-6 md:gap-8">
-          <div className="lg:col-span-8 grid md:grid-cols-2 gap-8">
-            {images.map((img, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.98 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1, delay: i * 0.1 }}
-                onClick={() => setViewerIndex(i)}
-                className="min-h-[320px] sm:min-h-[360px] md:min-h-[420px] bg-brand-muted relative overflow-hidden border border-black/5 shadow-sm group flex items-center justify-center p-4 sm:p-6 md:p-8 cursor-zoom-in"
-              >
-                <div className={`w-full max-w-[320px] sm:max-w-none sm:w-[88%] bg-white p-3 sm:p-4 pb-8 sm:pb-10 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.35)] border border-black/8 transition-all duration-700 group-hover:-translate-y-1 ${polaroidTilt[i % polaroidTilt.length]}`}>
+          <div className="lg:col-span-8">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1 }}
+              onClick={() => {
+                if (images.length <= 0) return;
+                setViewerIndex(currentPreviewIndex);
+              }}
+              className="min-h-[320px] sm:min-h-[360px] md:min-h-[420px] bg-brand-muted relative overflow-hidden border border-black/5 shadow-sm group flex items-center justify-center p-4 sm:p-6 md:p-8 cursor-zoom-in"
+            >
+              {images.length > 0 && (
+                <div className={`w-full max-w-[420px] sm:max-w-none sm:w-[70%] bg-white p-3 sm:p-4 pb-8 sm:pb-10 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.35)] border border-black/8 transition-all duration-700 group-hover:-translate-y-1 ${polaroidTilt[0]}`}>
                   <div className="aspect-[3/4] bg-[#faf8f2] overflow-hidden flex items-center justify-center">
                     <img 
-                      src={img} 
-                      alt={`Gallery ${i + 1}`}
+                      src={images[currentPreviewIndex]} 
+                      alt={`Gallery ${currentPreviewIndex + 1}`}
                       referrerPolicy="no-referrer"
                       loading="lazy"
                       decoding="async"
@@ -142,8 +150,38 @@ export default function GallerySection() {
                     />
                   </div>
                 </div>
-              </motion.div>
-            ))}
+              )}
+            </motion.div>
+
+            {images.length > 1 && (
+              <div className="mt-6 md:mt-8">
+                <div className="flex gap-3 overflow-x-auto pb-1">
+                  {images.map((src, i) => {
+                    const isActive = i === currentPreviewIndex;
+                    return (
+                      <button
+                        key={`${src}-${i}`}
+                        type="button"
+                        onClick={() => setActiveImageIndex(i)}
+                        className={`shrink-0 w-20 h-16 rounded-md overflow-hidden border transition-colors bg-white ${
+                          isActive ? 'border-brand-green' : 'border-black/10 hover:border-black/30'
+                        }`}
+                      >
+                        <div className="w-full h-full bg-[#faf8f2] flex items-center justify-center p-1">
+                          <img
+                            src={src}
+                            alt={`Gallery thumb ${i + 1}`}
+                            loading="lazy"
+                            decoding="async"
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
           </div>
           
           <motion.div 
@@ -153,7 +191,7 @@ export default function GallerySection() {
             className="lg:col-span-4 aspect-[4/5] sm:aspect-[5/4] lg:aspect-auto bg-brand-muted relative overflow-hidden border border-black/5 shadow-sm group cursor-pointer min-h-[280px] sm:min-h-[360px] lg:min-h-0"
             onClick={() => {
               if (videos.length <= 0) return;
-              setVideoIndex(0);
+              setVideoIndex(activeVideoIndex);
               setIsMuted(true);
               setVolume(0.6);
               setIsVideoOpen(true);
@@ -176,6 +214,30 @@ export default function GallerySection() {
             />
           </motion.div>
         </div>
+
+        {videos.length > 1 && (
+          <div className="mt-6 md:mt-8 flex justify-end">
+            <div className="flex gap-2 flex-wrap justify-end">
+              {videos.map((v, i) => {
+                const isActive = i === activeVideoIndex;
+                return (
+                  <button
+                    key={`${v?.src}-${i}`}
+                    type="button"
+                    onClick={() => setActiveVideoIndex(i)}
+                    className={`px-3 py-2 border text-[10px] uppercase tracking-[0.25em] font-bold transition-all ${
+                      isActive
+                        ? 'bg-brand-green text-white border-brand-green'
+                        : 'bg-white text-brand-dark border-black/10 hover:border-brand-green'
+                    }`}
+                  >
+                    {i < 9 ? `0${i + 1}` : `${i + 1}`}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </div>
 
       <AnimatePresence>
@@ -249,17 +311,19 @@ export default function GallerySection() {
                           key={`${src}-${i}`}
                           type="button"
                           onClick={() => setViewerIndex(i)}
-                          className={`shrink-0 w-20 h-16 rounded-md overflow-hidden border transition-colors ${
+                          className={`shrink-0 w-20 h-16 rounded-md overflow-hidden border transition-colors bg-white ${
                             isActive ? 'border-brand-green' : 'border-black/10 hover:border-black/30'
                           }`}
                         >
-                          <img
-                            src={src}
-                            alt={`Gallery thumb ${i + 1}`}
-                            loading="lazy"
-                            decoding="async"
-                            className="w-full h-full object-cover"
-                          />
+                          <div className="w-full h-full bg-[#faf8f2] flex items-center justify-center p-1">
+                            <img
+                              src={src}
+                              alt={`Gallery thumb ${i + 1}`}
+                              loading="lazy"
+                              decoding="async"
+                              className="w-full h-full object-contain"
+                            />
+                          </div>
                         </button>
                       );
                     })}
