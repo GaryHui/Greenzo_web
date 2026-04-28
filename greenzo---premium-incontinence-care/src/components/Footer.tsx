@@ -1,6 +1,6 @@
 import { useLanguageStore, translations } from '../translations';
 import { Mail, Phone, MapPin, Linkedin, Facebook, Instagram } from 'lucide-react';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 export default function Footer() {
   const { language } = useLanguageStore();
@@ -35,12 +35,6 @@ export default function Footer() {
 
   const [activeQrSrc, setActiveQrSrc] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (!activeQrSrc && qrImages.length > 0) {
-      setActiveQrSrc(qrImages[0].src);
-    }
-  }, [activeQrSrc, qrImages]);
-
   const activeQr = qrImages.find((item) => item.src === activeQrSrc) ?? qrImages[0];
 
   const getDisplayLabel = (label: string) => {
@@ -61,6 +55,7 @@ export default function Footer() {
   const getQrHref = (label: string) => {
     const normalized = label.toLowerCase();
     if (normalized === 'jd') return 'https://mall.jd.com/index-11412427.html?from=pc&cid=0';
+    if (normalized === 'redbook') return 'https://www.xiaohongshu.com/user/profile/6920137b0000000037029847?xhsshare=userQrCode&exSource=';
     return undefined;
   };
 
@@ -83,18 +78,18 @@ export default function Footer() {
               <a href="#" className="p-2 border border-white/10 hover:bg-white/5 rounded-full transition-colors"><Instagram size={16} /></a>
             </div>
             {qrImages.length > 0 && (
-              <div className="mt-10 relative">
+              <div className="mt-10 relative" onMouseLeave={() => setActiveQrSrc(null)}>
                 {activeQr && (
                   <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-5 z-30 pointer-events-none">
-                    <div className="bg-white rounded-2xl p-3 shadow-2xl border border-black/5">
-                      <div className="text-[10px] uppercase tracking-[0.25em] text-black/50 font-bold mb-3 text-center">
+                    <div className="bg-white rounded-2xl px-4 py-3 shadow-2xl border border-black/5">
+                      <div className="text-[10px] uppercase tracking-[0.25em] text-black/50 font-bold mb-2 text-center">
                         {getDisplayLabel(activeQr.label)}
                       </div>
                       <img
                         src={activeQr.src}
                         alt={`${getDisplayLabel(activeQr.label)} 原图`}
                         decoding="async"
-                        className="w-64 h-64 sm:w-72 sm:h-72 object-contain"
+                        className="w-[320px] h-[210px] sm:w-[360px] sm:h-[220px] object-contain"
                       />
                     </div>
                   </div>
@@ -135,7 +130,7 @@ export default function Footer() {
                           rel="noreferrer noopener"
                           onMouseEnter={() => setActiveQrSrc(src)}
                           onFocus={() => setActiveQrSrc(src)}
-                          onClick={() => setActiveQrSrc(src)}
+                          onBlur={() => setActiveQrSrc(null)}
                           className="flex flex-col items-center gap-2"
                           aria-label={`${displayLabel} 二维码（打开链接）`}
                         >
@@ -150,7 +145,7 @@ export default function Footer() {
                         type="button"
                         onMouseEnter={() => setActiveQrSrc(src)}
                         onFocus={() => setActiveQrSrc(src)}
-                        onClick={() => setActiveQrSrc(src)}
+                        onBlur={() => setActiveQrSrc(null)}
                         className="flex flex-col items-center gap-2"
                         aria-label={`${displayLabel} 二维码`}
                       >
