@@ -15,7 +15,7 @@ export default function QualitySection() {
   ];
 
   return (
-    <section className="py-20 md:py-32 lg:py-40 bg-brand-muted border-y border-black/5 overflow-hidden">
+    <section id="quality" className="py-20 md:py-32 lg:py-40 bg-brand-muted border-y border-black/5 overflow-hidden">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 lg:px-16">
         <div className="grid lg:grid-cols-12 gap-10 md:gap-16 lg:gap-20 items-center">
           <div className="lg:col-span-4">

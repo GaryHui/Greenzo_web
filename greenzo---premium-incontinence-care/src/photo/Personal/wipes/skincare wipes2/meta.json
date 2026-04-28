@@ -1,0 +1,38 @@
+{
+  "id": "personal-skincare-wipes-80",
+  "name": {
+    "zh": "湿巾（80抽）",
+    "hk": "濕巾（80抽）",
+    "en": "Skincare Wipes (80 pulls)",
+    "ja": "ウェットティッシュ（80枚）"
+  },
+  "desc": {
+    "zh": "200mm×150mm｜80抽｜24包/箱",
+    "hk": "200mm×150mm｜80抽｜24包/箱",
+    "en": "200mm×150mm | 80 pulls | 24 packs/carton",
+    "ja": "200mm×150mm｜80枚｜24パック/ケース"
+  },
+  "features": {
+    "zh": "日常清洁更省心，抽取顺畅；尺寸适中，适合居家、外出随手清洁。",
+    "hk": "日常清潔更省心，抽取順暢；尺寸適中，適合居家、外出隨手清潔。",
+    "en": "Easy everyday cleansing with smooth dispensing. Mid-size sheet for home use and on-the-go cleanup.",
+    "ja": "毎日の清潔ケアに便利で、取り出しもスムーズ。ちょうどよいサイズで、家庭でも外出先でも使いやすい。"
+  },
+  "specs": {
+    "zh": ["200mm×150mm", "80抽", "24包/箱"],
+    "hk": ["200mm×150mm", "80抽", "24包/箱"],
+    "en": ["200mm×150mm", "80 pulls", "24 packs/carton"],
+    "ja": ["200mm×150mm", "80枚", "24パック/ケース"]
+  },
+  "images": [
+    {
+      "file": "P3.png",
+      "caption": {
+        "zh": "湿巾（80抽）· 产品展示",
+        "hk": "濕巾（80抽）· 產品展示",
+        "en": "Skincare Wipes (80 pulls) | Product View",
+        "ja": "ウェットティッシュ（80枚）｜製品イメージ"
+      }
+    }
+  ]
+}

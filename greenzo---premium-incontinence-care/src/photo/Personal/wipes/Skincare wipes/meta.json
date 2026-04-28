@@ -1,0 +1,38 @@
+{
+  "id": "personal-skincare-wipes-sachet",
+  "name": {
+    "zh": "湿巾（独立包装）",
+    "hk": "濕巾（獨立包裝）",
+    "en": "Skincare Wipes (Sachets)",
+    "ja": "ウェットティッシュ（個包装）"
+  },
+  "desc": {
+    "zh": "200mm×150mm｜1片/小包｜10片/包｜10包/中袋｜6中袋/箱",
+    "hk": "200mm×150mm｜1片/小包｜10片/包｜10包/中袋｜6中袋/箱",
+    "en": "200mm×150mm | 1 pc/sachet | 10 pcs/pack | 10 packs/bag | 6 bags/carton",
+    "ja": "200mm×150mm｜1枚/個包装｜10枚/パック｜10パック/中袋｜6中袋/ケース"
+  },
+  "features": {
+    "zh": "湿巾独立包装，携带方便；温和不刺激、无添加，满足日常清洁与肌肤护理需求。",
+    "hk": "濕巾獨立包裝，攜帶方便；溫和不刺激、無添加，滿足日常清潔與肌膚護理需求。",
+    "en": "Individually packed wipes for easy carry. Gentle and non-irritating with no added ingredients for everyday cleansing and skincare.",
+    "ja": "持ち運びに便利な個包装タイプ。やさしい使い心地で刺激が少なく、無添加で日常の清潔ケアに適しています。"
+  },
+  "specs": {
+    "zh": ["200mm×150mm", "1片/小包", "10片/包", "10包/中袋", "6中袋/箱", "温和不刺激", "无添加", "独立包装"],
+    "hk": ["200mm×150mm", "1片/小包", "10片/包", "10包/中袋", "6中袋/箱", "溫和不刺激", "無添加", "獨立包裝"],
+    "en": ["200mm×150mm", "1 pc/sachet", "10 pcs/pack", "10 packs/bag", "6 bags/carton", "Gentle", "No additives", "Individually packed"],
+    "ja": ["200mm×150mm", "1枚/個包装", "10枚/パック", "10パック/中袋", "6中袋/ケース", "低刺激", "無添加", "個包装"]
+  },
+  "images": [
+    {
+      "file": "Picture9.png",
+      "caption": {
+        "zh": "湿巾（独立包装）· 产品展示",
+        "hk": "濕巾（獨立包裝）· 產品展示",
+        "en": "Skincare Wipes (Sachets) | Product View",
+        "ja": "ウェットティッシュ（個包装）｜製品イメージ"
+      }
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "id": "personal-travel-disposable-underwear",
+  "name": {
+    "zh": "旅行一次性内裤",
+    "hk": "旅行一次性內褲",
+    "en": "Travel Disposable Underwear",
+    "ja": "旅行用使い捨て下着"
+  },
+  "desc": {
+    "zh": "男女款｜雨天/旅行/犯懒时使用｜方便卫生简单",
+    "hk": "男女款｜雨天/旅行/犯懶時使用｜方便衛生簡單",
+    "en": "Men & women | For rainy days/travel/lazy days | Clean & convenient",
+    "ja": "男女兼用｜雨の日・旅行・洗濯が面倒な時に｜清潔で手軽"
+  },
+  "features": {
+    "zh": "旅行一次性内裤，男女款可选；雨天、旅行或不便清洗时随取随用，方便卫生，穿着简单。",
+    "hk": "旅行一次性內褲，男女款可選；雨天、旅行或不便清洗時隨取隨用，方便衛生，穿著簡單。",
+    "en": "Travel disposable underwear for men and women. Ideal for rainy days, trips, or situations where washing is inconvenient—simple to wear, clean, and hygienic.",
+    "ja": "男女款の旅行用使い捨て下着。雨の日や旅行、洗濯が難しい場面でもすぐに使えて、清潔で手軽に着用できます。"
+  },
+  "specs": {
+    "zh": ["男女款", "一次性使用", "适合雨天/旅行", "犯懒或不便清洗时使用", "轻便易携带", "方便卫生简单"],
+    "hk": ["男女款", "一次性使用", "適合雨天/旅行", "犯懶或不便清洗時使用", "輕便易攜帶", "方便衛生簡單"],
+    "en": ["Men & women", "Disposable", "For rainy days & travel", "For lazy days / no-wash situations", "Lightweight & portable", "Clean & convenient"],
+    "ja": ["男女款", "使い捨て", "雨の日・旅行に便利", "洗濯できない時にも", "軽量で携帯しやすい", "清潔で手軽"]
+  },
+  "images": [
+    {
+      "file": "女款效果图.png",
+      "caption": {
+        "zh": "女款 · 产品展示",
+        "hk": "女款 · 產品展示",
+        "en": "Women | Product View",
+        "ja": "女性用｜製品イメージ"
+      }
+    },
+    {
+      "file": "男款效果图.png",
+      "caption": {
+        "zh": "男款 · 产品展示",
+        "hk": "男款 · 產品展示",
+        "en": "Men | Product View",
+        "ja": "男性用｜製品イメージ"
+      }
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "personal-skincare-wipes-64-xl",
+  "name": {
+    "zh": "湿巾（大尺寸 64抽）",
+    "hk": "濕巾（大尺寸 64抽）",
+    "en": "Skincare Wipes (XL 64 pulls)",
+    "ja": "ウェットティッシュ（大判 64枚）"
+  },
+  "desc": {
+    "zh": "300mm×220mm｜64抽｜12包/箱",
+    "hk": "300mm×220mm｜64抽｜12包/箱",
+    "en": "300mm×220mm | 64 pulls | 12 packs/carton",
+    "ja": "300mm×220mm｜64枚｜12パック/ケース"
+  },
+  "features": {
+    "zh": "加大尺寸覆盖更全面；适合多场景清洁使用，抽取便捷，日常更从容。",
+    "hk": "加大尺寸覆蓋更全面；適合多場景清潔使用，抽取便捷，日常更從容。",
+    "en": "Extra-large sheet for wider coverage. Suitable for multi-scenario cleansing with easy dispensing.",
+    "ja": "大判サイズでしっかり拭ける。さまざまなシーンで使いやすく、取り出しも簡単。"
+  },
+  "specs": {
+    "zh": ["300mm×220mm", "64抽", "12包/箱"],
+    "hk": ["300mm×220mm", "64抽", "12包/箱"],
+    "en": ["300mm×220mm", "XL sheet", "64 pulls", "12 packs/carton"],
+    "ja": ["300mm×220mm", "大判", "64枚", "12パック/ケース"]
+  },
+  "images": [
+    {
+      "file": "Picture10.png",
+      "caption": {
+        "zh": "湿巾（大尺寸 64抽）· 产品展示",
+        "hk": "濕巾（大尺寸 64抽）· 產品展示",
+        "en": "Skincare Wipes (XL 64 pulls) | Product View",
+        "ja": "ウェットティッシュ（大判 64枚）｜製品イメージ"
+      }
+    }
+  ]
+}
