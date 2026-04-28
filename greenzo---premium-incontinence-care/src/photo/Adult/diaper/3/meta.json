@@ -1,20 +1,38 @@
 {
   "id": "adult-diaper-enhanced",
-  "name": "莞众牌成人纸尿裤（加强型）",
-  "desc": "中码/大码/加大码｜10片/包｜8包/箱",
-  "features": "多重防漏，棉柔透气；术扣反复粘贴，穿脱更方便。",
-  "specs": [
-    "中码/大码/加大码",
-    "10片/包",
-    "8包/箱",
-    "多重防漏",
-    "棉柔透气",
-    "术扣反复粘贴"
-  ],
+  "name": {
+    "zh": "莞众牌成人纸尿裤（加强型）",
+    "hk": "莞眾牌成人紙尿褲（加強型）",
+    "en": "Guanzhong Adult Diaper (Enhanced)",
+    "ja": "莞衆 成人用紙おむつ（強化タイプ）"
+  },
+  "desc": {
+    "zh": "中码/大码/加大码｜10片/包｜8包/箱",
+    "hk": "中碼/大碼/加大碼｜10片/包｜8包/箱",
+    "en": "M/L/XL | 10 pcs/bag | 8 bags/carton",
+    "ja": "M/L/XL｜10枚/パック｜8パック/カートン"
+  },
+  "features": {
+    "zh": "多重防漏，棉柔透气；术扣反复粘贴，穿脱更方便。",
+    "hk": "多重防漏，棉柔透氣；術扣可反覆黏貼，穿脫更方便。",
+    "en": "Multi-layer leak protection, soft and breathable; refastenable tape for easier on/off.",
+    "ja": "多重漏れ防止、やわらかく通気性。テープは繰り返し貼り直し可能で着脱も簡単。"
+  },
+  "specs": {
+    "zh": ["中码/大码/加大码", "10片/包", "8包/箱", "多重防漏", "棉柔透气", "术扣反复粘贴"],
+    "hk": ["中碼/大碼/加大碼", "10片/包", "8包/箱", "多重防漏", "棉柔透氣", "術扣可反覆黏貼"],
+    "en": ["M/L/XL", "10 pcs/bag", "8 bags/carton", "Leak protection", "Soft & breathable", "Refastenable tape"],
+    "ja": ["M/L/XL", "10枚/パック", "8パック/カートン", "漏れ防止", "やわらか・通気性", "貼り直し可能テープ"]
+  },
   "images": [
     {
       "file": "Adult3.png",
-      "caption": "加强型 · 中码/大码/加大码"
+      "caption": {
+        "zh": "加强型 · 中码/大码/加大码",
+        "hk": "加強型 · 中碼/大碼/加大碼",
+        "en": "Enhanced | M/L/XL",
+        "ja": "強化タイプ｜M/L/XL"
+      }
     }
   ]
 }
