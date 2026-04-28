@@ -6,7 +6,7 @@ import { ASSET_CONFIG } from '../assets';
 export default function GallerySection() {
   const { language } = useLanguageStore();
   const t = (translations[language] as any).gallery;
-  const polaroidTilt = ['-rotate-2', 'rotate-2', '-rotate-1', 'rotate-1'];
+  const polaroidTilt = ['rotate-0'];
 
   if (!t) return null;
 
@@ -37,7 +37,7 @@ export default function GallerySection() {
                 transition={{ duration: 1, delay: i * 0.1 }}
                 className="min-h-[320px] sm:min-h-[360px] md:min-h-[420px] bg-brand-muted relative overflow-hidden border border-black/5 shadow-sm group flex items-center justify-center p-4 sm:p-6 md:p-8"
               >
-                <div className={`w-full max-w-[320px] sm:max-w-none sm:w-[88%] bg-white p-3 sm:p-4 pb-8 sm:pb-10 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.35)] border border-black/8 transition-all duration-700 group-hover:rotate-0 group-hover:-translate-y-1 ${polaroidTilt[i % polaroidTilt.length]}`}>
+                <div className={`w-full max-w-[320px] sm:max-w-none sm:w-[88%] bg-white p-3 sm:p-4 pb-8 sm:pb-10 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.35)] border border-black/8 transition-all duration-700 group-hover:-translate-y-1 ${polaroidTilt[i % polaroidTilt.length]}`}>
                   <div className="aspect-[3/4] bg-[#faf8f2] overflow-hidden flex items-center justify-center">
                     <img 
                       src={img} 

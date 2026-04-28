@@ -72,7 +72,7 @@ export default function ProductSection() {
   const [lastUserScrollAt, setLastUserScrollAt] = useState(0);
   const carouselRef = useRef<HTMLDivElement | null>(null);
   const carouselScrollRafRef = useRef<number | null>(null);
-  const polaroidTilt = ['-rotate-2', 'rotate-2', '-rotate-1'];
+  const polaroidTilt = ['rotate-0'];
 
   const getProductImage = () => ASSET_CONFIG.hero.mainImage;
 

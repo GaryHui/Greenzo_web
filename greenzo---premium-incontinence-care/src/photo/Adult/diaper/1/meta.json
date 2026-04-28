@@ -1,0 +1,38 @@
+{
+  "id": "adult-diaper-ecommerce",
+  "name": {
+    "zh": "莞众牌成人纸尿裤（电商款）",
+    "hk": "莞眾牌成人紙尿褲（電商款）",
+    "en": "Guanzhong Adult Diaper (E-commerce)",
+    "ja": "莞衆 成人用紙おむつ（EC限定）"
+  },
+  "desc": {
+    "zh": "中码/大码｜10片/包｜8包/箱",
+    "hk": "中碼/大碼｜10片/包｜8包/箱",
+    "en": "M/L | 10 pcs/bag | 8 bags/carton",
+    "ja": "M/L｜10枚/パック｜8パック/カートン"
+  },
+  "features": {
+    "zh": "干爽舒适，贴合不易移位；无内芯设计，价格更实惠，适合大量使用的低价款；限电商渠道有售。",
+    "hk": "乾爽舒適，貼合不易移位；無內芯設計，價格更實惠，適合大量使用的低價款；限電商渠道有售。",
+    "en": "Dry and comfortable with a snug fit; coreless design for better value, ideal for high-volume use; available on e-commerce channels only.",
+    "ja": "さらっと快適でフィット感に優れズレにくい。コアレス設計でコストを抑え、大量使用に適した低価格モデル。ECチャネル限定販売。"
+  },
+  "specs": {
+    "zh": ["中码/大码", "10片/包", "8包/箱", "干爽", "舒适", "贴合", "无内芯", "电商渠道"],
+    "hk": ["中碼/大碼", "10片/包", "8包/箱", "乾爽", "舒適", "貼合", "無內芯", "電商渠道"],
+    "en": ["M/L", "10 pcs/bag", "8 bags/carton", "Dry", "Comfortable", "Snug fit", "Coreless", "E-commerce only"],
+    "ja": ["M/L", "10枚/パック", "8パック/カートン", "さらっと", "快適", "フィット", "コアレス", "EC限定"]
+  },
+  "images": [
+    {
+      "file": "5.png",
+      "caption": {
+        "zh": "电商款 · 中码/大码",
+        "hk": "電商款 · 中碼/大碼",
+        "en": "E-commerce | M/L",
+        "ja": "EC限定｜M/L"
+      }
+    }
+  ]
+}
