@@ -1,0 +1,38 @@
+{
+  "id": "adult-pad-bed-mat-standard",
+  "name": {
+    "zh": "护理床垫（中端款）",
+    "hk": "護理床墊（中端款）",
+    "en": "Nursing Bed Mat (Standard)",
+    "ja": "介護用ベッドパッド（スタンダード）"
+  },
+  "desc": {
+    "zh": "60cm×90cm｜10片/15片/包｜12包/箱",
+    "hk": "60cm×90cm｜10片/15片/包｜12包/箱",
+    "en": "60cm×90cm | 10/15 pcs/bag | 12 bags/carton",
+    "ja": "60cm×90cm｜10枚/15枚/パック｜12パック/カートン"
+  },
+  "features": {
+    "zh": "快速吸收，柔软透气，日常护理更舒适。",
+    "hk": "快速吸收，柔軟透氣，日常護理更舒適。",
+    "en": "Fast absorption with a soft, breathable surface for more comfortable daily care.",
+    "ja": "素早く吸収し、やわらかく通気性のある表面で日常ケアも快適。"
+  },
+  "specs": {
+    "zh": ["中端款", "60cm×90cm", "10片/包", "15片/包", "12包/箱", "快速吸收", "柔软透气"],
+    "hk": ["中端款", "60cm×90cm", "10片/包", "15片/包", "12包/箱", "快速吸收", "柔軟透氣"],
+    "en": ["Standard", "60cm×90cm", "10 pcs/bag", "15 pcs/bag", "12 bags/carton", "Fast absorption", "Soft & breathable"],
+    "ja": ["スタンダード", "60cm×90cm", "10枚/パック", "15枚/パック", "12パック/カートン", "速吸収", "やわらか・通気性"]
+  },
+  "images": [
+    {
+      "file": "Adult1.png",
+      "caption": {
+        "zh": "护理床垫（中端款）· 60cm×90cm",
+        "hk": "護理床墊（中端款）· 60cm×90cm",
+        "en": "Nursing Bed Mat (Standard) | 60×90cm",
+        "ja": "介護用ベッドパッド（スタンダード）｜60×90cm"
+      }
+    }
+  ]
+}
