@@ -1,54 +1,257 @@
 import { useLanguageStore, translations } from '../translations';
 import { motion, AnimatePresence } from 'motion/react';
-import { CheckCircle2, Shield, Heart, X, ShoppingBag, Wind } from 'lucide-react';
-import { useEffect, useState, useMemo } from 'react';
-import { ASSET_CONFIG } from '../assets';
+import { Shield, X, ShoppingBag, Wind } from 'lucide-react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { ASSET_CONFIG, type ProductCatalogItem } from '../assets';
+
+type DisplayProductImage = {
+  src: string;
+  caption?: string;
+};
+
+type DisplayProduct = {
+  id: string;
+  name: string;
+  desc?: string;
+  features?: string;
+  specs: string[];
+  images: DisplayProductImage[];
+  coverImage: string;
+  mainCategory: string;
+  subCategory: string;
+};
+
+const MAIN_CATEGORY_ORDER = ['Adult', 'Dairy', 'Personal'] as const;
+const ADULT_SUBCATEGORY_ORDER = ['diaper', 'pad', 'urinal'] as const;
+
+function pickLocalizedText(
+  value: unknown,
+  language: string,
+  fallbackLanguage = 'zh',
+): string | undefined {
+  if (typeof value === 'string') return value;
+  if (!value || typeof value !== 'object') return undefined;
+  const record = value as Record<string, unknown>;
+  const preferred = record[language];
+  if (typeof preferred === 'string') return preferred;
+  const fallback = record[fallbackLanguage];
+  if (typeof fallback === 'string') return fallback;
+  const first = Object.values(record).find((v) => typeof v === 'string');
+  return typeof first === 'string' ? first : undefined;
+}
+
+function pickLocalizedTextArray(
+  value: unknown,
+  language: string,
+  fallbackLanguage = 'zh',
+): string[] {
+  if (Array.isArray(value)) return value.filter((v) => typeof v === 'string') as string[];
+  if (!value || typeof value !== 'object') return [];
+  const record = value as Record<string, unknown>;
+  const preferred = record[language];
+  if (Array.isArray(preferred)) {
+    return preferred.filter((v) => typeof v === 'string') as string[];
+  }
+  const fallback = record[fallbackLanguage];
+  if (Array.isArray(fallback)) {
+    return fallback.filter((v) => typeof v === 'string') as string[];
+  }
+  const first = Object.values(record).find((v) => Array.isArray(v));
+  return Array.isArray(first)
+    ? (first.filter((v) => typeof v === 'string') as string[])
+    : [];
+}
 
 export default function ProductSection() {
   const { language } = useLanguageStore();
   const t = translations[language].products;
-  const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<DisplayProduct | null>(null);
   const [selectedProductImageIndex, setSelectedProductImageIndex] = useState(0);
-  const [activeCategory, setActiveCategory] = useState<string>('incontinence');
+  const [activeMainCategory, setActiveMainCategory] = useState<string>('Adult');
+  const [activeSubCategory, setActiveSubCategory] = useState<string>('diaper');
+  const [lastUserScrollAt, setLastUserScrollAt] = useState(0);
+  const carouselRef = useRef<HTMLDivElement | null>(null);
+  const carouselScrollRafRef = useRef<number | null>(null);
   const polaroidTilt = ['-rotate-2', 'rotate-2', '-rotate-1'];
 
-  // Map category IDs to icons
-  const categoryIcons:Record<string, any> = {
-    incontinence: Shield,
-    household: Wind,
-    personal: ShoppingBag,
+  const getProductImage = () => ASSET_CONFIG.hero.mainImage;
+
+  const products: DisplayProduct[] = useMemo(() => {
+    const catalog = (ASSET_CONFIG.productCatalog ?? []) as ProductCatalogItem[];
+    if (Array.isArray(catalog) && catalog.length > 0) {
+      return catalog.map((item) => {
+        const name =
+          pickLocalizedText(item.name, language) ||
+          item.id ||
+          item.productKey ||
+          'Product';
+        const desc = pickLocalizedText(item.desc, language);
+        const features = pickLocalizedText(item.features, language);
+        const specs = pickLocalizedTextArray(item.specs, language);
+        const images: DisplayProductImage[] = (item.images ?? []).map((img) => ({
+          src: img.src,
+          caption: pickLocalizedText(img.caption, language),
+        }));
+
+        const coverImage = images[0]?.src || getProductImage();
+        const ensuredImages = images.length > 0 ? images : [{ src: coverImage }];
+        return {
+          id: item.id,
+          name,
+          desc,
+          features,
+          specs,
+          images: ensuredImages,
+          coverImage,
+          mainCategory: item.mainCategory,
+          subCategory: item.subCategory,
+        };
+      });
+    }
+
+    const mapped: DisplayProduct[] = [];
+    const incontinenceItems = t.categories.incontinence?.items ?? [];
+    const householdItems = t.categories.household?.items ?? [];
+    const personalItems = t.categories.personal?.items ?? [];
+
+    for (const product of incontinenceItems) {
+      const coverImage = getProductImage();
+      mapped.push({
+        id: product.id,
+        name: product.name,
+        desc: product.desc,
+        features: product.features,
+        specs: product.specs ?? [],
+        images: [{ src: coverImage }],
+        coverImage,
+        mainCategory: 'Adult',
+        subCategory: product.id,
+      });
+    }
+
+    for (const product of householdItems) {
+      const coverImage = getProductImage();
+      mapped.push({
+        id: product.id,
+        name: product.name,
+        desc: product.desc,
+        features: product.features,
+        specs: product.specs ?? [],
+        images: [{ src: coverImage }],
+        coverImage,
+        mainCategory: 'Dairy',
+        subCategory: product.id,
+      });
+    }
+
+    for (const product of personalItems) {
+      const coverImage = getProductImage();
+      mapped.push({
+        id: product.id,
+        name: product.name,
+        desc: product.desc,
+        features: product.features,
+        specs: product.specs ?? [],
+        images: [{ src: coverImage }],
+        coverImage,
+        mainCategory: 'Personal',
+        subCategory: product.id,
+      });
+    }
+
+    return mapped;
+  }, [language, t]);
+
+  const mainCategoryIcons: Record<string, any> = {
+    Adult: Shield,
+    Dairy: Wind,
+    Personal: ShoppingBag,
   };
 
-  const categories = useMemo(() => {
-    return Object.entries(t.categories).map(([id, category]: [string, any]) => ({
-      id,
-      ...category,
-      icon: categoryIcons[id] || Heart,
-    }));
-  }, [t, language]);
+  const mainCategories = useMemo(() => {
+    const inData = Array.from(new Set(products.map((p) => p.mainCategory))).filter(Boolean);
+    const ordered = [
+      ...MAIN_CATEGORY_ORDER.filter((c) => inData.includes(c)),
+      ...inData.filter((c) => !MAIN_CATEGORY_ORDER.includes(c as any)),
+    ];
+    return ordered.length > 0 ? ordered : [...MAIN_CATEGORY_ORDER];
+  }, [products]);
 
-  const activeCategoryData = categories.find(c => c.id === activeCategory);
+  const subCategories = useMemo(() => {
+    const inMain = products
+      .filter((p) => p.mainCategory === activeMainCategory)
+      .map((p) => p.subCategory)
+      .filter(Boolean);
 
-  const getProductImage = (productId: string) => {
-    // Fallback logic for images
-    const configImages: Record<string, string> = {
-      diaper: ASSET_CONFIG.products.diaper,
-      pad: ASSET_CONFIG.products.pad,
-      wipe: ASSET_CONFIG.products.wipe,
-      'soft-tissue': ASSET_CONFIG.products.softTissue,
-    };
-    return configImages[productId] || ASSET_CONFIG.products.softTissue;
-  };
+    const unique = Array.from(new Set(inMain));
+    if (unique.length === 0) {
+      return activeMainCategory === 'Adult' ? [...ADULT_SUBCATEGORY_ORDER] : ['all'];
+    }
 
-  const getProductDetailImages = (productId: string) => {
-    const detailImages = ASSET_CONFIG.productDetails[productId];
-    if (Array.isArray(detailImages) && detailImages.length > 0) return detailImages;
-    return [getProductImage(productId)];
-  };
+    if (activeMainCategory === 'Adult') {
+      return [
+        ...ADULT_SUBCATEGORY_ORDER,
+        ...unique.filter((c) => !ADULT_SUBCATEGORY_ORDER.includes(c as any)),
+      ];
+    }
+
+    unique.sort((a, b) =>
+      a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }),
+    );
+    return unique;
+  }, [products, activeMainCategory]);
+
+  const visibleProducts = useMemo(() => {
+    const inMain = products.filter((p) => p.mainCategory === activeMainCategory);
+    if (activeSubCategory === 'all') return inMain;
+    return inMain.filter((p) => p.subCategory === activeSubCategory);
+  }, [products, activeMainCategory, activeSubCategory]);
 
   useEffect(() => {
     setSelectedProductImageIndex(0);
   }, [selectedProduct?.id]);
+
+  useEffect(() => {
+    const nextSub = subCategories[0] ?? 'all';
+    setActiveSubCategory(nextSub);
+  }, [activeMainCategory, subCategories]);
+
+  useEffect(() => {
+    if (!selectedProduct) return;
+    setLastUserScrollAt(0);
+  }, [selectedProduct?.id]);
+
+  useEffect(() => {
+    if (!selectedProduct) return;
+    if (selectedProduct.images.length <= 1) return;
+
+    const id = window.setInterval(() => {
+      const now = Date.now();
+      if (now - lastUserScrollAt < 2500) return;
+      setSelectedProductImageIndex((current) => {
+        const next = (current + 1) % selectedProduct.images.length;
+        return next;
+      });
+    }, 2000);
+
+    return () => window.clearInterval(id);
+  }, [selectedProduct?.id, selectedProduct?.images.length, lastUserScrollAt]);
+
+  useEffect(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const width = el.clientWidth;
+    el.scrollTo({ left: width * selectedProductImageIndex, behavior: 'smooth' });
+  }, [selectedProductImageIndex]);
+
+  useEffect(() => {
+    return () => {
+      if (carouselScrollRafRef.current) {
+        window.cancelAnimationFrame(carouselScrollRafRef.current);
+        carouselScrollRafRef.current = null;
+      }
+    };
+  }, []);
 
   return (
     <section id="products" className="py-20 md:py-32 bg-brand-cream border-t border-black/5">
@@ -64,25 +267,28 @@ export default function ProductSection() {
           </p>
         </div>
 
-        {/* Category Tabs */}
-        <div className="flex flex-wrap gap-3 md:gap-4 mb-12 md:mb-20">
-          {categories.map((category) => {
-            const Icon = category.icon;
-            const isActive = activeCategory === category.id;
+        <div className="flex flex-wrap gap-3 md:gap-4 mb-6 md:mb-10">
+          {mainCategories.map((categoryId) => {
+            const Icon = mainCategoryIcons[categoryId] || Shield;
+            const isActive = activeMainCategory === categoryId;
             return (
               <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
+                key={categoryId}
+                onClick={() => setActiveMainCategory(categoryId)}
                 className={`w-full sm:w-auto justify-center sm:justify-start flex items-center gap-3 px-5 sm:px-6 md:px-8 py-4 md:py-5 border transition-all duration-500 relative overflow-hidden group ${
-                  isActive 
-                    ? 'bg-brand-dark text-white border-brand-dark' 
+                  isActive
+                    ? 'bg-brand-dark text-white border-brand-dark'
                     : 'bg-white text-brand-dark border-black/5 hover:border-brand-green'
                 }`}
               >
-                <Icon className={`w-5 h-5 transition-transform duration-500 group-hover:scale-110 ${isActive ? 'text-brand-green' : 'text-black/20'}`} />
-                <span className="text-[11px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.2em] font-bold text-center sm:text-left">{category.name}</span>
+                <Icon
+                  className={`w-5 h-5 transition-transform duration-500 group-hover:scale-110 ${isActive ? 'text-brand-green' : 'text-black/20'}`}
+                />
+                <span className="text-[11px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.2em] font-bold text-center sm:text-left">
+                  {categoryId}
+                </span>
                 {isActive && (
-                  <motion.div 
+                  <motion.div
                     layoutId="activeTab"
                     className="absolute bottom-0 left-0 right-0 h-1 bg-brand-green"
                   />
@@ -92,17 +298,38 @@ export default function ProductSection() {
           })}
         </div>
 
+        {subCategories.length > 1 && (
+          <div className="flex flex-wrap gap-2 md:gap-3 mb-10 md:mb-16">
+            {subCategories.map((subId) => {
+              const isActive = activeSubCategory === subId;
+              return (
+                <button
+                  key={subId}
+                  onClick={() => setActiveSubCategory(subId)}
+                  className={`px-4 sm:px-5 py-2.5 border text-[10px] sm:text-[11px] uppercase tracking-[0.25em] font-bold transition-all ${
+                    isActive
+                      ? 'bg-brand-green text-white border-brand-green'
+                      : 'bg-white text-brand-dark border-black/5 hover:border-brand-green'
+                  }`}
+                >
+                  {subId}
+                </button>
+              );
+            })}
+          </div>
+        )}
+
         {/* Product Grid */}
         <AnimatePresence mode="wait">
           <motion.div
-            key={activeCategory}
+            key={`${activeMainCategory}-${activeSubCategory}`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5 }}
             className="grid md:grid-cols-3 gap-8 md:gap-12"
           >
-            {activeCategoryData?.items.map((product: any, index: number) => (
+            {visibleProducts.map((product: DisplayProduct, index: number) => (
               <motion.div
                 key={product.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -118,7 +345,7 @@ export default function ProductSection() {
                       <div className="w-full max-w-[250px] bg-white p-3 sm:p-4 pb-7 sm:pb-8 shadow-[0_20px_45px_-25px_rgba(0,0,0,0.35)] border border-black/8">
                         <div className="aspect-[3/4] bg-[#faf8f2] overflow-hidden flex items-center justify-center">
                           <img 
-                            src={getProductImage(product.id)} 
+                            src={product.coverImage} 
                             alt={product.name}
                             referrerPolicy="no-referrer"
                             loading="lazy"
@@ -165,49 +392,84 @@ export default function ProductSection() {
             >
               {/* Product Image in Modal */}
               <div className="md:w-1/2 bg-brand-muted relative overflow-hidden flex flex-col">
-                {(() => {
-                  const images = getProductDetailImages(selectedProduct.id);
-                  const activeImage = images[selectedProductImageIndex] ?? images[0];
-                  return (
-                    <>
-                      <div className="flex-1 flex items-center justify-center p-6 sm:p-8">
-                        <img 
-                          src={activeImage} 
-                          alt={selectedProduct.name}
+                <div className="flex-1 flex flex-col">
+                  <div
+                    ref={carouselRef}
+                    onPointerDown={() => setLastUserScrollAt(Date.now())}
+                    onWheel={() => setLastUserScrollAt(Date.now())}
+                    onTouchStart={() => setLastUserScrollAt(Date.now())}
+                    onScroll={() => {
+                      const el = carouselRef.current;
+                      if (!el) return;
+                      if (carouselScrollRafRef.current) {
+                        window.cancelAnimationFrame(carouselScrollRafRef.current);
+                      }
+                      carouselScrollRafRef.current = window.requestAnimationFrame(() => {
+                        const width = el.clientWidth || 1;
+                        const nextIndex = Math.round(el.scrollLeft / width);
+                        if (Number.isFinite(nextIndex)) {
+                          setSelectedProductImageIndex((current) =>
+                            current === nextIndex ? current : nextIndex,
+                          );
+                        }
+                      });
+                    }}
+                    className="flex-1 overflow-x-auto flex snap-x snap-mandatory"
+                  >
+                    {selectedProduct.images.map((img, i) => (
+                      <div
+                        key={`${img.src}-${i}`}
+                        className="w-full shrink-0 snap-center flex items-center justify-center p-6 sm:p-8"
+                      >
+                        <img
+                          src={img.src}
+                          alt={`${selectedProduct.name} ${i + 1}`}
                           decoding="async"
                           className="w-full h-full object-contain"
                         />
                       </div>
-                      {images.length > 1 && (
-                        <div className="px-5 pb-5 sm:px-6 sm:pb-6">
-                          <div className="flex gap-3 overflow-x-auto">
-                            {images.map((src, i) => {
-                              const isActive = i === selectedProductImageIndex;
-                              return (
-                                <button
-                                  key={`${src}-${i}`}
-                                  type="button"
-                                  onClick={() => setSelectedProductImageIndex(i)}
-                                  className={`shrink-0 w-20 h-16 rounded-md overflow-hidden border transition-colors ${
-                                    isActive ? 'border-brand-green' : 'border-black/10 hover:border-black/30'
-                                  }`}
-                                >
-                                  <img
-                                    src={src}
-                                    alt={`${selectedProduct.name} ${i + 1}`}
-                                    loading="lazy"
-                                    decoding="async"
-                                    className="w-full h-full object-cover"
-                                  />
-                                </button>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      )}
-                    </>
-                  );
-                })()}
+                    ))}
+                  </div>
+
+                  {selectedProduct.images[selectedProductImageIndex]?.caption && (
+                    <div className="px-6 pb-3 sm:px-8 text-[11px] text-black/55 tracking-wide">
+                      {selectedProduct.images[selectedProductImageIndex]?.caption}
+                    </div>
+                  )}
+
+                  {selectedProduct.images.length > 1 && (
+                    <div className="px-5 pb-5 sm:px-6 sm:pb-6">
+                      <div className="flex gap-3 overflow-x-auto">
+                        {selectedProduct.images.map((img, i) => {
+                          const isActive = i === selectedProductImageIndex;
+                          return (
+                            <button
+                              key={`${img.src}-${i}`}
+                              type="button"
+                              onClick={() => {
+                                setLastUserScrollAt(Date.now());
+                                setSelectedProductImageIndex(i);
+                              }}
+                              className={`shrink-0 w-20 h-16 rounded-md overflow-hidden border transition-colors ${
+                                isActive
+                                  ? 'border-brand-green'
+                                  : 'border-black/10 hover:border-black/30'
+                              }`}
+                            >
+                              <img
+                                src={img.src}
+                                alt={`${selectedProduct.name} ${i + 1}`}
+                                loading="lazy"
+                                decoding="async"
+                                className="w-full h-full object-cover"
+                              />
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+                </div>
                 <button 
                   onClick={() => setSelectedProduct(null)}
                   className="absolute top-6 left-6 md:hidden p-2 bg-white rounded-full shadow-lg"
@@ -234,7 +496,7 @@ export default function ProductSection() {
                 </div>
 
                 <p className="text-sm text-black/60 font-sans leading-relaxed mb-10">
-                  {selectedProduct.features}
+                  {selectedProduct.features || selectedProduct.desc}
                 </p>
 
                 <div className="space-y-4 mb-12">

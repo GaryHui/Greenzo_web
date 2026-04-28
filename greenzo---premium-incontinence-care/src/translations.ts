@@ -117,8 +117,8 @@ export const translations = {
       title: '生产标准',
       subtitle: '严苛的质量管控体系，确保每一件产品的安全性。',
       iso: 'ISO 9001/14001双体系',
-      medical: '医用级标准生产',
-      sgs: 'SGS低敏检测认证',
+      medical: '执行标准号',
+      sgs: '卫生标准号',
     },
     products: {
       title: '产品中心',
@@ -276,8 +276,8 @@ export const translations = {
       title: 'Quality Standards',
       subtitle: 'Stringent quality control ensuring the safety of every single product.',
       iso: 'ISO 9001/14001 Dual System',
-      medical: 'Medical Grade Production',
-      sgs: 'SGS Hypoallergenic Certified',
+      medical: 'Execution Standard No.',
+      sgs: 'Hygiene Standard No.',
     },
     channels: {
       title: 'Channel Presence',
@@ -383,8 +383,8 @@ export const translations = {
       title: '品質基準',
       subtitle: '厳格な品質管理体制により、全製品の安全性を確保しています。',
       iso: 'ISO 9001/14001 認証',
-      medical: '医療グレードの生産基準',
-      sgs: 'SGS低刺激性テスト済み',
+      medical: '実施規格番号',
+      sgs: '衛生規格番号',
     },
     channels: {
       title: '流通ネットワーク',
@@ -490,8 +490,8 @@ export const translations = {
       title: '生產標準',
       subtitle: '嚴苛的質量管控體系，確保每一件產品的安全性和舒適度。',
       iso: 'ISO 9001/14001 雙體系認證',
-      medical: '醫用級標准生產',
-      sgs: 'SGS低敏檢測認證',
+      medical: '執行標準號',
+      sgs: '衛生標準號',
     },
     channels: {
       title: '全渠道覆蓋',

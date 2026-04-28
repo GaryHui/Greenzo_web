@@ -10,8 +10,8 @@ export default function StandardsSection() {
 
   const standards = [
     { icon: Award, label: t.iso, code: 'ISO 9001:2015' },
-    { icon: ShieldCheck, label: t.medical, code: 'GB/T 28001' },
-    { icon: Microscope, label: t.sgs, code: 'SGS REPORT PN230...' },
+    { icon: ShieldCheck, label: t.medical, code: 'GB/T 28004.2' },
+    { icon: Microscope, label: t.sgs, code: 'GB15979' },
   ];
 
   return (

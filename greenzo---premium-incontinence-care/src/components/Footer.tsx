@@ -47,7 +47,7 @@ export default function Footer() {
               <div className="space-y-6">
                 <div>
                   <span className="text-[10px] uppercase tracking-widest text-white/30 mb-2 block">{t.phone}</span>
-                  <span className="text-sm font-bold tracking-tighter">+86 0769-22XX XXXX</span>
+                  <span className="text-sm font-bold tracking-tighter">0769-2226 3499</span>
                 </div>
                 <div>
                   <span className="text-[10px] uppercase tracking-widest text-white/30 mb-2 block">{t.email}</span>
