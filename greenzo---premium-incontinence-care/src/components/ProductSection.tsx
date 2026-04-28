@@ -1,13 +1,14 @@
 import { useLanguageStore, translations } from '../translations';
 import { motion, AnimatePresence } from 'motion/react';
 import { CheckCircle2, Shield, Heart, X, ShoppingBag, Wind } from 'lucide-react';
-import { useState, useMemo } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { ASSET_CONFIG } from '../assets';
 
 export default function ProductSection() {
   const { language } = useLanguageStore();
   const t = translations[language].products;
   const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
+  const [selectedProductImageIndex, setSelectedProductImageIndex] = useState(0);
   const [activeCategory, setActiveCategory] = useState<string>('incontinence');
   const polaroidTilt = ['-rotate-2', 'rotate-2', '-rotate-1'];
 
@@ -38,6 +39,16 @@ export default function ProductSection() {
     };
     return configImages[productId] || ASSET_CONFIG.products.softTissue;
   };
+
+  const getProductDetailImages = (productId: string) => {
+    const detailImages = ASSET_CONFIG.productDetails[productId];
+    if (Array.isArray(detailImages) && detailImages.length > 0) return detailImages;
+    return [getProductImage(productId)];
+  };
+
+  useEffect(() => {
+    setSelectedProductImageIndex(0);
+  }, [selectedProduct?.id]);
 
   return (
     <section id="products" className="py-20 md:py-32 bg-brand-cream border-t border-black/5">
@@ -100,7 +111,7 @@ export default function ProductSection() {
                 className="flex flex-col group cursor-pointer"
                 onClick={() => setSelectedProduct(product)}
               >
-                <div className="aspect-[3/4] bg-white flex flex-col p-5 sm:p-6 md:p-8 transition-all duration-700 group-hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)] relative overflow-hidden border border-black/5">
+                <div className="bg-white flex flex-col p-5 sm:p-6 md:p-8 transition-all duration-700 group-hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)] relative border border-black/5">
                   <div className="absolute inset-0 bg-brand-muted opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
                   <div className="flex-1 flex items-center justify-center relative z-10">
                     <div className={`w-full h-full relative p-1 sm:p-2 md:p-4 transition-transform duration-1000 ease-[0.16, 1, 0.3, 1] group-hover:scale-[1.03] flex items-center justify-center ${polaroidTilt[index % polaroidTilt.length]}`}>
@@ -153,13 +164,50 @@ export default function ProductSection() {
               className="relative w-full max-w-4xl bg-brand-cream shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[90vh]"
             >
               {/* Product Image in Modal */}
-              <div className="md:w-1/2 bg-brand-muted relative overflow-hidden">
-                <img 
-                  src={getProductImage(selectedProduct.id)} 
-                  alt={selectedProduct.name}
-                  decoding="async"
-                  className="w-full h-full object-cover"
-                />
+              <div className="md:w-1/2 bg-brand-muted relative overflow-hidden flex flex-col">
+                {(() => {
+                  const images = getProductDetailImages(selectedProduct.id);
+                  const activeImage = images[selectedProductImageIndex] ?? images[0];
+                  return (
+                    <>
+                      <div className="flex-1 flex items-center justify-center p-6 sm:p-8">
+                        <img 
+                          src={activeImage} 
+                          alt={selectedProduct.name}
+                          decoding="async"
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                      {images.length > 1 && (
+                        <div className="px-5 pb-5 sm:px-6 sm:pb-6">
+                          <div className="flex gap-3 overflow-x-auto">
+                            {images.map((src, i) => {
+                              const isActive = i === selectedProductImageIndex;
+                              return (
+                                <button
+                                  key={`${src}-${i}`}
+                                  type="button"
+                                  onClick={() => setSelectedProductImageIndex(i)}
+                                  className={`shrink-0 w-20 h-16 rounded-md overflow-hidden border transition-colors ${
+                                    isActive ? 'border-brand-green' : 'border-black/10 hover:border-black/30'
+                                  }`}
+                                >
+                                  <img
+                                    src={src}
+                                    alt={`${selectedProduct.name} ${i + 1}`}
+                                    loading="lazy"
+                                    decoding="async"
+                                    className="w-full h-full object-cover"
+                                  />
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  );
+                })()}
                 <button 
                   onClick={() => setSelectedProduct(null)}
                   className="absolute top-6 left-6 md:hidden p-2 bg-white rounded-full shadow-lg"

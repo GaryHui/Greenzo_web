@@ -87,6 +87,7 @@ export const translations = {
       subtitle: '专注失禁护理，为晚年生活带来体贴入微的关怀。',
       cta: '了解更多',
       quote: '让舒适触及生活的每一个角落。',
+      quote2: '莞众，让生活更轻松。',
     },
     story: {
       title: '品牌故事',
@@ -194,6 +195,7 @@ export const translations = {
       subtitle: 'Premium incontinence care designed for specialized comfort and protection.',
       cta: 'Learn More',
       quote: 'Bringing comfort to every corner of your life.',
+      quote2: 'Greenzo, making life easier.',
     },
     story: {
       title: 'Our Story',
@@ -300,6 +302,7 @@ export const translations = {
       subtitle: '20年の経験に基づいた、究極の優しさと機能性を追求した介護ケア。',
       cta: '詳細を見る',
       quote: '暮らしのあらゆる瞬間に、心地よさを。',
+      quote2: '莞衆、暮らしをもっと楽に。',
     },
     story: {
       title: 'ブランド物語',
@@ -406,6 +409,7 @@ export const translations = {
       subtitle: '專注失禁護理，為晚年生活帶來體貼入微的關懷。',
       cta: '了解更多',
       quote: '讓舒適觸及生活的每一個角落。',
+      quote2: '莞眾，讓生活更輕鬆。',
     },
     story: {
       title: '品牌故事',

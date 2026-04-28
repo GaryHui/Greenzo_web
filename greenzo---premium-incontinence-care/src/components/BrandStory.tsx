@@ -29,6 +29,8 @@ export default function BrandStory() {
                 src={ASSET_CONFIG.brand.story} 
                 alt="Professional care"
                 referrerPolicy="no-referrer"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover grayscale-[0.4]"
               />
               <div className="absolute top-4 right-4 md:top-8 md:right-8 bg-brand-green/35 backdrop-blur-md text-white px-5 py-4 md:p-8 md:pr-12 shadow-xl border border-white/20">

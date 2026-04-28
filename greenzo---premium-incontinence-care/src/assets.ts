@@ -4,10 +4,47 @@ import padImage from './photo/Adult/4.png';
 import softTissueImage from './photo/Dairy/D1.png';
 import wipeImage from './photo/Personal/P1.png';
 import brandStoryImage from './photo/14d39408-f98b-449a-ad77-38595a108046.png';
-import detailImage1 from './photo/Detail/Picture1.png';
-import detailImage2 from './photo/Detail/Picture2.png';
-import detailImage3 from './photo/Detail/Picture3.png';
-import detailImage4 from './photo/Detail/Picture4.png';
+
+const detailImages = Object.entries(
+  import.meta.glob('./photo/Detail/Picture*.{png,jpg,jpeg,webp,avif}', {
+    eager: true,
+    import: 'default',
+  }) as Record<string, string>,
+)
+  .sort(([pathA], [pathB]) =>
+    pathA.localeCompare(pathB, undefined, { numeric: true, sensitivity: 'base' }),
+  )
+  .map(([, src]) => src);
+
+const productDetailImagesByProductId = (() => {
+  const entries = Object.entries(
+    import.meta.glob('./photo/ProductDetails/*/*.{png,jpg,jpeg,webp,avif}', {
+      eager: true,
+      import: 'default',
+    }) as Record<string, string>,
+  );
+
+  const grouped: Record<string, Array<[string, string]>> = {};
+  for (const [path, src] of entries) {
+    const match = path.match(/\/ProductDetails\/([^/]+)\//);
+    if (!match) continue;
+    const productId = match[1];
+    (grouped[productId] ??= []).push([path, src]);
+  }
+
+  const result: Record<string, string[]> = {};
+  for (const [productId, items] of Object.entries(grouped)) {
+    result[productId] = items
+      .sort(([pathA], [pathB]) =>
+        pathA.localeCompare(pathB, undefined, {
+          numeric: true,
+          sensitivity: 'base',
+        }),
+      )
+      .map(([, src]) => src);
+  }
+  return result;
+})();
 
 /**
  * Greenzo Asset Configuration
@@ -27,11 +64,10 @@ export const ASSET_CONFIG = {
     wipe: wipeImage,
   },
 
+  productDetails: productDetailImagesByProductId,
+
   gallery: [
-    detailImage1,
-    detailImage2,
-    detailImage3,
-    detailImage4,
+    ...detailImages,
   ],
 
   videos: {
