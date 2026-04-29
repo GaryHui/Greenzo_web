@@ -1,4 +1,14 @@
 {
+  "rewrites": [
+    {
+      "source": "/articles",
+      "destination": "/"
+    },
+    {
+      "source": "/articles/(.*)",
+      "destination": "/"
+    }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",

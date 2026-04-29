@@ -43,7 +43,9 @@ export default function Hero() {
           </p>
           <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 md:gap-10">
             <button 
-              onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => {
+                window.location.href = '/articles';
+              }}
               className="w-full sm:w-auto px-8 sm:px-10 md:px-12 py-4 sm:py-5 bg-brand-green text-white text-[10px] uppercase tracking-[0.25em] sm:tracking-[0.3em] font-sans font-bold hover:shadow-2xl hover:translate-y-[-2px] transition-all duration-500"
             >
               {t.cta}

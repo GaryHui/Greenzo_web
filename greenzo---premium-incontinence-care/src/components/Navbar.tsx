@@ -7,6 +7,7 @@ export default function Navbar() {
   const { language, setLanguage } = useLanguageStore();
   const t = translations[language].nav;
   const [isOpen, setIsOpen] = useState(false);
+  const isArticlePage = window.location.pathname.startsWith('/articles/');
 
   const languages = [
     { code: 'zh', name: '简体' },
@@ -45,6 +46,9 @@ export default function Navbar() {
             </li>
             <li className="group">
               <a href="#story" className="hover:text-brand-dark transition-colors">{t.story}</a>
+            </li>
+            <li className="group">
+              <a href="#knowledge" className="hover:text-brand-dark transition-colors">{(t as any).knowledge}</a>
             </li>
             <li className="group">
               <a href="#contact" className="hover:text-brand-dark transition-colors">{t.contact}</a>
@@ -87,6 +91,7 @@ export default function Navbar() {
             <a href="#products" onClick={() => setIsOpen(false)} className="text-lg font-medium">{t.products}</a>
             <a href="#gallery" onClick={() => setIsOpen(false)} className="text-lg font-medium">{(t as any).gallery}</a>
             <a href="#story" onClick={() => setIsOpen(false)} className="text-lg font-medium">{t.story}</a>
+            <a href="#knowledge" onClick={() => setIsOpen(false)} className="text-lg font-medium">{(t as any).knowledge}</a>
             <a href="#contact" onClick={() => setIsOpen(false)} className="text-lg font-medium">{t.contact}</a>
             <div className="flex flex-wrap gap-3 mt-4 pt-4 border-t border-black/5">
               {languages.map((lang) => (
@@ -106,6 +111,17 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {isArticlePage && (
+        <div className="hidden md:block border-t border-black/5 py-2 text-center text-[10px] tracking-[0.24em] uppercase text-black/40 font-bold">
+          <a href="/" className="hover:text-brand-green transition-colors">
+            {language === 'zh' && '返回首页'}
+            {language === 'hk' && '返回首頁'}
+            {language === 'en' && 'Back Home'}
+            {language === 'ja' && 'ホームへ戻る'}
+          </a>
+        </div>
+      )}
     </nav>
   );
 }

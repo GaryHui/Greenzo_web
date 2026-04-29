@@ -9,13 +9,28 @@ import { hasStoredLanguagePreference, useLanguageStore, type Language } from './
 const GallerySection = lazy(() => import('./components/GallerySection'));
 const ProductSection = lazy(() => import('./components/ProductSection'));
 const StandardsSection = lazy(() => import('./components/StandardsSection'));
+const KnowledgeSection = lazy(() => import('./components/KnowledgeSection'));
+const ArticlePage = lazy(() => import('./components/ArticlePage'));
+const ArticlesHomePage = lazy(() => import('./components/ArticlesHomePage'));
 
 function SectionFallback() {
   return <div className="py-12 md:py-16" aria-hidden="true" />;
 }
 
+function resolveArticleRoute(pathname: string): { type: 'home' | 'detail'; slug?: string } | null {
+  if (pathname === '/articles' || pathname === '/articles/') {
+    return { type: 'home' };
+  }
+  const match = pathname.match(/^\/articles\/([^/]+)\/?$/);
+  if (match?.[1]) {
+    return { type: 'detail', slug: match[1] };
+  }
+  return null;
+}
+
 export default function App() {
   const setDetectedLanguage = useLanguageStore((state) => state.setDetectedLanguage);
+  const articleRoute = resolveArticleRoute(window.location.pathname);
 
   useEffect(() => {
     if (hasStoredLanguagePreference()) return;
@@ -44,6 +59,22 @@ export default function App() {
     };
   }, [setDetectedLanguage]);
 
+  if (articleRoute?.type === 'home') {
+    return (
+      <Suspense fallback={<SectionFallback />}>
+        <ArticlesHomePage />
+      </Suspense>
+    );
+  }
+
+  if (articleRoute?.type === 'detail' && articleRoute.slug) {
+    return (
+      <Suspense fallback={<SectionFallback />}>
+        <ArticlePage slug={articleRoute.slug} />
+      </Suspense>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-brand-cream">
       <Navbar />
@@ -58,6 +89,9 @@ export default function App() {
         </Suspense>
         <Suspense fallback={<SectionFallback />}>
           <StandardsSection />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <KnowledgeSection />
         </Suspense>
         <BrandStory />
       </main>
