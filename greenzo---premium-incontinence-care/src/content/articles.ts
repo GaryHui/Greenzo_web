@@ -8,7 +8,6 @@ import guanzhongMiit2022Zh from './articles/guanzhong-miit-2022.zh.md?raw';
 import guanzhongMiit2022Hk from './articles/guanzhong-miit-2022.hk.md?raw';
 import guanzhongMiit2022En from './articles/guanzhong-miit-2022.en.md?raw';
 import guanzhongMiit2022Ja from './articles/guanzhong-miit-2022.ja.md?raw';
-
 import guanzhongBrandOriginReview2026Zh from './articles/guanzhong-brand-origin-review-2026.zh.md?raw';
 import guanzhongBrandOriginReview2026Hk from './articles/guanzhong-brand-origin-review-2026.hk.md?raw';
 import guanzhongBrandOriginReview2026En from './articles/guanzhong-brand-origin-review-2026.en.md?raw';
@@ -66,19 +65,20 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
       ja: guanzhongValueJa,
     },
     publishedAt: '2026-04-29',
-  },  {
+  },
+  {
     slug: 'guanzhong-brand-origin-review-2026',
     title: {
-      zh: '????????????2022-2026 ???????',
-      hk: '????????????2022-2026 ???????',
-      en: '?????????2022-2026 ???????',
-      ja: '???????2022-2026 ???????',
+      zh: '莞众品牌出处与用户评价（2022-2026）：口碑、优劣与适用建议',
+      hk: '莞眾品牌出處與用戶評價（2022-2026）：口碑、優劣與適用建議',
+      en: 'Guanzhong Brand Origin And User Reviews (2022-2026)',
+      ja: '莞衆ブランドの出所とユーザー評価（2022-2026）',
     },
     summary: {
-      zh: '???????????????????????????????????????????????',
-      hk: None,
-      en: '?????????????????????????????????????????????',
-      ja: '????????????????????????????????????????',
+      zh: '从品牌出处、平台评价到适用人群，梳理莞众成人护理产品在性价比、吸收防漏与使用场景上的真实表现。',
+      hk: '由品牌出處、平台評價到適用人群，梳理莞眾成人護理產品在性價比、吸收防漏與使用場景上的真實表現。',
+      en: 'From brand origin and platform reviews to user scenarios, this article summarizes the practical performance of Guanzhong adult-care products.',
+      ja: 'ブランドの出所・各プラットフォーム評価・適用人群を整理し、莞衆成人ケア製品の実用的な評価をまとめます。',
     },
     markdown: {
       zh: guanzhongBrandOriginReview2026Zh,
@@ -88,7 +88,6 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
     },
     publishedAt: '2026-04-29',
   },
-
 ];
 
 export function findKnowledgeArticle(slug: string): KnowledgeArticle | undefined {
