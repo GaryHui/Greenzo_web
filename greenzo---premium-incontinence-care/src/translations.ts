@@ -204,8 +204,9 @@ export const translations = {
     },
     contact: {
       title: '联系方式',
-      address: '广东省东莞市东城街道下桥工业园路19号1栋',
+      address: '中国广东省东莞市东城街道下桥工业园路19号1栋',
       phone: '服务热线',
+      mapNav: '高德地图定位',
       email: '商务邮箱',
     },
   },
@@ -337,8 +338,9 @@ export const translations = {
     },
     contact: {
       title: 'Contact Us',
-      address: 'Bldg 1, No. 19 Xiaqiao Industrial Road, Dongcheng District, Dongguan, Guangdong',
+      address: 'Bldg 1, No. 19 Xiaqiao Industrial Road, Dongcheng District, Dongguan, Guangdong, China',
       phone: 'Hotline',
+      mapNav: 'Open In AMap',
       email: 'Email',
     },
   },
@@ -470,8 +472,9 @@ export const translations = {
     },
     contact: {
       title: 'お問い合わせ',
-      address: '広東省東莞市東城街道下橋工業園路19号1棟',
+      address: '中国広東省東莞市東城街道下橋工業園路19号1棟',
       phone: 'お電話',
+      mapNav: '高徳地図で開く',
       email: 'メール',
     },
   },
@@ -603,8 +606,9 @@ export const translations = {
     },
     contact: {
       title: '聯絡方式',
-      address: '廣東省東莞市東城街道下橋工業園路19號1棟',
+      address: '中國廣東省東莞市東城街道下橋工業園路19號1棟',
       phone: '服務熱線',
+      mapNav: '高德地圖定位',
       email: '商務郵箱',
     },
   },

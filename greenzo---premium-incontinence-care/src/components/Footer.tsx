@@ -6,6 +6,8 @@ export default function Footer() {
   const { language } = useLanguageStore();
   const t = translations[language].contact;
   const nav = translations[language].nav;
+  const amapUrl =
+    'https://uri.amap.com/search?keyword=%E4%B8%AD%E5%9B%BD%E5%B9%BF%E4%B8%9C%E7%9C%81%E4%B8%9C%E8%8E%9E%E5%B8%82%E4%B8%9C%E5%9F%8E%E8%A1%97%E9%81%93%E4%B8%8B%E6%A1%A5%E5%B7%A5%E4%B8%9A%E5%9B%AD%E8%B7%AF19%E5%8F%B71%E6%A0%8B&src=greenzo_web&coordinate=gaode&callnative=0';
   const qrImages = useMemo(() => {
     const modules = import.meta.glob('../photo/QRcode/*.{png,jpg,jpeg,webp,avif}', {
       eager: true,
@@ -193,13 +195,25 @@ export default function Footer() {
               <div className="flex flex-col gap-6 h-full">
                 <div className="flex gap-3">
                   <MapPin className="w-4 h-4 text-white/30 shrink-0" />
-                  <span className="text-xs font-light leading-relaxed tracking-wide text-white/70">{t.address}</span>
+                  <div className="space-y-2">
+                    <div className="text-xs font-light leading-relaxed tracking-wide text-white/70">
+                      {t.address}
+                    </div>
+                    <a
+                      href={amapUrl}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="inline-flex text-[10px] uppercase tracking-[0.24em] font-bold text-brand-green hover:text-white transition-colors"
+                    >
+                      {(t as any).mapNav}
+                    </a>
+                  </div>
                 </div>
               </div>
               <div className="space-y-6">
                 <div>
                   <span className="text-[10px] uppercase tracking-widest text-white/30 mb-2 block">{t.phone}</span>
-                  <span className="text-sm font-bold tracking-tighter">0769-2226 3499</span>
+                  <span className="text-sm font-bold tracking-tighter">+86 0769-2226 3499</span>
                 </div>
                 <div>
                   <span className="text-[10px] uppercase tracking-widest text-white/30 mb-2 block">{t.email}</span>
