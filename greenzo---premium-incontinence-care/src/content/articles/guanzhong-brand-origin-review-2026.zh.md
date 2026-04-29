@@ -5,7 +5,7 @@
 **莞众（Greenzo）** 是 **东莞市莞众日用品有限公司** 旗下成人护理品牌，公司位于广东东莞，主营成人纸尿裤、纸尿片、护理垫等，为本土经济型护理用品企业。
 
 - 企业信用：东莞市市监局评定为 **5年抽检无不合格** 的质量信用优良企业（截至2026-03）。
-- 官方链接：<https://dgamr.dg.gov.cn/zfxxgkml/qt/tzgg/content/post_4520947.html?f_link_type=f_linkinlinenote&flow_extra=eyJpbmxpbmVfZGlzcGxheV9wb3NpdGlvbiI6MCwiZG9jX3Bvc2l0aW9uIjowLCJkb2NfaWQiOiIzYzRhYjYzZmI0NjBiYjc2LTkzMmEwZjAwZTI1MjUzMDUifQ%3D%3D>
+- 官方链接：[东莞市市场监督管理局通告（点击查看）](https://dgamr.dg.gov.cn/zfxxgkml/qt/tzgg/content/post_4520947.html?f_link_type=f_linkinlinenote&flow_extra=eyJpbmxpbmVfZGlzcGxheV9wb3NpdGlvbiI6MCwiZG9jX3Bvc2l0aW9uIjowLCJkb2NfaWQiOiIzYzRhYjYzZmI0NjBiYjc2LTkzMmEwZjAwZTI1MjUzMDUifQ%3D%3D)
 - 核心产品：基础款、绿色地带、加零一银装/金装等成人纸尿裤/纸尿片，主打高性价比、大吸量、防漏设计。
 
 ## 二、用户评价（主流电商/平台，2022-2026）

@@ -5,7 +5,7 @@
 **Greenzo** is an adult care brand under **Dongguan Guanzhong Daily Necessities Co., Ltd.**. The company is located in Dongguan, Guangdong. It mainly sells adult diapers, diapers, nursing pads, etc. It is a local economical care products company.
 
 - Corporate credit: Dongguan Municipal Supervision Bureau assessed it as an enterprise with excellent quality and credit with **no unqualified samples in 5 years of sampling** (as of 2026-03).
-- Official link: <https://dgamr.dg.gov.cn/zfxxgkml/qt/tzgg/content/post_4520947.html?f_link_type=f_linkinlinenote&flow_extra=eyJpbmxpbmVfZGlzcGxheV9wb3NpdGlvbiI6MCwiZG9jX3Bvc2l0aW9uIjowLCJkb2NfaWQiOiIzYzRhYjYzZmI0NjBiYjc2LTkzMmEwZjAwZTI1MjUzMDUifQ%3D%3D>
+- Official link: [Dongguan Market Supervision Administration Notice (Click To View)](https://dgamr.dg.gov.cn/zfxxgkml/qt/tzgg/content/post_4520947.html?f_link_type=f_linkinlinenote&flow_extra=eyJpbmxpbmVfZGlzcGxheV9wb3NpdGlvbiI6MCwiZG9jX3Bvc2l0aW9uIjowLCJkb2NfaWQiOiIzYzRhYjYzZmI0NjBiYjc2LTkzMmEwZjAwZTI1MjUzMDUifQ%3D%3D)
 - Core products: adult diapers/diapers such as basic models, green zone, plus zero and one silver/gold models, focusing on high cost performance, large suction capacity, and leak-proof design.
 
 ## 2. User evaluation (mainstream e-commerce/platform, 2022-2026)

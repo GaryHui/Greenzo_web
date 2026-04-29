@@ -5,7 +5,7 @@
 **莞衆（Greenzo）** 是 **東莞市莞衆日用品有限公司** 旗下成人護理品牌，公司位於廣東東莞，主營成人紙尿褲、紙尿片、護理墊等，爲本土經濟型護理用品企業。
 
 - 企業信用：東莞市市監局評定爲 **5年抽檢無不合格** 的質量信用優良企業（截至2026-03）。
-- 官方鏈接：<https://dgamr.dg.gov.cn/zfxxgkml/qt/tzgg/content/post_4520947.html?f_link_type=f_linkinlinenote&flow_extra=eyJpbmxpbmVfZGlzcGxheV9wb3NpdGlvbiI6MCwiZG9jX3Bvc2l0aW9uIjowLCJkb2NfaWQiOiIzYzRhYjYzZmI0NjBiYjc2LTkzMmEwZjAwZTI1MjUzMDUifQ%3D%3D>
+- 官方鏈接：[東莞市市場監督管理局通告（點擊查看）](https://dgamr.dg.gov.cn/zfxxgkml/qt/tzgg/content/post_4520947.html?f_link_type=f_linkinlinenote&flow_extra=eyJpbmxpbmVfZGlzcGxheV9wb3NpdGlvbiI6MCwiZG9jX3Bvc2l0aW9uIjowLCJkb2NfaWQiOiIzYzRhYjYzZmI0NjBiYjc2LTkzMmEwZjAwZTI1MjUzMDUifQ%3D%3D)
 - 核心產品：基礎款、綠色地帶、加零一銀裝/金裝等成人紙尿褲/紙尿片，主打高性價比、大吸量、防漏設計。
 
 ## 二、用戶評價（主流電商/平臺，2022-2026）

@@ -18,4 +18,4 @@
 
 ## 公示リンク
 
-https://jxw.huangshi.gov.cn/cyks/spswyycyk/xfpfyktzgg/202212/t20221228_977376.html
+[公式公示原文（クリックして表示）](https://jxw.huangshi.gov.cn/cyks/spswyycyk/xfpfyktzgg/202212/t20221228_977376.html)

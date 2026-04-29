@@ -5,7 +5,7 @@
 **Greenzo** は、**Dongguan Guanzhong Daily Necessities Co., Ltd.** のアダルトケア ブランドです。同社は広東省東莞にあります。大人用おむつ、おむつ、授乳パッド等を主に販売しており、地域密着型の経済的なケア用品会社です。
 
 - 企業信用: 東莞市監督局は、**5 年間のサンプリングで不適格サンプルがなかった** (2026 年 3 月時点) ことで、優れた品質と信用を備えた企業として評価しました。
-- 公式リンク: <https://dgamr.dg.gov.cn/zfxxgkml/qt/tzgg/content/post_4520947.html?f_link_type=f_linkinlinenote&flow_extra=eyJpbmxpbmVfZGlzcGxheV9wb3NpdGlvbiI6MCwiZG9jX3Bvc2l0aW9uIjowLCJkb2NfaWQiOiIzYzRhYjYzZmI0NjBiYjc2LTkzMmEwZjAwZTI1MjUzMDUifQ%3D%3D>
+- 公式リンク: [東莞市市場監督管理局の通告（クリックして表示）](https://dgamr.dg.gov.cn/zfxxgkml/qt/tzgg/content/post_4520947.html?f_link_type=f_linkinlinenote&flow_extra=eyJpbmxpbmVfZGlzcGxheV9wb3NpdGlvbiI6MCwiZG9jX3Bvc2l0aW9uIjowLCJkb2NfaWQiOiIzYzRhYjYzZmI0NjBiYjc2LTkzMmEwZjAwZTI1MjUzMDUifQ%3D%3D)
 ・主力商品：ベーシックモデル、グリーンゾーン、プラスゼロワンシルバー・ゴールドモデルなど、高いコストパフォーマンス、大吸引力、漏れ防止設計を重視した大人用おむつ・おむつ。
 
 ## 2. ユーザー評価 (主流の電子商取引/プラットフォーム、2022 ～ 2026 年)

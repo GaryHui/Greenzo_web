@@ -20,4 +20,4 @@ From sourcing and manufacturing to outgoing inspection, Guanzhong applies proces
 
 ## Public Notice Link
 
-https://jxw.huangshi.gov.cn/cyks/spswyycyk/xfpfyktzgg/202212/t20221228_977376.html
+[Official Public Notice (Click To View)](https://jxw.huangshi.gov.cn/cyks/spswyycyk/xfpfyktzgg/202212/t20221228_977376.html)
