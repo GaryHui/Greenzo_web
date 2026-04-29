@@ -1,13 +1,18 @@
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import ProductSection from './components/ProductSection';
 import BrandStory from './components/BrandStory';
 import QualitySection from './components/QualitySection';
-import GallerySection from './components/GallerySection';
-import StandardsSection from './components/StandardsSection';
 import Footer from './components/Footer';
 import { hasStoredLanguagePreference, useLanguageStore, type Language } from './translations';
+
+const GallerySection = lazy(() => import('./components/GallerySection'));
+const ProductSection = lazy(() => import('./components/ProductSection'));
+const StandardsSection = lazy(() => import('./components/StandardsSection'));
+
+function SectionFallback() {
+  return <div className="py-12 md:py-16" aria-hidden="true" />;
+}
 
 export default function App() {
   const setDetectedLanguage = useLanguageStore((state) => state.setDetectedLanguage);
@@ -45,9 +50,15 @@ export default function App() {
       <main>
         <Hero />
         <QualitySection />
-        <GallerySection />
-        <ProductSection />
-        <StandardsSection />
+        <Suspense fallback={<SectionFallback />}>
+          <GallerySection />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <ProductSection />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <StandardsSection />
+        </Suspense>
         <BrandStory />
       </main>
       <Footer />

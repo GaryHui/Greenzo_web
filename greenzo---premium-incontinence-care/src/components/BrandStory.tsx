@@ -1,7 +1,7 @@
 import { useLanguageStore, translations } from '../translations';
 import { motion } from 'motion/react';
 import { Building2, Users2, ShoppingBag } from 'lucide-react';
-import { ASSET_CONFIG } from '../assets';
+import { brandStoryImage } from '../siteAssets';
 
 export default function BrandStory() {
   const { language } = useLanguageStore();
@@ -28,7 +28,7 @@ export default function BrandStory() {
             <div className="absolute -top-6 -left-6 md:-top-10 md:-left-10 w-24 h-24 md:w-40 md:h-40 border-t border-l border-black/10" />
             <div className="aspect-[4/5] bg-brand-muted relative border border-black/5 shadow-sm overflow-hidden">
               <img 
-                src={ASSET_CONFIG.brand.story} 
+                src={brandStoryImage}
                 alt="Professional care"
                 referrerPolicy="no-referrer"
                 loading="lazy"

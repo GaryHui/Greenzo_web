@@ -1,6 +1,6 @@
 import { useLanguageStore, translations } from '../translations';
 import { motion } from 'motion/react';
-import { ASSET_CONFIG } from '../assets';
+import { heroMainImage } from '../siteAssets';
 
 export default function Hero() {
   const { language } = useLanguageStore();
@@ -66,7 +66,7 @@ export default function Hero() {
           <div className="relative w-full max-w-[440px] sm:max-w-[500px]">
             <div className="aspect-[4/5] bg-brand-muted rounded-none overflow-hidden group shadow-sm border border-black/5">
               <img 
-                src={ASSET_CONFIG.hero.mainImage} 
+                src={heroMainImage}
                 alt="Soft care"
                 referrerPolicy="no-referrer"
                 loading="eager"
