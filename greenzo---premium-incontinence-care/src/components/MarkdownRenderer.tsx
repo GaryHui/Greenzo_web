@@ -1,8 +1,25 @@
 import type { ReactNode } from 'react';
 
 function renderInline(text: string, keyPrefix: string): ReactNode[] {
-  const chunks = text.split(/(\*\*[^*]+\*\*)/g).filter(Boolean);
+  const chunks = text
+    .split(/(\*\*[^*]+\*\*|\[[^\]]+\]\((https?:\/\/[^)\s]+)\))/g)
+    .filter(Boolean);
   return chunks.map((chunk, index) => {
+    const linkMatch = chunk.match(/^\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)$/);
+    if (linkMatch) {
+      return (
+        <a
+          key={`${keyPrefix}-link-${index}`}
+          href={linkMatch[2]}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-medium text-brand-green hover:underline underline-offset-4"
+        >
+          {linkMatch[1]}
+        </a>
+      );
+    }
+
     if (chunk.startsWith('**') && chunk.endsWith('**') && chunk.length > 4) {
       return (
         <strong key={`${keyPrefix}-strong-${index}`} className="font-semibold text-brand-dark">

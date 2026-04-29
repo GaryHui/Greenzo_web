@@ -5,6 +5,7 @@ import { useLanguageStore } from '../translations';
 export default function KnowledgeSection() {
   const { language } = useLanguageStore();
   const article = KNOWLEDGE_ARTICLES[0];
+  const hasMoreArticles = KNOWLEDGE_ARTICLES.length > 1;
 
   return (
     <section id="knowledge" className="py-20 md:py-28 bg-brand-cream border-t border-black/5">
@@ -46,6 +47,18 @@ export default function KnowledgeSection() {
             {language === 'ja' && '全文を読む'}
           </div>
         </motion.a>
+
+        {hasMoreArticles && (
+          <a
+            href="/articles"
+            className="inline-flex mt-6 px-6 py-3 border border-black/10 bg-white/70 text-[10px] uppercase tracking-[0.24em] font-bold text-black/60 hover:bg-brand-green hover:text-white hover:border-brand-green transition-all"
+          >
+            {language === 'zh' && '阅读更多'}
+            {language === 'hk' && '閱讀更多'}
+            {language === 'en' && 'Read More'}
+            {language === 'ja' && 'もっと読む'}
+          </a>
+        )}
       </div>
     </section>
   );
