@@ -6,7 +6,7 @@
 
 依据工业和信息化部相关工作部署，《2022年老年用品产品推广目录》经企业自愿申报、地方与行业组织推荐、专家评审、社会公示等程序形成。入选产品体现了在安全性、实用性与市场应用价值方面的综合能力。[工信部公布通告](https://www.miit.gov.cn/zwgk/zcwj/wjfb/tg/art/2022/art_74f84c73edcc4383afbcd1511c5aa003.html?app=mb&f_link_type=f_linkinlinenote&flow_extra=eyJpbmxpbmVfZGlzcGxheV9wb3NpdGlvbiI6MCwiZG9jX3Bvc2l0aW9uIjowLCJkb2NfaWQiOiJmYWIzMzdlMDQ1MTIxOWJkLTA3NWIyYTBiMGYwZmJmMGUifQ%3D%3D)
 
-公示名单显示，**东莞市莞众日用品有限公司**的便盆、便壶产品成功入选（序号第87项），体现了莞众在老年日用护理领域的专业能力与合规优势，也为家庭照护与机构养老提供了更具参考价值的选择。[公示名单页面](https://jxw.huangshi.gov.cn/cyks/spswyycyk/xfpfyktzgg/202212/t20221228_977376.html)
+公示名单显示，**东莞市莞众日用品有限公司**的便盆、便壶产品成功入选（序号第87项），体现了莞众在老年日用护理领域的专业能力与合规优势，也为家庭照护与机构养老提供了更具参考价值的选择。[黄石市经济和信息化局](https://jxw.huangshi.gov.cn/cyks/spswyycyk/xfpfyktzgg/202212/t20221228_977376.html)
 
 ## 聚焦适老化场景，围绕真实照护痛点做产品
 
@@ -31,7 +31,3 @@
 ## 结语
 
 在老年护理用品选购中，**官方背书、品质可靠、性价比合理**是长期使用的重要判断标准。莞众便盆、便壶以适老化设计和稳定品质，回应了“好产品太贵、便宜产品不放心”的现实难题。未来，莞众将继续深耕老年护理领域，持续优化产品与体验，为更多家庭提供更安心、更实用的照护解决方案。
-
-## 公示原文链接
-
-https://jxw.huangshi.gov.cn/cyks/spswyycyk/xfpfyktzgg/202212/t20221228_977376.html

@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 
 function renderInline(text: string, keyPrefix: string): ReactNode[] {
   const chunks = text
-    .split(/(\*\*[^*]+\*\*|\[[^\]]+\]\((https?:\/\/[^)\s]+)\))/g)
+    .split(/(\*\*[^*]+\*\*|\[[^\]]+\]\(https?:\/\/[^)\s]+\))/g)
     .filter(Boolean);
   return chunks.map((chunk, index) => {
     const linkMatch = chunk.match(/^\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)$/);
