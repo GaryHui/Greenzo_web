@@ -1,7 +1,7 @@
 import { useLanguageStore, translations } from '../translations';
 import { motion, AnimatePresence } from 'motion/react';
 import { Shield, X, ShoppingBag, Wind } from 'lucide-react';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { ASSET_CONFIG, type ProductCatalogItem } from '../assets';
 
 type DisplayProductImage = {
@@ -74,6 +74,7 @@ export default function ProductSection() {
   const [selectedProductImageIndex, setSelectedProductImageIndex] = useState(0);
   const [activeMainCategory, setActiveMainCategory] = useState<string>('Adult');
   const [activeSubCategory, setActiveSubCategory] = useState<string>('diaper');
+  const hasAppliedDeepLinkRef = useRef(false);
   const polaroidTilt = ['rotate-0'];
 
   const getProductImage = () => ASSET_CONFIG.hero.mainImage;
@@ -214,9 +215,50 @@ export default function ProductSection() {
   }, [selectedProduct?.id]);
 
   useEffect(() => {
-    const nextSub = subCategories[0] ?? 'all';
-    setActiveSubCategory(nextSub);
-  }, [activeMainCategory, subCategories]);
+    if (subCategories.length === 0) {
+      setActiveSubCategory('all');
+      return;
+    }
+    if (!subCategories.includes(activeSubCategory)) {
+      setActiveSubCategory(subCategories[0] ?? 'all');
+    }
+  }, [subCategories, activeSubCategory]);
+
+  useEffect(() => {
+    if (hasAppliedDeepLinkRef.current) return;
+    if (typeof window === 'undefined') return;
+    if (products.length === 0) return;
+
+    const params = new URLSearchParams(window.location.search);
+    const productId = params.get('product');
+    const targetMain = params.get('main');
+    const targetSub = params.get('sub');
+
+    if (!productId && !targetMain && !targetSub) {
+      hasAppliedDeepLinkRef.current = true;
+      return;
+    }
+
+    const targetProduct = productId
+      ? products.find((p) => p.id === productId)
+      : undefined;
+
+    if (targetProduct) {
+      setActiveMainCategory(targetProduct.mainCategory);
+      setActiveSubCategory(targetProduct.subCategory);
+      hasAppliedDeepLinkRef.current = true;
+      return;
+    }
+
+    if (targetMain && mainCategories.includes(targetMain)) {
+      setActiveMainCategory(targetMain);
+    }
+    if (targetSub) {
+      setActiveSubCategory(targetSub);
+    }
+
+    hasAppliedDeepLinkRef.current = true;
+  }, [products, mainCategories]);
 
   useEffect(() => {
     if (!selectedProduct) return;

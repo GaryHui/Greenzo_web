@@ -1,5 +1,39 @@
 import type { ReactNode } from 'react';
 
+const NAMED_LINKS: Array<{ text: string; href: string }> = [
+  {
+    text: '工信部公布通告',
+    href: 'https://www.miit.gov.cn/zwgk/zcwj/wjfb/tg/art/2022/art_74f84c73edcc4383afbcd1511c5aa003.html',
+  },
+  {
+    text: '黄石市经济和信息化局',
+    href: 'https://jxw.huangshi.gov.cn/cyks/spswyycyk/xfpfyktzgg/202212/t20221228_977376.html',
+  },
+];
+
+function renderNamedLinks(text: string, keyPrefix: string): ReactNode[] {
+  const pattern = /(工信部公布通告|黄石市经济和信息化局)/g;
+  const segments = text.split(pattern).filter(Boolean);
+
+  return segments.map((segment, index) => {
+    const matched = NAMED_LINKS.find((item) => item.text === segment);
+    if (matched) {
+      return (
+        <a
+          key={`${keyPrefix}-named-link-${index}`}
+          href={matched.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-medium text-brand-green hover:underline underline-offset-4"
+        >
+          {matched.text}
+        </a>
+      );
+    }
+    return <span key={`${keyPrefix}-named-text-${index}`}>{segment}</span>;
+  });
+}
+
 function renderInline(text: string, keyPrefix: string): ReactNode[] {
   const chunks = text
     .split(/(\*\*[^*]+\*\*|\[[^\]]+\]\(https?:\/\/[^)\s]+\))/g)
@@ -27,7 +61,11 @@ function renderInline(text: string, keyPrefix: string): ReactNode[] {
         </strong>
       );
     }
-    return <span key={`${keyPrefix}-text-${index}`}>{chunk}</span>;
+    return (
+      <span key={`${keyPrefix}-text-${index}`}>
+        {renderNamedLinks(chunk, `${keyPrefix}-named-${index}`)}
+      </span>
+    );
   });
 }
 

@@ -23,11 +23,13 @@ function pickLocalizedText(
 export default function ArticlePage({ slug }: { slug: string }) {
   const { language } = useLanguageStore();
   const article = findKnowledgeArticle(slug);
+  const isBedpanArticle = slug === 'guanzhong-miit-2022';
 
-  const diaperGallery = useMemo(() => {
+  const relatedGallery = useMemo(() => {
     const catalog = (ASSET_CONFIG.productCatalog ?? []) as ProductCatalogItem[];
+    const targetSubCategory = isBedpanArticle ? 'urinal' : 'diaper';
     return catalog
-      .filter((item) => item.mainCategory === 'Adult' && item.subCategory === 'diaper')
+      .filter((item) => item.mainCategory === 'Adult' && item.subCategory === targetSubCategory)
       .flatMap((item) =>
         (item.images ?? []).slice(0, 1).map((image) => ({
           src: image.src,
@@ -38,7 +40,7 @@ export default function ArticlePage({ slug }: { slug: string }) {
         })),
       )
       .slice(0, 3);
-  }, [language]);
+  }, [language, isBedpanArticle]);
 
   if (!article) {
     return (
@@ -105,16 +107,36 @@ export default function ArticlePage({ slug }: { slug: string }) {
             </div>
           </article>
 
-          {diaperGallery.length > 0 && (
+          {isBedpanArticle && (
+            <div className="mt-8">
+              <a
+                href="/?main=Adult&sub=urinal&product=adult-urinal-bedpan#products"
+                className="inline-flex items-center gap-2 px-6 py-3 border border-black/10 bg-white/70 text-[10px] uppercase tracking-[0.24em] font-bold text-black/60 hover:bg-brand-green hover:text-white hover:border-brand-green transition-all"
+              >
+                <span>
+                  {language === 'zh' && '进入产品中心 · 便盆便壶'}
+                  {language === 'hk' && '進入產品中心 · 便盆便壺'}
+                  {language === 'en' && 'Open Product Center · Bedpan & Urinal'}
+                  {language === 'ja' && '製品センターへ · 便盆・尿器'}
+                </span>
+              </a>
+            </div>
+          )}
+
+          {relatedGallery.length > 0 && (
             <section className="mt-10 md:mt-14">
               <div className="text-[10px] uppercase tracking-[0.3em] font-bold text-black/40 mb-4">
-                {language === 'zh' && '配图图集 · 成人纸尿裤'}
-                {language === 'hk' && '配圖圖集 · 成人紙尿褲'}
-                {language === 'en' && 'Related Gallery · Adult Diaper'}
-                {language === 'ja' && '関連ギャラリー · 成人用おむつ'}
+                {isBedpanArticle && language === 'zh' && '配图图集 · 便盆便壶'}
+                {isBedpanArticle && language === 'hk' && '配圖圖集 · 便盆便壺'}
+                {isBedpanArticle && language === 'en' && 'Related Gallery · Bedpan & Urinal'}
+                {isBedpanArticle && language === 'ja' && '関連ギャラリー · 便盆・尿器'}
+                {!isBedpanArticle && language === 'zh' && '配图图集 · 成人纸尿裤'}
+                {!isBedpanArticle && language === 'hk' && '配圖圖集 · 成人紙尿褲'}
+                {!isBedpanArticle && language === 'en' && 'Related Gallery · Adult Diaper'}
+                {!isBedpanArticle && language === 'ja' && '関連ギャラリー · 成人用おむつ'}
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                {diaperGallery.map((image) => (
+                {relatedGallery.map((image) => (
                   <figure
                     key={`${image.src}-${image.caption}`}
                     className="border border-black/10 bg-white/70 p-3"

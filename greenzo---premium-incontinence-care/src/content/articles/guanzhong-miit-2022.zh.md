@@ -4,9 +4,9 @@
 
 ## 权威入选，代表行业认可
 
-依据工业和信息化部相关工作部署，《2022年老年用品产品推广目录》经企业自愿申报、地方与行业组织推荐、专家评审、社会公示等程序形成。入选产品体现了在安全性、实用性与市场应用价值方面的综合能力。[工信部公布通告](https://www.miit.gov.cn/zwgk/zcwj/wjfb/tg/art/2022/art_74f84c73edcc4383afbcd1511c5aa003.html?app=mb&f_link_type=f_linkinlinenote&flow_extra=eyJpbmxpbmVfZGlzcGxheV9wb3NpdGlvbiI6MCwiZG9jX3Bvc2l0aW9uIjowLCJkb2NfaWQiOiJmYWIzMzdlMDQ1MTIxOWJkLTA3NWIyYTBiMGYwZmJmMGUifQ%3D%3D)
+依据工业和信息化部相关工作部署，《2022年老年用品产品推广目录》经企业自愿申报、地方与行业组织推荐、专家评审、社会公示等程序形成。入选产品体现了在安全性、实用性与市场应用价值方面的综合能力。工信部公布通告
 
-公示名单显示，**东莞市莞众日用品有限公司**的便盆、便壶产品成功入选（序号第87项），体现了莞众在老年日用护理领域的专业能力与合规优势，也为家庭照护与机构养老提供了更具参考价值的选择。[黄石市经济和信息化局](https://jxw.huangshi.gov.cn/cyks/spswyycyk/xfpfyktzgg/202212/t20221228_977376.html)
+公示名单显示，**东莞市莞众日用品有限公司**的便盆、便壶产品成功入选（序号第87项），体现了莞众在老年日用护理领域的专业能力与合规优势，也为家庭照护与机构养老提供了更具参考价值的选择。黄石市经济和信息化局
 
 ## 聚焦适老化场景，围绕真实照护痛点做产品
 
