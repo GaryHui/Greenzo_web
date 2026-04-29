@@ -13,6 +13,11 @@ import guanzhongBrandOriginReview2026Hk from './articles/guanzhong-brand-origin-
 import guanzhongBrandOriginReview2026En from './articles/guanzhong-brand-origin-review-2026.en.md?raw';
 import guanzhongBrandOriginReview2026Ja from './articles/guanzhong-brand-origin-review-2026.ja.md?raw';
 
+import whyChooseGreenzoZh from './articles/why-choose-greenzo.zh.md?raw';
+import whyChooseGreenzoHk from './articles/why-choose-greenzo.hk.md?raw';
+import whyChooseGreenzoEn from './articles/why-choose-greenzo.en.md?raw';
+import whyChooseGreenzoJa from './articles/why-choose-greenzo.ja.md?raw';
+
 export type KnowledgeArticle = {
   slug: string;
   title: Record<Language, string>;
@@ -87,7 +92,29 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
       ja: guanzhongBrandOriginReview2026Ja,
     },
     publishedAt: '2026-04-29',
+  },  {
+    slug: 'why-choose-greenzo',
+    title: {
+      zh: '用莞众，劲轻松',
+      hk: '用莞眾，勁輕鬆',
+      en: 'Use Wanzhong, the strength is relaxed',
+      ja: '万中を使用すると、力が緩和されます',
+    },
+    summary: {
+      zh: '选莞众成人尿片，享护理劲轻松',
+      hk: '選莞眾成人尿片，享護理勁輕鬆',
+      en: 'Choose Wanzhong adult diapers and enjoy easy care',
+      ja: 'Wanzhong の大人用おむつを選んで簡単なお手入れをお楽しみください',
+    },
+    markdown: {
+      zh: whyChooseGreenzoZh,
+      hk: whyChooseGreenzoHk,
+      en: whyChooseGreenzoEn,
+      ja: whyChooseGreenzoJa,
+    },
+    publishedAt: '2026-04-29',
   },
+
 ];
 
 export function findKnowledgeArticle(slug: string): KnowledgeArticle | undefined {
