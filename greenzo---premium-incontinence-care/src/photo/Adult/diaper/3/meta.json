@@ -13,16 +13,68 @@
     "ja": "M/L/XL｜10枚/パック｜8パック/カートン"
   },
   "features": {
-    "zh": "多重防漏，棉柔透气；术扣反复粘贴，穿脱更方便。吸水量大，一晚只需一片；锁水力强不反渗，柔软透气更舒适，穿着对皮肤友好。",
-    "hk": "多重防漏，棉柔透氣；術扣可反覆黏貼，穿脫更方便。吸水量大，一晚只需一片；鎖水力強不反滲，柔軟透氣更舒適，穿著對皮膚友好。",
-    "en": "Multi-layer leak protection, soft and breathable; refastenable tape for easier on/off. High absorbency—one piece is enough for a full night; strong liquid lock prevents rewet, stays soft and breathable, and is skin-friendly.",
-    "ja": "多重漏れ防止、やわらかく通気性。テープは繰り返し貼り直し可能で着脱も簡単。高い吸収力で一晩1枚でも安心、強力なロック機能で逆戻り（再湿）を抑え、やわらかく通気性があり肌にやさしい。"
+    "zh": "反复粘贴魔术扣，穿戴调节更灵活。全芯体结构，采用进口高分子+绒毛浆，双倍加厚不易起坨；双层立体护围+弹性腿围，翻身也不易侧漏；无纺布表层+透气底膜，久用不闷；尿显提示+长效干爽+弹力腰围，适合长期卧床。高分子瞬吸，一夜一片不反渗。适用于老人失禁/长期卧床、产后恶露与术后护理、成人术后病后护理及轻度失禁；日夜通用，夜用更稳。",
+    "hk": "反覆黏貼魔術貼，穿戴調節更靈活。全芯體結構，採用進口高分子+絨毛漿，雙倍加厚不易起坨；雙層立體護圍+彈性腿圍，翻身也不易側漏；無紡布表層+透氣底膜，久用不焗；尿顯提示+長效乾爽+彈力腰圍，適合長期臥床。高分子瞬吸，一夜一片不反滲。適用於老人失禁/長期臥床、產後惡露與術後護理、成人術後病後護理及輕度失禁；日夜通用，夜用更穩。",
+    "en": "Refastenable hook-and-loop tabs make fit adjustment easier. Full-core structure with imported SAP plus fluff pulp, double-thick and anti-clumping; double leak guards with elastic leg cuffs for stable side-leak prevention even when turning over; nonwoven top sheet and breathable backsheet for long-wear comfort; wetness indicator, long-lasting dryness, and elastic waistband for long-term bedridden users. Fast SAP absorption helps one diaper last through the night with low rewet. Suitable for elderly incontinence/bedridden care, postpartum lochia and post-op care, and adults needing post-illness or mild incontinence care. Day and night use, especially stable overnight.",
+    "ja": "繰り返し貼り直せる面ファスナーテープで、着用調整がしやすい設計。フルコア構造（輸入高分子SAP+フラッフパルプ）で二重厚み、ダマになりにくい。二重立体ギャザー+弾性レッグで寝返り時の横漏れを抑制。不織布トップシート+通気性バックシートで長時間でもムレにくい。尿量インジケーター+持続ドライ+伸縮ウエストで長期臥床にも対応。SAPの瞬間吸収で一晩1枚でも逆戻りしにくい。高齢者の失禁・長期臥床、産後悪露や術後ケア、成人の術後/病後ケアや軽度失禁に適し、昼夜兼用で夜間はより安定。"
   },
   "specs": {
-    "zh": ["中码/大码/加大码", "10片/包", "8包/箱", "多重防漏", "棉柔透气", "术扣反复粘贴"],
-    "hk": ["中碼/大碼/加大碼", "10片/包", "8包/箱", "多重防漏", "棉柔透氣", "術扣可反覆黏貼"],
-    "en": ["M/L/XL", "10 pcs/bag", "8 bags/carton", "Leak protection", "Soft & breathable", "Refastenable tape"],
-    "ja": ["M/L/XL", "10枚/パック", "8パック/カートン", "漏れ防止", "やわらか・通気性", "貼り直し可能テープ"]
+    "zh": [
+      "中码/大码/加大码",
+      "10片/包",
+      "8包/箱",
+      "全芯体+进口高分子+绒毛浆",
+      "双倍加厚 防起坨",
+      "双层立体护围+弹性腿围",
+      "无纺布表层+透气底膜",
+      "尿显提示+长效干爽+弹力腰围",
+      "魔术贴反复粘贴",
+      "一夜一片不反渗",
+      "日夜通用 夜用更稳",
+      "适合长期卧床/术后护理/轻度失禁"
+    ],
+    "hk": [
+      "中碼/大碼/加大碼",
+      "10片/包",
+      "8包/箱",
+      "全芯體+進口高分子+絨毛漿",
+      "雙倍加厚 防起坨",
+      "雙層立體護圍+彈性腿圍",
+      "無紡布表層+透氣底膜",
+      "尿顯提示+長效乾爽+彈力腰圍",
+      "魔術貼可反覆黏貼",
+      "一夜一片不反滲",
+      "日夜通用 夜用更穩",
+      "適合長期臥床/術後護理/輕度失禁"
+    ],
+    "en": [
+      "M/L/XL",
+      "10 pcs/bag",
+      "8 bags/carton",
+      "Full core + imported SAP + fluff pulp",
+      "Double-thick anti-clumping core",
+      "Double leak guards + elastic leg cuffs",
+      "Nonwoven top sheet + breathable backsheet",
+      "Wetness indicator + long-lasting dryness + elastic waist",
+      "Refastenable hook-and-loop tabs",
+      "Overnight use with low rewet",
+      "Day/night use, extra stable at night",
+      "For bedridden care/post-op/mild incontinence"
+    ],
+    "ja": [
+      "M/L/XL",
+      "10枚/パック",
+      "8パック/カートン",
+      "フルコア+輸入SAP+フラッフパルプ",
+      "二重厚み ダマになりにくい",
+      "二重立体ギャザー+弾性レッグ",
+      "不織布トップ+通気バックシート",
+      "尿量インジケーター+持続ドライ+伸縮ウエスト",
+      "貼り直し可能テープ",
+      "一晩1枚でも逆戻りしにくい",
+      "昼夜兼用 夜間はより安定",
+      "長期臥床/術後ケア/軽度失禁向け"
+    ]
   },
   "images": [
     {

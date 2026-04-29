@@ -7,6 +7,8 @@ export default function BrandStory() {
   const { language } = useLanguageStore();
   const t = translations[language].story;
   const tc = translations[language].channels;
+  const baikeUrl =
+    'https://baike.baidu.com/item/%E4%B8%9C%E8%8E%9E%E5%B8%82%E8%8E%9E%E4%BC%97%E6%97%A5%E7%94%A8%E5%93%81%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8?fromModule=lemma_search-box';
 
   return (
     <section id="story" className="py-20 md:py-32 bg-brand-cream relative overflow-hidden border-t border-black/5">
@@ -66,6 +68,19 @@ export default function BrandStory() {
             <div className="space-y-6 md:space-y-8 text-base md:text-lg text-black/70 font-light leading-relaxed font-sans max-w-2xl">
               <p>{t.content1}</p>
               <p>{t.content2}</p>
+            </div>
+            <div className="mt-6">
+              <a
+                href={baikeUrl}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="inline-flex items-center gap-2 px-4 py-2 border border-black/10 bg-white/70 hover:bg-brand-green hover:text-white hover:border-brand-green transition-all text-[10px] uppercase tracking-[0.2em] font-bold text-black/60"
+                aria-label={`${(t as any).referenceLabel} - Baidu Baike`}
+              >
+                <span>{(t as any).referenceLabel}</span>
+                <span className="text-black/30">|</span>
+                <span>{(t as any).referenceSource}</span>
+              </a>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 pt-8 md:pt-10 border-t border-black/5 mt-8 md:mt-10">
