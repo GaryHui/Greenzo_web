@@ -1,5 +1,5 @@
-import heroMainImage from './photo/new1.png';
-import brandStoryImage from './photo/14d39408-f98b-449a-ad77-38595a108046.png';
+import heroMainImage from './photo/new1b.png';
+import brandStoryImage from './photo/foot1.png';
 import dairyPicture6 from './photo/Dairy/facial/facial Tissues5/Picture6.png';
 import videoPlaylist from './videoList.json';
 
