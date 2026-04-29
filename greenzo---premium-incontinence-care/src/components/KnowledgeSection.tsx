@@ -13,7 +13,7 @@ export default function KnowledgeSection() {
           Care Insights
         </div>
         <h2 className="text-3xl md:text-5xl font-serif text-brand-dark leading-tight max-w-3xl">
-          {language === 'zh' && '护理科普与软文专栏'}
+          {language === 'zh' && '护理科普与莞众小知识专栏'}
           {language === 'hk' && '護理科普與內容專欄'}
           {language === 'en' && 'Knowledge & Care Articles'}
           {language === 'ja' && 'ケア知識・コラム'}

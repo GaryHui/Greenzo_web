@@ -70,18 +70,31 @@ export default function ArticlePage({ slug }: { slug: string }) {
     <div className="min-h-screen bg-brand-cream">
       <main className="pt-28 md:pt-32 pb-16">
         <div className="max-w-5xl mx-auto px-5 sm:px-6 md:px-12">
-          <a
-            href="/"
-            className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.26em] font-bold text-black/45 hover:text-brand-green transition-colors"
-          >
-            <span>←</span>
-            <span>
-              {language === 'zh' && '返回首页'}
-              {language === 'hk' && '返回首頁'}
-              {language === 'en' && 'Back to Home'}
-              {language === 'ja' && 'ホームに戻る'}
-            </span>
-          </a>
+          <div className="flex flex-wrap items-center gap-4">
+            <a
+              href="/articles"
+              className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.26em] font-bold text-black/45 hover:text-brand-green transition-colors"
+            >
+              <span>←</span>
+              <span>
+                {language === 'zh' && '返回专栏'}
+                {language === 'hk' && '返回專欄'}
+                {language === 'en' && 'Back to Hub'}
+                {language === 'ja' && '記事一覧へ戻る'}
+              </span>
+            </a>
+            <a
+              href="/"
+              className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] font-bold text-black/35 hover:text-brand-green transition-colors"
+            >
+              <span>
+                {language === 'zh' && '返回首页'}
+                {language === 'hk' && '返回首頁'}
+                {language === 'en' && 'Back Home'}
+                {language === 'ja' && 'ホームへ戻る'}
+              </span>
+            </a>
+          </div>
 
           <article className="mt-8 bg-white/70 border border-black/10 p-6 md:p-10 lg:p-12">
             <div className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-green">

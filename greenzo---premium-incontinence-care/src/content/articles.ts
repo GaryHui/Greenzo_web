@@ -4,6 +4,10 @@ import guanzhongValueZh from './articles/guanzhong-value.zh.md?raw';
 import guanzhongValueHk from './articles/guanzhong-value.hk.md?raw';
 import guanzhongValueEn from './articles/guanzhong-value.en.md?raw';
 import guanzhongValueJa from './articles/guanzhong-value.ja.md?raw';
+import guanzhongMiit2022Zh from './articles/guanzhong-miit-2022.zh.md?raw';
+import guanzhongMiit2022Hk from './articles/guanzhong-miit-2022.hk.md?raw';
+import guanzhongMiit2022En from './articles/guanzhong-miit-2022.en.md?raw';
+import guanzhongMiit2022Ja from './articles/guanzhong-miit-2022.ja.md?raw';
 
 export type KnowledgeArticle = {
   slug: string;
@@ -14,6 +18,28 @@ export type KnowledgeArticle = {
 };
 
 export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
+  {
+    slug: 'guanzhong-miit-2022',
+    title: {
+      zh: '莞众便盆、便壶入选工信部《2022年老年用品产品推广目录》',
+      hk: '莞眾便盆、便壺入選《2022年老年用品產品推廣目錄》',
+      en: 'Guanzhong Bedpans And Urinals Listed In 2022 Directory',
+      ja: '莞衆の便器・尿器が2022年高齢者用品目録に選定',
+    },
+    summary: {
+      zh: '从权威入选背景到产品适老化细节，解读莞众便盆、便壶如何兼顾安全、实用与长期性价比。',
+      hk: '由權威入選背景到適老化細節，說明莞眾便盆、便壺的安全與實用價值。',
+      en: 'An overview of official listing background, product practicality, and quality control value in elderly care.',
+      ja: '公的掲載の背景と、介護現場での実用性・品質管理のポイントを解説。',
+    },
+    markdown: {
+      zh: guanzhongMiit2022Zh,
+      hk: guanzhongMiit2022Hk,
+      en: guanzhongMiit2022En,
+      ja: guanzhongMiit2022Ja,
+    },
+    publishedAt: '2026-04-29',
+  },
   {
     slug: 'guanzhong-value',
     title: {
