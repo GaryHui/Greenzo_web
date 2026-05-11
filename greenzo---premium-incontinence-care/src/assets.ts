@@ -1,7 +1,8 @@
-import heroMainImage from './photo/new1b.png';
-import brandStoryImage from './photo/foot1.png';
-import dairyPicture6 from './photo/Dairy/facial/facial Tissues5/Picture6.png';
+import heroMainImage from './photo/new1b.webp';
+import brandStoryImage from './photo/foot1.webp';
+import dairyPicture6 from './photo/Dairy/facial/facial Tissues5/Picture6.webp';
 import videoPlaylist from './videoList.json';
+import homeVisualMedia from './homeVisualMedia.json';
 
 type LocalizedText = string | Partial<Record<'zh' | 'en' | 'ja' | 'hk', string>>;
 type LocalizedTextArray =
@@ -39,20 +40,45 @@ type VideoPlaylistItem = {
   src: string;
 };
 
+type HomeVisualMedia = {
+  images?: string[];
+};
+
+const preferOptimizedImageEntries = (entries: Array<[string, string]>) => {
+  const optimizedStems = new Set(
+    entries
+      .map(([path]) => path)
+      .filter((path) => /\.(webp|avif)$/i.test(path))
+      .map((path) => path.replace(/\.(webp|avif)$/i, '')),
+  );
+
+  return entries.filter(([path]) => {
+    if (!/\.(png|jpe?g)$/i.test(path)) return true;
+    return !optimizedStems.has(path.replace(/\.(png|jpe?g)$/i, ''));
+  });
+};
+
 const detailImages = Object.entries(
-  import.meta.glob('./photo/Detail/*.{png,jpg,jpeg,webp,avif}', {
+  import.meta.glob('./photo/Detail/*.{webp,avif}', {
     eager: true,
     import: 'default',
   }) as Record<string, string>,
-)
+);
+
+const optimizedDetailImages = preferOptimizedImageEntries(detailImages)
   .sort(([pathA], [pathB]) =>
     pathA.localeCompare(pathB, undefined, { numeric: true, sensitivity: 'base' }),
   )
   .map(([, src]) => src);
 
+const extraHomeVisualImages = ((homeVisualMedia as HomeVisualMedia | undefined)?.images ?? [])
+  .filter((value): value is string => typeof value === 'string')
+  .map((value) => value.trim())
+  .filter((value) => value.length > 0);
+
 const productDetailImagesByProductId = (() => {
   const entries = Object.entries(
-    import.meta.glob('./photo/ProductDetails/*/*.{png,jpg,jpeg,webp,avif}', {
+    import.meta.glob('./photo/ProductDetails/*/*.{webp,avif}', {
       eager: true,
       import: 'default',
     }) as Record<string, string>,
@@ -96,20 +122,20 @@ const productCatalog = (() => {
     }) as Record<string, RawProductMeta>),
   };
 
-  const imageModules = {
-    ...(import.meta.glob('./photo/Adult/**/*.{png,jpg,jpeg,webp,avif}', {
+  const imageModules = Object.fromEntries(preferOptimizedImageEntries(Object.entries({
+    ...(import.meta.glob('./photo/Adult/**/*.{webp,avif}', {
       eager: true,
       import: 'default',
     }) as Record<string, string>),
-    ...(import.meta.glob('./photo/Dairy/**/*.{png,jpg,jpeg,webp,avif}', {
+    ...(import.meta.glob('./photo/Dairy/**/*.{webp,avif}', {
       eager: true,
       import: 'default',
     }) as Record<string, string>),
-    ...(import.meta.glob('./photo/Personal/**/*.{png,jpg,jpeg,webp,avif}', {
+    ...(import.meta.glob('./photo/Personal/**/*.{webp,avif}', {
       eager: true,
       import: 'default',
     }) as Record<string, string>),
-  };
+  })));
 
   const metaByDir: Record<string, RawProductMeta> = {};
   for (const [metaPath, meta] of Object.entries(metaModules)) {
@@ -217,6 +243,13 @@ const productCatalog = (() => {
       for (const [imgPath, imgSrc] of imagesInProduct) {
         const file = imgPath.split('/').pop() ?? imgPath;
         if (!byFile.has(file)) byFile.set(file, imgSrc);
+        if (/\.webp$/i.test(file)) {
+          const base = file.replace(/\.webp$/i, '');
+          for (const ext of ['png', 'jpg', 'jpeg']) {
+            const alias = `${base}.${ext}`;
+            if (!byFile.has(alias)) byFile.set(alias, imgSrc);
+          }
+        }
       }
 
       for (const entry of rawGallery) {
@@ -283,8 +316,9 @@ export const ASSET_CONFIG = {
   productCatalog,
 
   gallery: [
-    ...detailImages,
+    ...optimizedDetailImages,
     dairyPicture6,
+    ...extraHomeVisualImages,
   ],
 
   videos: {

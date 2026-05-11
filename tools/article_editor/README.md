@@ -15,6 +15,12 @@ Standalone desktop editor for creating multilingual article files (`zh/hk/en/ja`
 - Optionally auto-update `src/content/articles.ts` with imports + article metadata.
 - Existing slug can be overwritten safely (upsert mode) to support direct regenerate + push.
 - One-click `git add`, `git commit`, `git push origin main`.
+- Support pushing previously generated article files by slug (`zh/hk/en/ja` + optional `articles.ts`).
+- Support selecting local article images and inserting image blocks into markdown at cursor.
+- Support managing homepage image/video links (`src/homeVisualMedia.json` and `src/videoList.json`).
+- Support loading and editing previously generated articles by slug.
+- Support editing project text files and replacing project images.
+- Support committing all current project changes and pushing to `origin/main`.
 
 ## Quick Start (Windows)
 

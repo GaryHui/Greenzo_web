@@ -5,6 +5,7 @@ from datetime import date
 import json
 from pathlib import Path
 import re
+import shutil
 import subprocess
 from typing import Dict, List
 
@@ -23,6 +24,33 @@ LINK_LABEL = {
 
 class EditorError(Exception):
     pass
+
+
+def _ensure_http_or_root_path(url: str) -> str:
+    value = url.strip()
+    if not value:
+        raise EditorError("链接不能为空。")
+    if value.startswith("http://") or value.startswith("https://") or value.startswith("/"):
+        return value
+    raise EditorError("链接格式不正确，仅支持 http(s):// 或 / 开头路径。")
+
+
+TEXT_EXTENSIONS = {
+    ".md",
+    ".txt",
+    ".json",
+    ".ts",
+    ".tsx",
+    ".js",
+    ".jsx",
+    ".css",
+    ".scss",
+    ".html",
+    ".yml",
+    ".yaml",
+}
+
+IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".avif", ".svg"}
 
 
 @dataclass
@@ -88,6 +116,24 @@ def _normalize_url(url: str) -> str:
     return re.sub(r"\s+", "", url.strip())
 
 
+def _safe_asset_filename(original_name: str, index: int) -> str:
+    ext = Path(original_name).suffix.lower()
+    if ext not in {".png", ".jpg", ".jpeg", ".webp", ".gif", ".avif"}:
+        ext = ".png"
+    return f"img-{index:03d}{ext}"
+
+
+def _safe_relpath(project_root: Path, rel_path_text: str) -> Path:
+    rel_path = Path(rel_path_text.strip().replace("\\", "/"))
+    abs_path = (project_root / rel_path).resolve()
+    root = project_root.resolve()
+    try:
+        abs_path.relative_to(root)
+    except ValueError as exc:
+        raise EditorError(f"路径越界，不允许访问项目外文件: {rel_path_text}") from exc
+    return abs_path
+
+
 def _mask_urls(markdown: str, lang: str) -> str:
     label = LINK_LABEL.get(lang, LINK_LABEL["en"])
     lines = markdown.splitlines()
@@ -116,6 +162,29 @@ def _mask_urls(markdown: str, lang: str) -> str:
     return "\n".join(out)
 
 
+def _protect_markdown_image_lines(content: str) -> tuple[str, Dict[str, str]]:
+    token_map: Dict[str, str] = {}
+    lines = content.splitlines()
+    protected: List[str] = []
+    counter = 0
+    for line in lines:
+        if re.fullmatch(r"\s*!\[[^\]]*\]\((https?://[^)\s]+|/[^)\s]+)\)\s*", line):
+            counter += 1
+            token = f"__GREENZO_IMG_{counter}__"
+            token_map[token] = line
+            protected.append(token)
+        else:
+            protected.append(line)
+    return "\n".join(protected), token_map
+
+
+def _restore_protected_tokens(content: str, token_map: Dict[str, str]) -> str:
+    restored = content
+    for token, line in token_map.items():
+        restored = restored.replace(token, line)
+    return restored
+
+
 def translate_article_fields(title_zh: str, summary_zh: str) -> Dict[str, Dict[str, str]]:
     title_zh = title_zh.strip()
     summary_zh = summary_zh.strip()
@@ -141,9 +210,15 @@ def translate_markdown(markdown_zh: str) -> Dict[str, str]:
     if not content:
         raise EditorError("正文不能为空。")
 
-    markdown_hk = _ensure_text(_convert_simplified_to_traditional(content), content)
-    markdown_en = _ensure_text(_translate_text(content, "zh-CN", "en"), content)
-    markdown_ja = _ensure_text(_translate_text(content, "zh-CN", "ja"), content)
+    protected, token_map = _protect_markdown_image_lines(content)
+
+    markdown_hk = _ensure_text(_convert_simplified_to_traditional(protected), protected)
+    markdown_en = _ensure_text(_translate_text(protected, "zh-CN", "en"), protected)
+    markdown_ja = _ensure_text(_translate_text(protected, "zh-CN", "ja"), protected)
+
+    markdown_hk = _restore_protected_tokens(markdown_hk, token_map)
+    markdown_en = _restore_protected_tokens(markdown_en, token_map)
+    markdown_ja = _restore_protected_tokens(markdown_ja, token_map)
 
     zh_masked = _mask_urls(content, "zh")
     hk_masked = _mask_urls(markdown_hk.strip(), "hk")
@@ -172,6 +247,34 @@ def write_markdown_files(article: ArticleInput, markdown_by_lang: Dict[str, str]
         written_files.append(file_path)
 
     return written_files
+
+
+def copy_article_images_to_public(
+    project_root: Path,
+    slug_text: str,
+    selected_images: List[Path],
+) -> List[str]:
+    validate_project_root(project_root)
+    slug = normalize_slug(slug_text)
+    if not selected_images:
+        raise EditorError("未选择任何图片。")
+
+    target_dir = project_root / "public" / "article-media" / slug
+    target_dir.mkdir(parents=True, exist_ok=True)
+
+    copied_urls: List[str] = []
+    for idx, src_path in enumerate(selected_images, start=1):
+        if not src_path.exists():
+            raise EditorError(f"图片不存在: {src_path}")
+        dst_name = _safe_asset_filename(src_path.name, idx)
+        dst_path = target_dir / dst_name
+        while dst_path.exists():
+            idx += 1
+            dst_name = _safe_asset_filename(src_path.name, idx)
+            dst_path = target_dir / dst_name
+        shutil.copy2(src_path, dst_path)
+        copied_urls.append(f"/article-media/{slug}/{dst_name}")
+    return copied_urls
 
 
 def _slug_to_import_base(slug: str) -> str:
@@ -300,6 +403,128 @@ def run_git_commit_push(
     return "\n\n".join(logs)
 
 
+def run_git_commit_all_push(
+    project_root: Path,
+    commit_message: str,
+    push_remote: str = "origin",
+    push_branch: str = "main",
+) -> str:
+    if not commit_message.strip():
+        raise EditorError("提交信息不能为空。")
+
+    logs: List[str] = []
+    for cmd in (
+        ["git", "add", "-A"],
+        ["git", "commit", "-m", commit_message.strip()],
+        ["git", "push", push_remote, push_branch],
+    ):
+        result = subprocess.run(
+            cmd,
+            cwd=str(project_root),
+            capture_output=True,
+            text=True,
+            check=False,
+            encoding="utf-8",
+            errors="replace",
+        )
+        logs.append(f"$ {' '.join(cmd)}\n{result.stdout}{result.stderr}".strip())
+        if result.returncode != 0:
+            raise EditorError("\n\n".join(logs))
+    return "\n\n".join(logs)
+
+
+def collect_existing_article_files(project_root: Path, slug_text: str) -> List[Path]:
+    validate_project_root(project_root)
+    slug = normalize_slug(slug_text)
+
+    files: List[Path] = []
+    articles_dir = project_root / "src" / "content" / "articles"
+    for lang in LANGS:
+        path = articles_dir / f"{slug}.{lang}.md"
+        if not path.exists():
+            raise EditorError(f"未找到已生成文件: {path}")
+        files.append(path)
+
+    index_path = project_root / "src" / "content" / "articles.ts"
+    index_text = index_path.read_text(encoding="utf-8")
+    if f"slug: '{slug}'" in index_text:
+        files.append(index_path)
+
+    image_dir = project_root / "public" / "article-media" / slug
+    if image_dir.exists():
+        for path in sorted(image_dir.glob("*")):
+            if path.is_file():
+                files.append(path)
+
+    return files
+
+
+def _read_json_file(path: Path, fallback):
+    if not path.exists():
+        return fallback
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise EditorError(f"JSON 解析失败: {path}\n{exc}") from exc
+
+
+def _write_json_file(path: Path, data) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def update_home_visual_image_link(project_root: Path, link: str, action: str) -> Path:
+    validate_project_root(project_root)
+    value = _ensure_http_or_root_path(link)
+    file_path = project_root / "src" / "homeVisualMedia.json"
+    data = _read_json_file(file_path, {"images": []})
+    images = data.get("images")
+    if not isinstance(images, list):
+        images = []
+
+    if action == "add":
+        if value not in images:
+            images.append(value)
+    elif action == "remove":
+        if value not in images:
+            raise EditorError(f"图片链接不存在，无法删除: {value}")
+        images = [x for x in images if x != value]
+    else:
+        raise EditorError(f"不支持的动作: {action}")
+
+    data["images"] = images
+    _write_json_file(file_path, data)
+    return file_path
+
+
+def update_home_visual_video_link(project_root: Path, link: str, action: str) -> Path:
+    validate_project_root(project_root)
+    value = _ensure_http_or_root_path(link)
+    file_path = project_root / "src" / "videoList.json"
+    data = _read_json_file(file_path, [])
+    if not isinstance(data, list):
+        raise EditorError("videoList.json 格式错误，应为数组。")
+
+    items: List[Dict[str, str]] = []
+    for item in data:
+        if isinstance(item, dict) and isinstance(item.get("src"), str):
+            items.append({"src": item["src"]})
+
+    existing = [x["src"] for x in items]
+    if action == "add":
+        if value not in existing:
+            items.append({"src": value})
+    elif action == "remove":
+        if value not in existing:
+            raise EditorError(f"视频链接不存在，无法删除: {value}")
+        items = [x for x in items if x["src"] != value]
+    else:
+        raise EditorError(f"不支持的动作: {action}")
+
+    _write_json_file(file_path, items)
+    return file_path
+
+
 def build_article_input(
     project_root_text: str,
     slug_text: str,
@@ -324,3 +549,148 @@ def build_article_input(
         markdown_zh=markdown_zh.strip(),
         published_at=published_at.strip() or date.today().isoformat(),
     )
+
+
+def list_existing_article_slugs(project_root: Path) -> List[str]:
+    validate_project_root(project_root)
+    articles_dir = project_root / "src" / "content" / "articles"
+    slugs: List[str] = []
+    for path in sorted(articles_dir.glob("*.zh.md")):
+        name = path.name
+        if name.endswith(".zh.md"):
+            slugs.append(name[:-6])
+    return slugs
+
+
+def _decode_ts_string(value: str) -> str:
+    raw = value.strip()
+    if raw.startswith("'") and raw.endswith("'") and len(raw) >= 2:
+        raw = '"' + raw[1:-1].replace("\\'", "'").replace('"', '\\"') + '"'
+    try:
+        return json.loads(raw)
+    except Exception:
+        return value.strip().strip("'").strip('"')
+
+
+def load_existing_article(project_root: Path, slug_text: str) -> Dict[str, str]:
+    validate_project_root(project_root)
+    slug = normalize_slug(slug_text)
+    article_path = project_root / "src" / "content" / "articles" / f"{slug}.zh.md"
+    if not article_path.exists():
+        raise EditorError(f"未找到文章文件: {article_path}")
+
+    markdown_zh = article_path.read_text(encoding="utf-8")
+    title_zh = ""
+    summary_zh = ""
+    published_at = date.today().isoformat()
+
+    index_path = project_root / "src" / "content" / "articles.ts"
+    text = index_path.read_text(encoding="utf-8")
+    block_match = re.search(
+        rf"\{{\s*slug:\s*'{re.escape(slug)}',[\s\S]*?publishedAt:\s*'[^']+'\s*,\s*\}},",
+        text,
+        flags=re.S,
+    )
+    if block_match:
+        block = block_match.group(0)
+        title_match = re.search(
+            r"title:\s*\{[\s\S]*?zh:\s*(\"(?:\\.|[^\"])*\"|'(?:\\.|[^'])*')",
+            block,
+            flags=re.S,
+        )
+        if title_match:
+            title_zh = _decode_ts_string(title_match.group(1))
+        summary_match = re.search(
+            r"summary:\s*\{[\s\S]*?zh:\s*(\"(?:\\.|[^\"])*\"|'(?:\\.|[^'])*')",
+            block,
+            flags=re.S,
+        )
+        if summary_match:
+            summary_zh = _decode_ts_string(summary_match.group(1))
+        date_match = re.search(r"publishedAt:\s*'([^']+)'", block)
+        if date_match:
+            published_at = date_match.group(1).strip()
+
+    return {
+        "slug": slug,
+        "title_zh": title_zh,
+        "summary_zh": summary_zh,
+        "published_at": published_at,
+        "markdown_zh": markdown_zh,
+    }
+
+
+def list_project_text_files(project_root: Path) -> List[str]:
+    validate_project_root(project_root)
+    allow_roots = [project_root / "src", project_root / "api", project_root / "public"]
+    fixed_files = [project_root / "README.md", project_root / "README_ASSETS.md"]
+
+    paths: List[Path] = []
+    for root in allow_roots:
+        if not root.exists():
+            continue
+        for path in root.rglob("*"):
+            if not path.is_file():
+                continue
+            if path.suffix.lower() in TEXT_EXTENSIONS:
+                paths.append(path)
+
+    for path in fixed_files:
+        if path.exists():
+            paths.append(path)
+
+    unique = sorted({str(p.resolve().relative_to(project_root.resolve())).replace("\\", "/") for p in paths})
+    return unique
+
+
+def read_project_text_file(project_root: Path, rel_path_text: str) -> str:
+    validate_project_root(project_root)
+    path = _safe_relpath(project_root, rel_path_text)
+    if not path.exists():
+        raise EditorError(f"文件不存在: {rel_path_text}")
+    try:
+        return path.read_text(encoding="utf-8")
+    except UnicodeDecodeError as exc:
+        raise EditorError(f"文件不是 UTF-8 文本或编码异常: {rel_path_text}") from exc
+
+
+def write_project_text_file(project_root: Path, rel_path_text: str, content: str) -> Path:
+    validate_project_root(project_root)
+    path = _safe_relpath(project_root, rel_path_text)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content, encoding="utf-8")
+    return path
+
+
+def list_project_images(project_root: Path) -> List[str]:
+    validate_project_root(project_root)
+    allow_roots = [project_root / "src", project_root / "public"]
+    paths: List[str] = []
+    for root in allow_roots:
+        if not root.exists():
+            continue
+        for path in root.rglob("*"):
+            if not path.is_file():
+                continue
+            if path.suffix.lower() in IMAGE_EXTENSIONS:
+                rel = str(path.resolve().relative_to(project_root.resolve())).replace("\\", "/")
+                paths.append(rel)
+    return sorted(set(paths))
+
+
+def replace_project_image(
+    project_root: Path,
+    target_rel_path_text: str,
+    source_image_file: Path,
+) -> Path:
+    validate_project_root(project_root)
+    target_path = _safe_relpath(project_root, target_rel_path_text)
+    if target_path.suffix.lower() not in IMAGE_EXTENSIONS:
+        raise EditorError(f"目标文件不是图片类型: {target_rel_path_text}")
+    if not source_image_file.exists():
+        raise EditorError(f"替换源图片不存在: {source_image_file}")
+    if source_image_file.suffix.lower() not in IMAGE_EXTENSIONS:
+        raise EditorError(f"替换源文件不是支持的图片类型: {source_image_file}")
+    target_path.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(source_image_file, target_path)
+    return target_path

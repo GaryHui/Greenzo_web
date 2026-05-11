@@ -80,6 +80,15 @@ function flushList(listItems: string[], keyBase: string): ReactNode | null {
   );
 }
 
+function parseImageLine(line: string): { alt: string; src: string } | null {
+  const match = line.match(/^!\[([^\]]*)\]\((https?:\/\/[^)\s]+|\/[^)\s]+)\)$/);
+  if (!match) return null;
+  return {
+    alt: match[1].trim(),
+    src: match[2].trim(),
+  };
+}
+
 export function MarkdownRenderer({ markdown }: { markdown: string }) {
   const lines = markdown.split(/\r?\n/);
   const blocks: ReactNode[] = [];
@@ -130,6 +139,32 @@ export function MarkdownRenderer({ markdown }: { markdown: string }) {
         <h1 key={`${keyBase}-h1`} className="text-3xl md:text-4xl font-serif text-brand-dark leading-tight mb-6">
           {renderInline(line.slice(2), `${keyBase}-h1`)}
         </h1>,
+      );
+      return;
+    }
+
+    const image = parseImageLine(line);
+    if (image) {
+      blocks.push(
+        <figure key={`${keyBase}-image`} className="my-4 md:my-6">
+          <div className="bg-white border border-black/8 shadow-[0_20px_50px_-30px_rgba(0,0,0,0.35)] p-2 md:p-3">
+            <div className="bg-[#faf8f2] flex items-center justify-center overflow-hidden">
+              <img
+                src={image.src}
+                alt={image.alt || 'Article visual'}
+                loading="lazy"
+                decoding="async"
+                referrerPolicy="no-referrer"
+                className="w-full h-auto max-h-[420px] object-contain"
+              />
+            </div>
+          </div>
+          {image.alt && (
+            <figcaption className="mt-2 text-center text-xs text-black/50 tracking-wide">
+              {image.alt}
+            </figcaption>
+          )}
+        </figure>,
       );
       return;
     }

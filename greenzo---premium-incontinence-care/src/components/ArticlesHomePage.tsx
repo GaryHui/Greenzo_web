@@ -4,6 +4,11 @@ import { useLanguageStore } from '../translations';
 
 export default function ArticlesHomePage() {
   const { language } = useLanguageStore();
+  const prioritizedArticles = [...KNOWLEDGE_ARTICLES].sort((a, b) => {
+    if (a.slug === 'guanzhong-value') return -1;
+    if (b.slug === 'guanzhong-value') return 1;
+    return 0;
+  });
 
   return (
     <div className="min-h-screen bg-brand-cream">
@@ -41,7 +46,7 @@ export default function ArticlesHomePage() {
           </section>
 
           <section className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-            {KNOWLEDGE_ARTICLES.map((article) => (
+            {prioritizedArticles.map((article) => (
               <motion.a
                 key={article.slug}
                 href={`/articles/${article.slug}`}
