@@ -10,6 +10,7 @@ export default function GallerySection() {
   const polaroidTilt = ['rotate-0'];
   const images = useMemo(() => ASSET_CONFIG.gallery ?? [], []);
   const [viewerIndex, setViewerIndex] = useState<number | null>(null);
+  const previewCardRef = useRef<HTMLDivElement | null>(null);
   const previewVideoRef = useRef<HTMLVideoElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const videos = useMemo(() => {
@@ -22,6 +23,7 @@ export default function GallerySection() {
   const [videoIndex, setVideoIndex] = useState(0);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
+  const [isPreviewInView, setIsPreviewInView] = useState(false);
   const [volume, setVolume] = useState(0.6);
 
   if (!t) return null;
@@ -109,15 +111,32 @@ export default function GallerySection() {
   }, [volume]);
 
   useEffect(() => {
+    const card = previewCardRef.current;
+    if (!card) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsPreviewInView(entry.isIntersecting),
+      { threshold: 0.35 },
+    );
+
+    observer.observe(card);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
     const el = previewVideoRef.current;
     if (!el) return;
     el.muted = true;
     el.defaultMuted = true;
+    if (!isPreviewInView || document.hidden) {
+      el.pause();
+      return;
+    }
     const playPromise = el.play();
     if (playPromise !== undefined) {
       playPromise.catch(() => {});
     }
-  }, [activeVideoIndex, videos.length]);
+  }, [activeVideoIndex, isPreviewInView, videos.length]);
 
   useEffect(() => {
     const retryPlay = () => {
@@ -125,6 +144,10 @@ export default function GallerySection() {
       if (!el) return;
       el.muted = true;
       el.defaultMuted = true;
+      if (!isPreviewInView || document.hidden) {
+        el.pause();
+        return;
+      }
       const playPromise = el.play();
       if (playPromise !== undefined) {
         playPromise.catch(() => {});
@@ -132,7 +155,7 @@ export default function GallerySection() {
     };
 
     const onVisibilityChange = () => {
-      if (!document.hidden) retryPlay();
+      retryPlay();
     };
 
     window.addEventListener('touchstart', retryPlay, { once: true, passive: true });
@@ -142,7 +165,7 @@ export default function GallerySection() {
     return () => {
       document.removeEventListener('visibilitychange', onVisibilityChange);
     };
-  }, [activeVideoIndex, videos.length]);
+  }, [activeVideoIndex, isPreviewInView, videos.length]);
 
   return (
     <section id="gallery" className="py-16 md:py-24 bg-brand-cream border-t border-black/5">
@@ -196,6 +219,7 @@ export default function GallerySection() {
           </div>
 
           <motion.div
+            ref={previewCardRef}
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -218,18 +242,21 @@ export default function GallerySection() {
                   muted
                   defaultMuted
                   playsInline
-                  preload="auto"
-                  loop={videos.length === 1}
+                  preload="metadata"
+                  loop={false}
                   onCanPlay={(e) => {
                     e.currentTarget.muted = true;
+                    if (!isPreviewInView || document.hidden) return;
                     const playPromise = e.currentTarget.play();
                     if (playPromise !== undefined) {
                       playPromise.catch(() => {});
                     }
                   }}
                   onEnded={() => {
-                    if (videos.length <= 1) return;
-                    setActiveVideoIndex((idx) => (idx + 1) % videos.length);
+                    const el = previewVideoRef.current;
+                    if (!el) return;
+                    el.pause();
+                    el.currentTime = 0;
                   }}
                   className="absolute inset-0 w-full h-full object-cover"
                 />
