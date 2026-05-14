@@ -1,12 +1,10 @@
 import { motion } from 'motion/react';
-import { KNOWLEDGE_ARTICLES } from '../content/articles';
+import { getPinnedKnowledgeArticle, KNOWLEDGE_ARTICLES } from '../content/articles';
 import { useLanguageStore } from '../translations';
 
 export default function KnowledgeSection() {
   const { language } = useLanguageStore();
-  const article =
-    KNOWLEDGE_ARTICLES.find((item) => item.pinned) ??
-    KNOWLEDGE_ARTICLES[0];
+  const article = getPinnedKnowledgeArticle();
   const hasMoreArticles = KNOWLEDGE_ARTICLES.length > 1;
 
   return (

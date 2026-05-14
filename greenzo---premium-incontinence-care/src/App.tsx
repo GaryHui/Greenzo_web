@@ -33,6 +33,25 @@ export default function App() {
   const articleRoute = resolveArticleRoute(window.location.pathname);
 
   useEffect(() => {
+    if (articleRoute) return;
+
+    const preloadArticleRoutes = () => {
+      void import('./components/ArticlesHomePage');
+      void import('./components/ArticlePage');
+    };
+
+    const requestIdle = window.requestIdleCallback;
+    const cancelIdle = window.cancelIdleCallback;
+    if (typeof requestIdle === 'function' && typeof cancelIdle === 'function') {
+      const idleId = requestIdle(preloadArticleRoutes, { timeout: 2500 });
+      return () => cancelIdle(idleId);
+    }
+
+    const timeoutId = window.setTimeout(preloadArticleRoutes, 1800);
+    return () => window.clearTimeout(timeoutId);
+  }, [articleRoute]);
+
+  useEffect(() => {
     if (hasStoredLanguagePreference()) return;
 
     let isActive = true;

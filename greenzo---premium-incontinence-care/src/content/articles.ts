@@ -145,3 +145,15 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
 export function findKnowledgeArticle(slug: string): KnowledgeArticle | undefined {
   return KNOWLEDGE_ARTICLES.find((article) => article.slug === slug);
 }
+
+export function getPrioritizedKnowledgeArticles(): KnowledgeArticle[] {
+  return [...KNOWLEDGE_ARTICLES].sort((a, b) => {
+    if (a.pinned && !b.pinned) return -1;
+    if (!a.pinned && b.pinned) return 1;
+    return b.publishedAt.localeCompare(a.publishedAt);
+  });
+}
+
+export function getPinnedKnowledgeArticle(): KnowledgeArticle {
+  return getPrioritizedKnowledgeArticles()[0];
+}

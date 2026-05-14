@@ -1,14 +1,10 @@
 import { motion } from 'motion/react';
-import { KNOWLEDGE_ARTICLES } from '../content/articles';
+import { getPrioritizedKnowledgeArticles } from '../content/articles';
 import { useLanguageStore } from '../translations';
 
 export default function ArticlesHomePage() {
   const { language } = useLanguageStore();
-  const prioritizedArticles = [...KNOWLEDGE_ARTICLES].sort((a, b) => {
-    if (a.pinned && !b.pinned) return -1;
-    if (!a.pinned && b.pinned) return 1;
-    return 0;
-  });
+  const prioritizedArticles = getPrioritizedKnowledgeArticles();
 
   return (
     <div className="min-h-screen bg-brand-cream">
