@@ -1,5 +1,6 @@
 import type { Language } from '../translations';
 
+import adultDiapersEverydaySpecialScenariosZh from './articles/adult-diapers-everyday-special-scenarios.zh.md?raw';
 import guanzhongValueZh from './articles/guanzhong-value.zh.md?raw';
 import guanzhongValueHk from './articles/guanzhong-value.hk.md?raw';
 import guanzhongValueEn from './articles/guanzhong-value.en.md?raw';
@@ -24,9 +25,33 @@ export type KnowledgeArticle = {
   summary: Record<Language, string>;
   markdown: Record<Language, string>;
   publishedAt: string;
+  pinned?: boolean;
 };
 
 export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
+  {
+    slug: 'adult-diapers-everyday-special-scenarios',
+    title: {
+      zh: '成人纸尿片不是病人专用，而是一种特殊场景下的日用品',
+      hk: '成人紙尿片不是病人專用，而是一種特殊場景下的日用品',
+      en: 'Adult Diapers Are Everyday Essentials For Special Scenarios',
+      ja: '成人用おむつは患者専用ではなく、特殊な場面のための日用品です',
+    },
+    summary: {
+      zh: '成人纸尿片不只属于老人、病人或卧床护理者，也可以是会议、长途驾驶、高空作业、值班、户外工作与旅行中的安心备用。',
+      hk: '成人紙尿片不只屬於老人、病人或臥床護理者，也可以是會議、長途駕駛、高空作業、值班、戶外工作與旅行中的安心準備。',
+      en: 'Adult diapers are not only for patients. They can be a practical backup for meetings, long drives, outdoor work, duty shifts, and travel.',
+      ja: '成人用おむつは患者だけのものではなく、会議、長距離移動、屋外作業、当直、旅行などの安心の備えにもなります。',
+    },
+    markdown: {
+      zh: adultDiapersEverydaySpecialScenariosZh,
+      hk: adultDiapersEverydaySpecialScenariosZh,
+      en: adultDiapersEverydaySpecialScenariosZh,
+      ja: adultDiapersEverydaySpecialScenariosZh,
+    },
+    publishedAt: '2026-05-14',
+    pinned: true,
+  },
   {
     slug: 'guanzhong-miit-2022',
     title: {

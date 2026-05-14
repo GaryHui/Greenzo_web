@@ -5,8 +5,8 @@ import { useLanguageStore } from '../translations';
 export default function ArticlesHomePage() {
   const { language } = useLanguageStore();
   const prioritizedArticles = [...KNOWLEDGE_ARTICLES].sort((a, b) => {
-    if (a.slug === 'guanzhong-value') return -1;
-    if (b.slug === 'guanzhong-value') return 1;
+    if (a.pinned && !b.pinned) return -1;
+    if (!a.pinned && b.pinned) return 1;
     return 0;
   });
 

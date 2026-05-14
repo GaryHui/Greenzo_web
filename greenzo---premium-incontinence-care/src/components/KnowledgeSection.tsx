@@ -5,7 +5,7 @@ import { useLanguageStore } from '../translations';
 export default function KnowledgeSection() {
   const { language } = useLanguageStore();
   const article =
-    KNOWLEDGE_ARTICLES.find((item) => item.slug === 'guanzhong-value') ??
+    KNOWLEDGE_ARTICLES.find((item) => item.pinned) ??
     KNOWLEDGE_ARTICLES[0];
   const hasMoreArticles = KNOWLEDGE_ARTICLES.length > 1;
 
