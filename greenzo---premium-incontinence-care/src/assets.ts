@@ -1,4 +1,4 @@
-import heroMainImage from './photo/new1b.webp';
+import heroMainImage from './photo/hero-seasonal.jpg';
 import brandStoryImage from './photo/foot1.webp';
 import dairyPicture6 from './photo/Dairy/facial/facial Tissues5/Picture6.webp';
 import videoPlaylist from './videoList.json';

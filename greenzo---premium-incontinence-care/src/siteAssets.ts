@@ -1,4 +1,4 @@
-import heroMainImage from './photo/new1b.webp';
+import heroMainImage from './photo/hero-seasonal.jpg';
 import brandStoryImage from './photo/foot1.webp';
 
 export { heroMainImage, brandStoryImage };
