@@ -65,8 +65,8 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.2 }}
           className="md:col-span-6 lg:col-span-7 flex justify-center md:justify-end"
         >
-          <div className="relative w-full max-w-[440px] sm:max-w-[500px]">
-            <div className="aspect-[4/5] bg-brand-muted rounded-none overflow-hidden group shadow-sm border border-black/5">
+          <div className="group relative w-full max-w-[440px] sm:max-w-[500px]">
+            <div className="aspect-[4/5] bg-brand-muted rounded-none overflow-hidden shadow-sm border border-black/5">
               <img 
                 src={heroMainImage}
                 alt="Soft care"
@@ -78,7 +78,7 @@ export default function Hero() {
               />
             </div>
             {/* Minimalist Accent Box */}
-            <div className="absolute -bottom-10 -left-10 bg-brand-cream/80 backdrop-blur-md border border-black/5 p-10 shadow-sm max-w-[280px] hidden lg:block">
+            <div className="absolute -bottom-10 -left-10 bg-brand-cream/80 backdrop-blur-md border border-black/5 p-10 shadow-sm max-w-[280px] hidden lg:block transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-x-28">
               <p className="text-brand-dark font-serif italic text-xl leading-snug">"{t.quote}"</p>
             </div>
           </div>

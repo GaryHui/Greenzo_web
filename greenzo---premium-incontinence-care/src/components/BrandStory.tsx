@@ -26,19 +26,21 @@ export default function BrandStory() {
             className="lg:col-span-5 relative"
           >
             <div className="absolute -top-6 -left-6 md:-top-10 md:-left-10 w-24 h-24 md:w-40 md:h-40 border-t border-l border-black/10" />
-            <div className="aspect-[4/5] bg-brand-muted relative border border-black/5 shadow-sm overflow-hidden">
-              <img 
-                src={brandStoryImage}
-                alt="Professional care"
-                referrerPolicy="no-referrer"
-                loading="lazy"
-                decoding="async"
-                className="w-full h-full object-cover grayscale-[0.4]"
-              />
-            </div>
-            <div className="mt-4 md:mt-5 bg-brand-green/10 border border-brand-green/20 px-5 py-4 md:px-6 md:py-5 flex items-baseline gap-4">
-              <span className="text-3xl sm:text-4xl md:text-5xl font-serif text-brand-green leading-none">20+</span>
-              <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-dark/55">{t.experience}</span>
+            <div className="group relative">
+              <div className="aspect-[4/5] bg-brand-muted relative border border-black/5 shadow-sm overflow-hidden">
+                <img 
+                  src={brandStoryImage}
+                  alt="Professional care"
+                  referrerPolicy="no-referrer"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover grayscale-[0.4] transition-transform duration-1000 group-hover:scale-[1.03]"
+                />
+              </div>
+              <div className="mt-4 md:mt-5 bg-brand-green/10 border border-brand-green/20 px-5 py-4 md:px-6 md:py-5 flex items-baseline gap-4 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-5 md:group-hover:-translate-y-8">
+                <span className="text-3xl sm:text-4xl md:text-5xl font-serif text-brand-green leading-none">20+</span>
+                <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-dark/55">{t.experience}</span>
+              </div>
             </div>
 
             {Array.isArray((t as any).values) && (
