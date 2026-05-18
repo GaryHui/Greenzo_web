@@ -48,11 +48,11 @@ export default function BrandStory() {
                 <div className="text-[10px] uppercase tracking-[0.3em] font-bold text-black/40 mb-4">
                   {(t as any).valuesTitle}
                 </div>
-                <div className="flex flex-wrap gap-3">
+                <div className="grid grid-cols-2 gap-3">
                   {(t as any).values.map((value: string) => (
                     <div
                       key={value}
-                      className="px-4 py-2 bg-white border border-black/5 text-[10px] font-bold uppercase tracking-widest text-black/60 hover:bg-brand-green hover:text-white transition-all cursor-default"
+                      className="min-h-11 px-3 py-3 bg-white border border-black/5 text-[10px] font-bold uppercase tracking-widest text-black/60 hover:bg-brand-green hover:text-white transition-all cursor-default flex items-center justify-center text-center"
                     >
                       {value}
                     </div>
