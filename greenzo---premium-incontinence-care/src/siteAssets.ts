@@ -1,4 +1,4 @@
 import heroMainImage from './photo/hero-seasonal.jpg';
-import brandStoryImage from './photo/foot1.webp';
+import brandStoryImage from './photo/story-lixia.jpg';
 
 export { heroMainImage, brandStoryImage };
