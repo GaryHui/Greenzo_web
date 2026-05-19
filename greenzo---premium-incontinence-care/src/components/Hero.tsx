@@ -1,9 +1,26 @@
+import { useEffect } from 'react';
 import { useLanguageStore, translations } from '../translations';
 import { heroMainImage } from '../siteAssets';
 
 export default function Hero() {
   const { language } = useLanguageStore();
   const t = translations[language].hero;
+
+  useEffect(() => {
+    if (document.querySelector('link[data-greenzo-hero-preload="true"]')) return;
+
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = heroMainImage;
+    link.setAttribute('fetchpriority', 'high');
+    link.setAttribute('data-greenzo-hero-preload', 'true');
+    document.head.appendChild(link);
+
+    return () => {
+      link.remove();
+    };
+  }, []);
 
   return (
     <section id="home" className="relative min-h-screen flex items-center pt-20 md:pt-24 overflow-hidden bg-brand-cream">

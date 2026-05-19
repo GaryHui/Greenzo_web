@@ -1,4 +1,3 @@
-import { motion } from 'motion/react';
 import { getPrioritizedKnowledgeArticles } from '../content/articles';
 import { useLanguageStore } from '../translations';
 
@@ -43,11 +42,10 @@ export default function ArticlesHomePage() {
 
           <section className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
             {prioritizedArticles.map((article) => (
-              <motion.a
+              <a
                 key={article.slug}
                 href={`/articles/${article.slug}`}
-                whileHover={{ y: -4 }}
-                className="group border border-black/10 bg-white/70 p-6 md:p-7 hover:border-brand-green/30 hover:shadow-lg transition-all"
+                className="group border border-black/10 bg-white/70 p-6 md:p-7 transition-all hover:-translate-y-1 hover:border-brand-green/30 hover:shadow-lg"
               >
                 <div className="text-[10px] uppercase tracking-[0.28em] font-bold text-black/40">
                   {article.publishedAt}
@@ -62,7 +60,7 @@ export default function ArticlesHomePage() {
                   {language === 'en' && 'Open Article'}
                   {language === 'ja' && '記事を開く'}
                 </div>
-              </motion.a>
+              </a>
             ))}
           </section>
         </div>
