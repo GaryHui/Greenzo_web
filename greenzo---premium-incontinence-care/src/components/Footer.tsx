@@ -1,7 +1,6 @@
 import { useLanguageStore, translations } from '../translations';
 import { Mail, Phone, MapPin, Linkedin, Facebook, Instagram } from 'lucide-react';
 import { useMemo, useState } from 'react';
-import footerImage from '../photo/foot1.webp';
 
 export default function Footer() {
   const { language } = useLanguageStore();
@@ -192,15 +191,6 @@ export default function Footer() {
 
           <div className="col-span-full md:col-span-1 lg:col-span-2">
             <h4 className="text-white text-[10px] uppercase tracking-[0.4em] font-bold mb-8 opacity-40">{t.title}</h4>
-            <div className="mb-8 overflow-hidden border border-white/10 bg-white/5">
-              <img
-                src={footerImage}
-                alt="Greenzo seasonal care"
-                loading="lazy"
-                decoding="async"
-                className="h-56 w-full object-cover object-center opacity-85 saturate-[0.85]"
-              />
-            </div>
             <div className="grid md:grid-cols-2 gap-8 md:gap-12">
               <div className="flex flex-col gap-6 h-full">
                 <div className="flex gap-3">
