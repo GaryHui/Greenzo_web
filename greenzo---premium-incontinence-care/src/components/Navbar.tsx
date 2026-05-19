@@ -24,8 +24,8 @@ export default function Navbar() {
             src={logoNav}
             alt="Greenzo"
             width={180}
-            height={65}
-            className="h-8 sm:h-9 md:h-10 w-auto object-contain"
+            height={109}
+            className="h-auto w-24 sm:w-28 object-contain"
           />
           <div className="mt-1 flex items-center gap-2 min-w-0">
             <div className="h-px w-6 bg-black/10 shrink-0"></div>
