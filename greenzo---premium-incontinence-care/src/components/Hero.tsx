@@ -1,5 +1,4 @@
 import { useLanguageStore, translations } from '../translations';
-import { motion } from 'motion/react';
 import { heroMainImage } from '../siteAssets';
 
 export default function Hero() {
@@ -22,12 +21,7 @@ export default function Hero() {
       </div>
 
       <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 lg:px-16 grid md:grid-cols-12 gap-10 md:gap-12 items-center relative z-10 w-full">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="md:col-span-6 lg:col-span-5"
-        >
+        <div className="md:col-span-6 lg:col-span-5 animate-[fadeInUp_0.8s_cubic-bezier(0.16,1,0.3,1)_both]">
           <div className="text-[9px] sm:text-[10px] font-sans uppercase tracking-[0.35em] sm:tracking-[0.5em] text-brand-green mb-6 md:mb-8 font-bold">
             Redefining Personal Care • World-Class Standards
           </div>
@@ -57,14 +51,9 @@ export default function Hero() {
               GALLERY
             </div>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="md:col-span-6 lg:col-span-7 flex justify-center md:justify-end"
-        >
+        <div className="md:col-span-6 lg:col-span-7 flex justify-center md:justify-end animate-[fadeInRight_1s_cubic-bezier(0.16,1,0.3,1)_0.2s_both]">
           <div className="group relative w-full max-w-[440px] sm:max-w-[500px]">
             <div className="aspect-[4/5] bg-brand-muted rounded-none overflow-hidden shadow-sm border border-black/5">
               <img 
@@ -82,7 +71,7 @@ export default function Hero() {
               <p className="text-brand-dark font-serif italic text-xl leading-snug">"{t.quote}"</p>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

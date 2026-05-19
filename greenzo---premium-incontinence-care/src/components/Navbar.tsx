@@ -1,7 +1,6 @@
 import { useLanguageStore, translations } from '../translations';
-import { Globe, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
 
 export default function Navbar() {
   const { language, setLanguage } = useLanguageStore();
@@ -79,38 +78,31 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="absolute top-20 left-0 w-full bg-white border-b border-zinc-100 px-5 py-6 sm:px-6 flex flex-col gap-4 md:hidden"
-          >
-            <a href="#home" onClick={() => setIsOpen(false)} className="text-lg font-medium">{t.home}</a>
-            <a href="#products" onClick={() => setIsOpen(false)} className="text-lg font-medium">{t.products}</a>
-            <a href="#gallery" onClick={() => setIsOpen(false)} className="text-lg font-medium">{(t as any).gallery}</a>
-            <a href="#story" onClick={() => setIsOpen(false)} className="text-lg font-medium">{t.story}</a>
-            <a href="#knowledge" onClick={() => setIsOpen(false)} className="text-lg font-medium">{(t as any).knowledge}</a>
-            <a href="#contact" onClick={() => setIsOpen(false)} className="text-lg font-medium">{t.contact}</a>
-            <div className="flex flex-wrap gap-3 mt-4 pt-4 border-t border-black/5">
-              {languages.map((lang) => (
-                <button
-                  key={lang.code}
-                  onClick={() => { setLanguage(lang.code); setIsOpen(false); }}
-                  className={`text-xs px-3 py-1 rounded-full border transition-all ${
-                    language === lang.code 
-                    ? 'bg-brand-green text-white border-brand-green' 
-                    : 'text-slate-400 border-black/5'
-                  }`}
-                >
-                  {lang.name}
-                </button>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {isOpen && (
+        <div className="absolute top-20 left-0 w-full bg-white border-b border-zinc-100 px-5 py-6 sm:px-6 flex flex-col gap-4 md:hidden animate-[fadeInUp_0.25s_ease-out_both]">
+          <a href="#home" onClick={() => setIsOpen(false)} className="text-lg font-medium">{t.home}</a>
+          <a href="#products" onClick={() => setIsOpen(false)} className="text-lg font-medium">{t.products}</a>
+          <a href="#gallery" onClick={() => setIsOpen(false)} className="text-lg font-medium">{(t as any).gallery}</a>
+          <a href="#story" onClick={() => setIsOpen(false)} className="text-lg font-medium">{t.story}</a>
+          <a href="#knowledge" onClick={() => setIsOpen(false)} className="text-lg font-medium">{(t as any).knowledge}</a>
+          <a href="#contact" onClick={() => setIsOpen(false)} className="text-lg font-medium">{t.contact}</a>
+          <div className="flex flex-wrap gap-3 mt-4 pt-4 border-t border-black/5">
+            {languages.map((lang) => (
+              <button
+                key={lang.code}
+                onClick={() => { setLanguage(lang.code); setIsOpen(false); }}
+                className={`text-xs px-3 py-1 rounded-full border transition-all ${
+                  language === lang.code 
+                  ? 'bg-brand-green text-white border-brand-green' 
+                  : 'text-slate-400 border-black/5'
+                }`}
+              >
+                {lang.name}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
 
       {isArticlePage && (
         <div className="hidden md:block border-t border-black/5 py-2 text-center text-[10px] tracking-[0.24em] uppercase text-black/40 font-bold">
