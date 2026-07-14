@@ -38,7 +38,7 @@ export default function QualitySection() {
                 transition={{ delay: i * 0.2 }}
                 className="bg-brand-cream border border-black/5 p-6 sm:p-8 md:p-10 flex flex-col items-center text-center group hover:bg-brand-indigo transition-all duration-700 cursor-default"
               >
-                <f.icon className="w-8 h-8 text-brand-vermilion mb-8 group-hover:text-white transition-colors duration-700 stroke-[1.5px]" />
+                <f.icon className="w-8 h-8 text-brand-green mb-8 group-hover:text-white transition-colors duration-700 stroke-[1.5px]" />
                 <h3 className="text-lg sm:text-xl font-serif text-brand-dark mb-4 group-hover:text-white transition-colors duration-700">{f.title}</h3>
                 <p className="text-[11px] text-black/40 font-sans group-hover:text-white/60 transition-colors duration-700 leading-relaxed uppercase tracking-wider">
                   {f.desc}

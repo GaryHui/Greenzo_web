@@ -29,7 +29,7 @@ export default function KnowledgeSection() {
         <motion.a
           href={`/articles/${article.slug}`}
           whileHover={{ y: -2 }}
-          className="mt-10 block border border-black/10 bg-white/90 p-6 md:p-8 transition-all hover:shadow-lg hover:border-brand-vermilion/40"
+          className="mt-10 block border border-black/10 bg-white/90 p-6 md:p-8 transition-all hover:shadow-lg hover:border-brand-green/40"
         >
           <div className="text-[10px] uppercase tracking-[0.28em] font-bold text-black/40">
             {article.publishedAt}

@@ -38,7 +38,7 @@ export default function BrandStory() {
                 />
               </div>
               <div className="mt-4 md:mt-5 bg-white border border-brand-line px-5 py-4 md:px-6 md:py-5 flex items-baseline gap-4 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-5 md:group-hover:-translate-y-8">
-                <span className="text-3xl sm:text-4xl md:text-5xl font-serif text-brand-vermilion leading-none">20+</span>
+                <span className="text-3xl sm:text-4xl md:text-5xl font-serif text-brand-green leading-none">20+</span>
                 <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-dark/55">{t.experience}</span>
               </div>
             </div>

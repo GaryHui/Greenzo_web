@@ -288,7 +288,7 @@ export default function GallerySection() {
                     aria-label={`切换视频 ${i + 1}`}
                     className={`w-2.5 h-2.5 rounded-full border transition-all ${
                       isActive
-                        ? 'bg-brand-vermilion border-brand-vermilion scale-110'
+                        ? 'bg-brand-green border-brand-green scale-110'
                         : 'bg-white border-black/20 hover:border-brand-indigo'
                     }`}
                   />

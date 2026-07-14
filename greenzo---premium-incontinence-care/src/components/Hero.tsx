@@ -44,7 +44,7 @@ export default function Hero() {
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif text-brand-dark leading-[1] md:leading-[0.95] mb-6 md:mb-10 font-extralight tracking-tighter">
             {t.title.split(' ').map((word, i) => (
-              <span key={i} className={word === 'Comfort' || word === 'Dignity' || word === '舒适' || word === '尊严' || word === '心地' ? 'italic text-brand-indigo decoration-brand-vermilion' : ''}>
+              <span key={i} className={word === 'Comfort' || word === 'Dignity' || word === '舒适' || word === '尊严' || word === '心地' ? 'italic text-brand-indigo decoration-brand-green' : ''}>
                 {word}{' '}
               </span>
             ))}
@@ -57,7 +57,7 @@ export default function Hero() {
               onClick={() => {
                 window.location.href = '/articles';
               }}
-              className="w-full sm:w-auto px-8 sm:px-10 md:px-12 py-4 sm:py-5 bg-brand-vermilion text-white text-[10px] uppercase tracking-[0.25em] sm:tracking-[0.3em] font-sans font-bold hover:shadow-2xl hover:translate-y-[-2px] transition-all duration-500"
+              className="w-full sm:w-auto px-8 sm:px-10 md:px-12 py-4 sm:py-5 bg-brand-green text-white text-[10px] uppercase tracking-[0.25em] sm:tracking-[0.3em] font-sans font-bold hover:shadow-2xl hover:translate-y-[-2px] transition-all duration-500"
             >
               {t.cta}
             </button>

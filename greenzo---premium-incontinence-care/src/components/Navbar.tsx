@@ -63,9 +63,9 @@ export default function Navbar() {
               <button
                 key={lang.code}
                 onClick={() => setLanguage(lang.code)}
-                className={`transition-all hover:text-brand-vermilion ${
+                className={`transition-all hover:text-brand-green ${
                   language === lang.code 
-                  ? 'text-brand-indigo border-b border-brand-vermilion' 
+                  ? 'text-brand-indigo border-b border-brand-green' 
                   : ''
                 }`}
               >
@@ -110,7 +110,7 @@ export default function Navbar() {
 
       {isArticlePage && (
         <div className="hidden md:block border-t border-black/5 py-2 text-center text-[10px] tracking-[0.24em] uppercase text-black/40 font-bold">
-          <a href="/" className="hover:text-brand-vermilion transition-colors">
+          <a href="/" className="hover:text-brand-green transition-colors">
             {language === 'zh' && '返回首页'}
             {language === 'hk' && '返回首頁'}
             {language === 'en' && 'Back Home'}
