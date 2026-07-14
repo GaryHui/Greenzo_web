@@ -172,7 +172,7 @@ export default function GallerySection() {
       <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 lg:px-16">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-8 md:mb-12 gap-6">
           <div className="max-w-lg">
-            <div className="text-[10px] uppercase tracking-[0.45em] text-brand-green font-bold mb-4">Gallery & Motion</div>
+            <div className="text-[10px] uppercase tracking-[0.45em] text-brand-indigo font-bold mb-4 accent-knot">Gallery & Motion</div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-brand-dark mb-4 md:mb-5 leading-tight tracking-tighter">
               {t.title}
             </h2>
@@ -196,13 +196,13 @@ export default function GallerySection() {
                   if (!img) return;
                   setViewerIndex(i);
                 }}
-                className={`bg-brand-muted relative overflow-hidden border border-black/5 shadow-sm flex items-center justify-center p-3 sm:p-4 md:p-5 h-full ${
+                className={`jp-paper relative overflow-hidden border border-brand-line/70 shadow-sm flex items-center justify-center p-3 sm:p-4 md:p-5 h-full ${
                   img ? 'group cursor-zoom-in' : ''
                 }`}
               >
                 {img && (
                   <div className={`w-full h-full bg-white p-2 sm:p-3 pb-6 sm:pb-7 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.35)] border border-black/8 transition-all duration-700 group-hover:-translate-y-1 ${polaroidTilt[i % polaroidTilt.length]}`}>
-                    <div className="w-full h-full bg-[#faf8f2] overflow-hidden flex items-center justify-center">
+                    <div className="w-full h-full bg-brand-muted overflow-hidden flex items-center justify-center">
                       <img
                         src={img}
                         alt={`Gallery ${i + 1}`}
@@ -223,7 +223,7 @@ export default function GallerySection() {
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-brand-muted relative overflow-hidden border border-black/5 shadow-sm min-h-[260px] sm:min-h-[300px] md:min-h-[340px] flex flex-col group cursor-pointer"
+            className="jp-paper relative overflow-hidden border border-brand-line/70 shadow-sm min-h-[260px] sm:min-h-[300px] md:min-h-[340px] flex flex-col group cursor-pointer"
             onClick={() => {
               if (videos.length <= 0) return;
               setVideoIndex(activeVideoIndex);
@@ -288,7 +288,7 @@ export default function GallerySection() {
                     aria-label={`切换视频 ${i + 1}`}
                     className={`w-2.5 h-2.5 rounded-full border transition-all ${
                       isActive
-                        ? 'bg-brand-green border-brand-green scale-110'
+                        ? 'bg-brand-vermilion border-brand-vermilion scale-110'
                         : 'bg-white border-black/20 hover:border-brand-green'
                     }`}
                   />
@@ -343,7 +343,7 @@ export default function GallerySection() {
 
                 <div className="w-full h-full flex items-center justify-center px-4 sm:px-8 py-6 sm:py-10">
                   <div className="w-full max-w-[560px] sm:max-w-[720px] bg-white p-3 sm:p-4 pb-10 sm:pb-12 shadow-[0_40px_90px_-50px_rgba(0,0,0,0.6)] border border-black/10">
-                    <div className="w-full bg-[#faf8f2] overflow-hidden flex items-center justify-center h-[52vh] sm:h-[56vh] max-h-[720px]">
+                    <div className="w-full bg-brand-muted overflow-hidden flex items-center justify-center h-[52vh] sm:h-[56vh] max-h-[720px]">
                       <img
                         src={images[currentIndex]}
                         alt={`Gallery ${currentIndex + 1}`}
@@ -380,7 +380,7 @@ export default function GallerySection() {
                             isActive ? 'border-brand-green' : 'border-black/10 hover:border-black/30'
                           }`}
                         >
-                          <div className="w-full h-full bg-[#faf8f2] flex items-center justify-center p-1">
+                          <div className="w-full h-full bg-brand-muted flex items-center justify-center p-1">
                             <img
                               src={src}
                               alt={`Gallery thumb ${i + 1}`}

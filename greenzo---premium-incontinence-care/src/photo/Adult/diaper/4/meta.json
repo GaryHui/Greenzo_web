@@ -1,0 +1,108 @@
+{
+  "id": "adult-diaper-silver-qmark",
+  "name": {
+    "zh": "莞众 Q唛银装成人纸尿片",
+    "hk": "莞眾 Q嘜銀裝成人紙尿片",
+    "en": "Guanzhong Q-Mark Silver Adult Diaper",
+    "ja": "莞衆 Qマーク シルバー成人用紙おむつ"
+  },
+  "desc": {
+    "zh": "香港本地 Q 唛优质成人纸尿片品牌｜银装日用｜M/L/XL",
+    "hk": "香港本地 Q 嘜優質成人紙尿片品牌｜銀裝日用｜M/L/XL",
+    "en": "Hong Kong local Q-Mark adult diaper brand | Silver day-use series | M/L/XL",
+    "ja": "香港ローカルQマーク品質の成人用紙おむつ｜シルバー日中用｜M/L/XL"
+  },
+  "features": {
+    "zh": "银装系列为高温消毒的日用成人纸尿片，采用进口木浆与瞬吸 SAP 高分子，快速吸收导流；具备双层防漏隔边、锁味、清楚尿湿指示、弹力腰围魔术扣，日常护理更安心。",
+    "hk": "銀裝系列為高溫消毒的日用成人紙尿片，採用進口木漿與瞬吸 SAP 高分子，快速吸收導流；具備雙層防漏隔邊、鎖味、清楚尿濕指示、彈力腰圍魔術扣，日常護理更安心。",
+    "en": "The Silver series is a high-temperature sterilized day-use adult diaper. Made with imported wood pulp and instant-absorbent SAP, it quickly absorbs and channels liquid, with double leak guards, odor-locking protection, a clear wetness indicator, and elastic waist hook-and-loop tabs for dependable everyday care.",
+    "ja": "シルバーシリーズは高温消毒済みの日中用成人用紙おむつです。輸入木材パルプと瞬間吸収SAPを採用し、すばやく吸収・拡散。二重漏れ防止ギャザー、ニオイロック、分かりやすい尿濡れ表示、伸縮ウエスト面ファスナーで日常ケアを安心にします。"
+  },
+  "specs": {
+    "zh": [
+      "香港本地 Q 唛优质品牌",
+      "银装日用系列",
+      "高温消毒",
+      "进口木浆与瞬吸 SAP 高分子",
+      "快速吸收导流",
+      "双层防漏隔边",
+      "弹力腰围魔术扣",
+      "锁味功能",
+      "清楚尿湿指示",
+      "中码 M：臀围 80-105 cm / 31-41 in",
+      "大码 L：臀围 95-120 cm / 37-47 in",
+      "加大码 XL：臀围 >110 cm / >43 in"
+    ],
+    "hk": [
+      "香港本地 Q 嘜優質品牌",
+      "銀裝日用系列",
+      "高溫消毒",
+      "進口木漿與瞬吸 SAP 高分子",
+      "快速吸收導流",
+      "雙層防漏隔邊",
+      "彈力腰圍魔術扣",
+      "鎖味功能",
+      "清楚尿濕指示",
+      "中碼 M：臀圍 80-105 cm / 31-41 in",
+      "大碼 L：臀圍 95-120 cm / 37-47 in",
+      "加大碼 XL：臀圍 >110 cm / >43 in"
+    ],
+    "en": [
+      "Hong Kong local Q-Mark quality brand",
+      "Silver day-use series",
+      "High-temperature sterilized",
+      "Imported wood pulp + instant-absorbent SAP",
+      "Fast absorption and liquid distribution",
+      "Double leak guards",
+      "Elastic waist with hook-and-loop tabs",
+      "Odor-locking protection",
+      "Clear wetness indicator",
+      "M: hip 80-105 cm / 31-41 in",
+      "L: hip 95-120 cm / 37-47 in",
+      "XL: hip >110 cm / >43 in"
+    ],
+    "ja": [
+      "香港ローカルQマーク品質ブランド",
+      "シルバー日中用シリーズ",
+      "高温消毒済み",
+      "輸入木材パルプ+瞬間吸収SAP",
+      "すばやい吸収と拡散",
+      "二重漏れ防止ギャザー",
+      "伸縮ウエスト面ファスナー",
+      "ニオイロック機能",
+      "分かりやすい尿濡れ表示",
+      "M：ヒップ 80-105 cm / 31-41 in",
+      "L：ヒップ 95-120 cm / 37-47 in",
+      "XL：ヒップ >110 cm / >43 in"
+    ]
+  },
+  "images": [
+    {
+      "file": "银装m码.png",
+      "caption": {
+        "zh": "银装日用 · M码",
+        "hk": "銀裝日用 · M碼",
+        "en": "Silver day-use | M size",
+        "ja": "シルバー日中用｜Mサイズ"
+      }
+    },
+    {
+      "file": "银装L码.png",
+      "caption": {
+        "zh": "银装日用 · L码",
+        "hk": "銀裝日用 · L碼",
+        "en": "Silver day-use | L size",
+        "ja": "シルバー日中用｜Lサイズ"
+      }
+    },
+    {
+      "file": "银装M码箱.png",
+      "caption": {
+        "zh": "银装日用 · 箱装",
+        "hk": "銀裝日用 · 箱裝",
+        "en": "Silver day-use | Carton pack",
+        "ja": "シルバー日中用｜カートン"
+      }
+    }
+  ]
+}

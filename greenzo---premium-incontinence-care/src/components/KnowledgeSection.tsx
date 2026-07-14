@@ -10,7 +10,7 @@ export default function KnowledgeSection() {
   return (
     <section id="knowledge" className="py-20 md:py-28 bg-brand-cream border-t border-black/5">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 lg:px-16">
-        <div className="text-[10px] uppercase tracking-[0.35em] font-bold text-brand-green mb-4">
+        <div className="text-[10px] uppercase tracking-[0.35em] font-bold text-brand-indigo mb-4 accent-knot">
           Care Insights
         </div>
         <h2 className="text-3xl md:text-5xl font-serif text-brand-dark leading-tight max-w-3xl">
@@ -29,7 +29,7 @@ export default function KnowledgeSection() {
         <motion.a
           href={`/articles/${article.slug}`}
           whileHover={{ y: -2 }}
-          className="mt-10 block border border-black/10 bg-white/70 p-6 md:p-8 transition-all hover:shadow-lg hover:border-brand-green/30"
+          className="mt-10 block border border-black/10 bg-brand-rice/85 p-6 md:p-8 transition-all hover:shadow-lg hover:border-brand-vermilion/40"
         >
           <div className="text-[10px] uppercase tracking-[0.28em] font-bold text-black/40">
             {article.publishedAt}
@@ -51,7 +51,7 @@ export default function KnowledgeSection() {
         {hasMoreArticles && (
           <a
             href="/articles"
-            className="inline-flex mt-6 px-6 py-3 border border-black/10 bg-white/70 text-[10px] uppercase tracking-[0.24em] font-bold text-black/60 hover:bg-brand-green hover:text-white hover:border-brand-green transition-all"
+            className="inline-flex mt-6 px-6 py-3 border border-black/10 bg-brand-rice/85 text-[10px] uppercase tracking-[0.24em] font-bold text-black/60 hover:bg-brand-green hover:text-white hover:border-brand-green transition-all"
           >
             {language === 'zh' && '阅读更多'}
             {language === 'hk' && '閱讀更多'}

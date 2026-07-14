@@ -17,7 +17,7 @@ export default function Navbar() {
   ] as const;
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-brand-cream/90 backdrop-blur-md border-b border-black/5">
+    <nav className="fixed top-0 w-full z-50 bg-brand-rice/92 backdrop-blur-md border-b border-brand-line/70">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 lg:px-16 h-20 md:h-24 flex items-center justify-between gap-4">
         <a href="/" className="flex flex-col items-start min-w-0" aria-label="Greenzo home">
           <img
@@ -29,7 +29,7 @@ export default function Navbar() {
           />
           <div className="mt-1 flex items-center gap-2 min-w-0">
             <div className="h-px w-6 bg-black/10 shrink-0"></div>
-            <div className="text-[9px] sm:text-[10px] tracking-[0.22em] sm:tracking-[0.3em] text-black/40 font-bold whitespace-nowrap">
+            <div className="text-[9px] sm:text-[10px] tracking-[0.22em] sm:tracking-[0.3em] text-brand-indigo/45 font-bold whitespace-nowrap">
               {t.tagline}
             </div>
           </div>
@@ -37,7 +37,7 @@ export default function Navbar() {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-12">
-          <ul className="flex flex-wrap justify-end gap-4 lg:gap-6 text-[11px] uppercase tracking-[0.2em] lg:tracking-[0.25em] font-sans font-bold text-black/50">
+          <ul className="flex flex-wrap justify-end gap-4 lg:gap-6 text-[11px] uppercase tracking-[0.2em] lg:tracking-[0.25em] font-sans font-bold text-brand-dark/55">
             <li className="group">
               <a href="#home" className="text-brand-dark transition-colors">{t.home}</a>
             </li>
@@ -63,9 +63,9 @@ export default function Navbar() {
               <button
                 key={lang.code}
                 onClick={() => setLanguage(lang.code)}
-                className={`transition-all hover:text-brand-green ${
+                className={`transition-all hover:text-brand-vermilion ${
                   language === lang.code 
-                  ? 'text-brand-green border-b border-brand-green' 
+                  ? 'text-brand-indigo border-b border-brand-vermilion' 
                   : ''
                 }`}
               >
@@ -97,7 +97,7 @@ export default function Navbar() {
                 onClick={() => { setLanguage(lang.code); setIsOpen(false); }}
                 className={`text-xs px-3 py-1 rounded-full border transition-all ${
                   language === lang.code 
-                  ? 'bg-brand-green text-white border-brand-green' 
+                  ? 'bg-brand-indigo text-white border-brand-indigo' 
                   : 'text-slate-400 border-black/5'
                 }`}
               >
@@ -110,7 +110,7 @@ export default function Navbar() {
 
       {isArticlePage && (
         <div className="hidden md:block border-t border-black/5 py-2 text-center text-[10px] tracking-[0.24em] uppercase text-black/40 font-bold">
-          <a href="/" className="hover:text-brand-green transition-colors">
+          <a href="/" className="hover:text-brand-vermilion transition-colors">
             {language === 'zh' && '返回首页'}
             {language === 'hk' && '返回首頁'}
             {language === 'en' && 'Back Home'}

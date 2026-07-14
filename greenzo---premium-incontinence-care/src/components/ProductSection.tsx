@@ -279,7 +279,7 @@ export default function ProductSection() {
       <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 lg:px-16">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <div>
-            <div className="text-[10px] uppercase tracking-[0.4em] text-brand-green font-bold mb-4">The Collection</div>
+            <div className="text-[10px] uppercase tracking-[0.4em] text-brand-indigo font-bold mb-4 accent-knot">The Collection</div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-brand-dark leading-tight">{t.title}</h2>
           </div>
           <div className="h-px flex-1 bg-black/10 mx-12 hidden lg:block mb-4"></div>
@@ -298,7 +298,7 @@ export default function ProductSection() {
                 onClick={() => setActiveMainCategory(categoryId)}
                 className={`w-full sm:w-auto justify-center sm:justify-start flex items-center gap-3 px-5 sm:px-6 md:px-8 py-4 md:py-5 border transition-all duration-500 relative overflow-hidden group ${
                   isActive
-                    ? 'bg-brand-dark text-white border-brand-dark'
+                    ? 'bg-brand-indigo text-white border-brand-indigo'
                     : 'bg-white text-brand-dark border-black/5 hover:border-brand-green'
                 }`}
               >
@@ -311,7 +311,7 @@ export default function ProductSection() {
                 {isActive && (
                   <motion.div
                     layoutId="activeTab"
-                    className="absolute bottom-0 left-0 right-0 h-1 bg-brand-green"
+                    className="absolute bottom-0 left-0 right-0 h-1 bg-brand-vermilion"
                   />
                 )}
               </button>
@@ -329,7 +329,7 @@ export default function ProductSection() {
                   onClick={() => setActiveSubCategory(subId)}
                   className={`px-4 sm:px-5 py-2.5 border text-[10px] sm:text-[11px] uppercase tracking-[0.25em] font-bold transition-all ${
                     isActive
-                      ? 'bg-brand-green text-white border-brand-green'
+                      ? 'bg-brand-vermilion text-white border-brand-vermilion'
                       : 'bg-white text-brand-dark border-black/5 hover:border-brand-green'
                   }`}
                 >
@@ -359,19 +359,19 @@ export default function ProductSection() {
                 className="flex flex-col group cursor-pointer"
                 onClick={() => setSelectedProduct(product)}
               >
-                <div className="bg-white flex flex-col p-5 sm:p-6 md:p-8 transition-all duration-700 group-hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)] relative border border-black/5">
+                <div className="bg-brand-rice flex flex-col p-5 sm:p-6 md:p-8 transition-all duration-700 group-hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)] relative border border-brand-line/70">
                   <div className="absolute inset-0 bg-brand-muted opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
                   <div className="flex-1 flex items-center justify-center relative z-10">
                     <div className={`w-full h-full relative p-1 sm:p-2 md:p-4 transition-transform duration-1000 ease-[0.16, 1, 0.3, 1] group-hover:scale-[1.03] flex items-center justify-center ${polaroidTilt[index % polaroidTilt.length]}`}>
-                      <div className="w-full max-w-[250px] bg-white p-3 sm:p-4 pb-7 sm:pb-8 shadow-[0_20px_45px_-25px_rgba(0,0,0,0.35)] border border-black/8">
-                        <div className="aspect-[3/4] bg-[#faf8f2] overflow-hidden flex items-center justify-center">
+                      <div className="w-full max-w-[300px] bg-white p-3 sm:p-4 pb-6 sm:pb-7 shadow-[0_20px_45px_-25px_rgba(0,0,0,0.35)] border border-black/8">
+                        <div className="aspect-[4/3] bg-brand-muted overflow-hidden flex items-center justify-center">
                           <img 
                             src={product.coverImage} 
                             alt={product.name}
                             referrerPolicy="no-referrer"
                             loading="lazy"
                             decoding="async"
-                            className="w-full h-full object-contain grayscale-[0.15] group-hover:grayscale-0 group-hover:scale-[1.02] transition-all duration-1000"
+                            className="max-w-full max-h-full w-auto h-auto object-contain grayscale-[0.15] group-hover:grayscale-0 group-hover:scale-[1.02] transition-all duration-1000"
                           />
                         </div>
                       </div>
@@ -422,14 +422,14 @@ export default function ProductSection() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
                         transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                        className={`w-full max-w-[520px] bg-white p-3 sm:p-4 pb-10 sm:pb-12 shadow-[0_40px_90px_-55px_rgba(0,0,0,0.55)] border border-black/10 ${polaroidTilt[0]}`}
+                        className={`w-full max-w-[580px] bg-white p-3 sm:p-4 pb-8 sm:pb-10 shadow-[0_40px_90px_-55px_rgba(0,0,0,0.55)] border border-black/10 ${polaroidTilt[0]}`}
                       >
-                        <div className="w-full bg-[#faf8f2] overflow-hidden flex items-center justify-center h-[42vh] sm:h-[46vh] max-h-[560px]">
+                        <div className="w-full bg-brand-muted overflow-hidden flex items-center justify-center h-[42vh] sm:h-[46vh] max-h-[560px]">
                           <img
                             src={selectedProduct.images[selectedProductImageIndex]?.src}
                             alt={`${selectedProduct.name} ${selectedProductImageIndex + 1}`}
                             decoding="async"
-                            className="w-full h-full object-contain"
+                            className="max-w-full max-h-full w-auto h-auto object-contain"
                           />
                         </div>
                       </motion.div>
@@ -454,7 +454,7 @@ export default function ProductSection() {
               <div className="md:w-1/2 p-6 sm:p-8 md:p-16 overflow-y-auto flex flex-col">
                 <div className="flex justify-between items-start mb-8">
                   <div>
-                    <div className="text-[10px] uppercase tracking-[0.4em] text-brand-green font-bold mb-4">Product Detail</div>
+                    <div className="text-[10px] uppercase tracking-[0.4em] text-brand-indigo font-bold mb-4 accent-knot">Product Detail</div>
                     <h3 className="text-3xl sm:text-4xl font-serif text-brand-dark leading-tight">
                       {selectedProduct.name}
                     </h3>
@@ -484,7 +484,7 @@ export default function ProductSection() {
                 <div className="mt-auto">
                   <button 
                     onClick={() => setSelectedProduct(null)}
-                    className="w-full py-4 bg-brand-green text-white text-[10px] uppercase tracking-[0.3em] font-sans font-bold hover:bg-brand-dark transition-all duration-500"
+                    className="w-full py-4 bg-brand-indigo text-white text-[10px] uppercase tracking-[0.3em] font-sans font-bold hover:bg-brand-dark transition-all duration-500"
                   >
                     {t.details.close}
                   </button>

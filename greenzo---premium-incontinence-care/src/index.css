@@ -4,19 +4,53 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Noto Serif JP", "Playfair Display", serif;
   
-  --color-brand-green: #4A6741;
-  --color-brand-cream: #FDFCFB;
-  --color-brand-muted: #F5F3EF;
-  --color-brand-dark: #2D2D2D;
+  --color-brand-green: #2F6B57;
+  --color-brand-cream: #FBFAF4;
+  --color-brand-muted: #F1EEE4;
+  --color-brand-dark: #26322F;
+  --color-brand-indigo: #1F3F5B;
+  --color-brand-rice: #FFFDF7;
+  --color-brand-vermilion: #B9503B;
+  --color-brand-line: #D8D0BF;
 }
 
 @layer base {
   body {
-    @apply bg-brand-cream text-brand-dark antialiased selection:bg-brand-green selection:text-white;
+    @apply bg-brand-cream text-brand-dark antialiased selection:bg-brand-indigo selection:text-white;
+    background-image:
+      linear-gradient(90deg, rgba(31, 63, 91, 0.035) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(31, 63, 91, 0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
   }
   
   h1, h2, h3, h4 {
     @apply font-serif font-light;
+  }
+}
+
+@layer components {
+  .hk-jp-band {
+    background:
+      linear-gradient(90deg, rgba(31, 63, 91, 0.08), transparent 34%),
+      linear-gradient(180deg, rgba(185, 80, 59, 0.06), transparent 42%),
+      var(--color-brand-cream);
+  }
+
+  .jp-paper {
+    background-color: rgba(255, 253, 247, 0.84);
+    background-image:
+      linear-gradient(135deg, rgba(47, 107, 87, 0.055) 25%, transparent 25%),
+      linear-gradient(315deg, rgba(31, 63, 91, 0.045) 25%, transparent 25%);
+    background-size: 18px 18px;
+  }
+
+  .accent-knot {
+    @apply relative pl-4;
+  }
+
+  .accent-knot::before {
+    content: "";
+    @apply absolute left-0 top-1/2 h-2.5 w-2.5 -translate-y-1/2 bg-brand-vermilion;
   }
 }
 

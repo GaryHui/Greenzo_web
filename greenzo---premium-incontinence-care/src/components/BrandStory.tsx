@@ -37,8 +37,8 @@ export default function BrandStory() {
                   className="w-full h-full object-cover grayscale-[0.4] transition-transform duration-1000 group-hover:scale-[1.03]"
                 />
               </div>
-              <div className="mt-4 md:mt-5 bg-brand-green/10 border border-brand-green/20 px-5 py-4 md:px-6 md:py-5 flex items-baseline gap-4 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-5 md:group-hover:-translate-y-8">
-                <span className="text-3xl sm:text-4xl md:text-5xl font-serif text-brand-green leading-none">20+</span>
+              <div className="mt-4 md:mt-5 bg-brand-rice border border-brand-line px-5 py-4 md:px-6 md:py-5 flex items-baseline gap-4 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-5 md:group-hover:-translate-y-8">
+                <span className="text-3xl sm:text-4xl md:text-5xl font-serif text-brand-vermilion leading-none">20+</span>
                 <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-dark/55">{t.experience}</span>
               </div>
             </div>
@@ -52,7 +52,7 @@ export default function BrandStory() {
                   {(t as any).values.map((value: string) => (
                     <div
                       key={value}
-                      className="min-h-11 px-3 py-3 bg-white border border-black/5 text-[10px] font-bold uppercase tracking-widest text-black/60 hover:bg-brand-green hover:text-white transition-all cursor-default flex items-center justify-center text-center"
+                      className="min-h-11 px-3 py-3 bg-brand-rice border border-brand-line/70 text-[10px] font-bold uppercase tracking-widest text-black/60 hover:bg-brand-indigo hover:text-white transition-all cursor-default flex items-center justify-center text-center"
                     >
                       {value}
                     </div>
@@ -63,7 +63,7 @@ export default function BrandStory() {
           </motion.div>
 
           <div className="lg:col-span-7">
-            <div className="text-[10px] uppercase tracking-[0.4em] text-brand-green font-bold mb-6">Our Legacy</div>
+            <div className="text-[10px] uppercase tracking-[0.4em] text-brand-indigo font-bold mb-6 accent-knot">Our Legacy</div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-brand-dark mb-6 md:mb-10 leading-tight">
               {t.title}
             </h2>
@@ -76,7 +76,7 @@ export default function BrandStory() {
                 href={baikeUrl}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="inline-flex items-center gap-2 px-4 py-2 border border-black/10 bg-white/70 hover:bg-brand-green hover:text-white hover:border-brand-green transition-all text-[10px] uppercase tracking-[0.2em] font-bold text-black/60"
+                className="inline-flex items-center gap-2 px-4 py-2 border border-black/10 bg-white/70 hover:bg-brand-indigo hover:text-white hover:border-brand-green transition-all text-[10px] uppercase tracking-[0.2em] font-bold text-black/60"
                 aria-label={`${(t as any).referenceLabel} - Baidu Baike`}
               >
                 <span>{(t as any).referenceLabel}</span>
@@ -121,7 +121,7 @@ export default function BrandStory() {
               </p>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {['CVS', 'OTC', 'Hospital', 'Elderly Care', 'E-commerce'].map((channel) => (
-                  <div key={channel} className="bg-brand-muted p-4 text-center text-[10px] font-bold border border-black/5 uppercase tracking-widest text-black/60 hover:bg-brand-green hover:text-white transition-all cursor-default">
+                  <div key={channel} className="bg-brand-muted p-4 text-center text-[10px] font-bold border border-black/5 uppercase tracking-widest text-black/60 hover:bg-brand-indigo hover:text-white transition-all cursor-default">
                     {channel}
                   </div>
                 ))}

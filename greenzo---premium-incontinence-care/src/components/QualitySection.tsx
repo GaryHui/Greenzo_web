@@ -15,11 +15,11 @@ export default function QualitySection() {
   ];
 
   return (
-    <section id="quality" className="py-20 md:py-32 lg:py-40 bg-brand-muted border-y border-black/5 overflow-hidden">
+    <section id="quality" className="py-20 md:py-32 lg:py-40 jp-paper border-y border-brand-line/70 overflow-hidden">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 lg:px-16">
         <div className="grid lg:grid-cols-12 gap-10 md:gap-16 lg:gap-20 items-center">
           <div className="lg:col-span-4">
-            <div className="text-[10px] uppercase tracking-[0.5em] text-brand-green font-bold mb-6">Uncompromising Quality</div>
+            <div className="text-[10px] uppercase tracking-[0.5em] text-brand-indigo font-bold mb-6 accent-knot">Uncompromising Quality</div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-brand-dark mb-6 md:mb-8 leading-tight tracking-tighter">
               {t.title}
             </h2>
@@ -36,9 +36,9 @@ export default function QualitySection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.2 }}
-                className="bg-brand-cream border border-black/5 p-6 sm:p-8 md:p-10 flex flex-col items-center text-center group hover:bg-brand-green transition-all duration-700 cursor-default"
+                className="bg-brand-cream border border-black/5 p-6 sm:p-8 md:p-10 flex flex-col items-center text-center group hover:bg-brand-indigo transition-all duration-700 cursor-default"
               >
-                <f.icon className="w-8 h-8 text-brand-green mb-8 group-hover:text-white transition-colors duration-700 stroke-[1.5px]" />
+                <f.icon className="w-8 h-8 text-brand-vermilion mb-8 group-hover:text-white transition-colors duration-700 stroke-[1.5px]" />
                 <h3 className="text-lg sm:text-xl font-serif text-brand-dark mb-4 group-hover:text-white transition-colors duration-700">{f.title}</h3>
                 <p className="text-[11px] text-black/40 font-sans group-hover:text-white/60 transition-colors duration-700 leading-relaxed uppercase tracking-wider">
                   {f.desc}

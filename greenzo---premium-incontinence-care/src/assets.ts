@@ -130,6 +130,14 @@ const productCatalog = (() => {
       eager: true,
       import: 'default',
     }) as Record<string, string>),
+    ...(import.meta.glob('./photo/Adult/diaper/4/*.png', {
+      eager: true,
+      import: 'default',
+    }) as Record<string, string>),
+    ...(import.meta.glob('./photo/Adult/diaper/5/*.png', {
+      eager: true,
+      import: 'default',
+    }) as Record<string, string>),
     ...(import.meta.glob('./photo/Dairy/**/*.{webp,avif}', {
       eager: true,
       import: 'default',

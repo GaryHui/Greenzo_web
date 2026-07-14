@@ -43,38 +43,37 @@ export default function Footer() {
     const normalized = label.toLowerCase();
     const labelMap = {
       zh: {
-        tmall: '天猫',
-        jd: '京东',
-        pdd: '拼多多',
-        douyin: '抖音',
-        redbook: '小红书',
+        tmall: '天猫官方旗舰',
+        jd: '京东官方旗舰',
+        pdd: '拼多多官方旗舰',
+        douyin: '抖音官方旗舰',
+        redbook: '小红书官方旗舰',
       },
       hk: {
-        tmall: '天貓',
-        jd: '京東',
-        pdd: '拼多多',
-        douyin: '抖音',
-        redbook: '小紅書',
+        tmall: '天貓官方旗艦',
+        jd: '京東官方旗艦',
+        pdd: '拼多多官方旗艦',
+        douyin: '抖音官方旗艦',
+        redbook: '小紅書官方旗艦',
       },
       en: {
-        tmall: 'Tmall',
-        jd: 'JD',
-        pdd: 'Pinduoduo',
-        douyin: 'Douyin',
-        redbook: 'Redbook',
+        tmall: 'Tmall Official Flagship',
+        jd: 'JD Official Flagship',
+        pdd: 'Pinduoduo Official Flagship',
+        douyin: 'Douyin Official Flagship',
+        redbook: 'Redbook Official Flagship',
       },
       ja: {
-        tmall: '天猫',
-        jd: '京東',
-        pdd: '拼多多',
-        douyin: '抖音',
-        redbook: '小紅書',
+        tmall: '天猫公式旗艦',
+        jd: '京東公式旗艦',
+        pdd: '拼多多公式旗艦',
+        douyin: '抖音公式旗艦',
+        redbook: '小紅書公式旗艦',
       },
     } as const;
 
     return labelMap[language][normalized as keyof typeof labelMap.zh] ?? label;
   };
-
   const getQrHref = (label: string) => {
     const normalized = label.toLowerCase();
     if (normalized === 'jd') return 'https://mall.jd.com/index-11412427.html?from=pc&cid=0';
@@ -83,7 +82,7 @@ export default function Footer() {
   };
 
   return (
-    <footer id="contact" className="bg-[#1A2616] text-white/90 pt-16 md:pt-24 pb-10 md:pb-12">
+    <footer id="contact" className="bg-brand-indigo text-white/90 pt-16 md:pt-24 pb-10 md:pb-12">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 lg:px-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-16 mb-14 md:mb-24">
           <div className="col-span-full lg:col-span-1">
@@ -127,7 +126,7 @@ export default function Footer() {
                       <>
                         <div
                           className={`w-12 h-12 bg-white rounded-lg p-1.5 flex items-center justify-center transition-all ${
-                            isActive ? 'ring-2 ring-brand-green ring-offset-2 ring-offset-[#1A2616]' : ''
+                            isActive ? 'ring-2 ring-brand-green ring-offset-2 ring-offset-brand-indigo' : ''
                           }`}
                         >
                           <img
@@ -203,7 +202,7 @@ export default function Footer() {
                       href={amapUrl}
                       target="_blank"
                       rel="noreferrer noopener"
-                      className="inline-flex text-[10px] uppercase tracking-[0.24em] font-bold text-brand-green hover:text-white transition-colors"
+                      className="inline-flex text-[10px] uppercase tracking-[0.24em] font-bold text-brand-vermilion hover:text-white transition-colors"
                     >
                       {(t as any).mapNav}
                     </a>

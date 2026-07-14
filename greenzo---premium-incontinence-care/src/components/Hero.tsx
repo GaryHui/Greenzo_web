@@ -23,7 +23,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-20 md:pt-24 overflow-hidden bg-brand-cream">
+    <section id="home" className="relative min-h-screen flex items-center pt-20 md:pt-24 overflow-hidden hk-jp-band">
       {/* Background Decorative Elements */}
       <div className="absolute -left-10 top-32 hidden md:block text-[180px] lg:text-[240px] font-bold text-black/[0.02] leading-none select-none pointer-events-none uppercase">
         Care
@@ -39,12 +39,12 @@ export default function Hero() {
 
       <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 lg:px-16 grid md:grid-cols-12 gap-10 md:gap-12 items-center relative z-10 w-full">
         <div className="md:col-span-6 lg:col-span-5 animate-[fadeInUp_0.8s_cubic-bezier(0.16,1,0.3,1)_both]">
-          <div className="text-[9px] sm:text-[10px] font-sans uppercase tracking-[0.35em] sm:tracking-[0.5em] text-brand-green mb-6 md:mb-8 font-bold">
+          <div className="text-[9px] sm:text-[10px] font-sans uppercase tracking-[0.35em] sm:tracking-[0.5em] text-brand-indigo mb-6 md:mb-8 font-bold accent-knot">
             Redefining Personal Care • World-Class Standards
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif text-brand-dark leading-[1] md:leading-[0.95] mb-6 md:mb-10 font-extralight tracking-tighter">
             {t.title.split(' ').map((word, i) => (
-              <span key={i} className={word === 'Comfort' || word === 'Dignity' || word === '舒适' || word === '尊严' || word === '心地' ? 'italic text-brand-green' : ''}>
+              <span key={i} className={word === 'Comfort' || word === 'Dignity' || word === '舒适' || word === '尊严' || word === '心地' ? 'italic text-brand-green decoration-brand-vermilion' : ''}>
                 {word}{' '}
               </span>
             ))}
@@ -57,13 +57,13 @@ export default function Hero() {
               onClick={() => {
                 window.location.href = '/articles';
               }}
-              className="w-full sm:w-auto px-8 sm:px-10 md:px-12 py-4 sm:py-5 bg-brand-green text-white text-[10px] uppercase tracking-[0.25em] sm:tracking-[0.3em] font-sans font-bold hover:shadow-2xl hover:translate-y-[-2px] transition-all duration-500"
+              className="w-full sm:w-auto px-8 sm:px-10 md:px-12 py-4 sm:py-5 bg-brand-indigo text-white text-[10px] uppercase tracking-[0.25em] sm:tracking-[0.3em] font-sans font-bold hover:shadow-2xl hover:translate-y-[-2px] transition-all duration-500"
             >
               {t.cta}
             </button>
             <div 
               onClick={() => document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' })}
-              className="self-start text-[10px] font-sans border-b border-black/40 pb-1 cursor-pointer font-bold tracking-[0.2em] hover:text-brand-green hover:border-brand-green transition-all"
+              className="self-start text-[10px] font-sans border-b border-black/40 pb-1 cursor-pointer font-bold tracking-[0.2em] hover:text-brand-vermilion hover:border-brand-vermilion transition-all"
             >
               GALLERY
             </div>
@@ -72,7 +72,7 @@ export default function Hero() {
 
         <div className="md:col-span-6 lg:col-span-7 flex justify-center md:justify-end animate-[fadeInRight_1s_cubic-bezier(0.16,1,0.3,1)_0.2s_both]">
           <div className="group relative w-full max-w-[440px] sm:max-w-[500px]">
-            <div className="aspect-[4/5] bg-brand-muted rounded-none overflow-hidden shadow-sm border border-black/5">
+            <div className="aspect-[4/5] jp-paper rounded-none overflow-hidden shadow-sm border border-brand-line">
               <img 
                 src={heroMainImage}
                 alt="Soft care"
@@ -84,7 +84,7 @@ export default function Hero() {
               />
             </div>
             {/* Minimalist Accent Box */}
-            <div className="absolute -bottom-10 -left-10 bg-brand-cream/80 backdrop-blur-md border border-black/5 p-10 shadow-sm max-w-[280px] hidden lg:block transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-x-28">
+            <div className="absolute -bottom-10 -left-10 bg-brand-rice/85 backdrop-blur-md border border-brand-line p-10 shadow-sm max-w-[280px] hidden lg:block transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-x-28">
               <p className="text-brand-dark font-serif italic text-xl leading-snug">"{t.quote}"</p>
             </div>
           </div>

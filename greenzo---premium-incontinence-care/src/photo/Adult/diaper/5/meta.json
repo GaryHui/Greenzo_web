@@ -1,0 +1,95 @@
+{
+  "id": "adult-diaper-gold-qmark",
+  "name": {
+    "zh": "莞众 Q唛金装成人纸尿片",
+    "hk": "莞眾 Q嘜金裝成人紙尿片",
+    "en": "Guanzhong Q-Mark Gold Adult Diaper",
+    "ja": "莞衆 Qマーク ゴールド成人用紙おむつ"
+  },
+  "desc": {
+    "zh": "香港本地 Q 唛优质成人纸尿片品牌｜金装护理｜M/L/XL",
+    "hk": "香港本地 Q 嘜優質成人紙尿片品牌｜金裝護理｜M/L/XL",
+    "en": "Hong Kong local Q-Mark adult diaper brand | Gold care series | M/L/XL",
+    "ja": "香港ローカルQマーク品質の成人用紙おむつ｜ゴールドケア｜M/L/XL"
+  },
+  "features": {
+    "zh": "金装系列延续香港本地 Q 唛优质护理标准，采用进口木浆与瞬吸 SAP 高分子，快速吸收导流；配合双层防漏隔边、弹力腰围魔术扣、锁味及清楚尿湿指示，适合日常与长时间护理场景。",
+    "hk": "金裝系列延續香港本地 Q 嘜優質護理標準，採用進口木漿與瞬吸 SAP 高分子，快速吸收導流；配合雙層防漏隔邊、彈力腰圍魔術扣、鎖味及清楚尿濕指示，適合日常與長時間護理場景。",
+    "en": "The Gold series follows Hong Kong local Q-Mark care standards, using imported wood pulp and instant-absorbent SAP for fast absorption and distribution. Double leak guards, elastic waist hook-and-loop tabs, odor-locking protection, and a clear wetness indicator make it suitable for daily and extended care.",
+    "ja": "ゴールドシリーズは香港ローカルQマークのケア品質を継承。輸入木材パルプと瞬間吸収SAPで素早く吸収・拡散します。二重漏れ防止ギャザー、伸縮ウエスト面ファスナー、ニオイロック、分かりやすい尿濡れ表示により、日常ケアから長時間ケアまで対応します。"
+  },
+  "specs": {
+    "zh": [
+      "香港本地 Q 唛优质品牌",
+      "金装护理系列",
+      "进口木浆与瞬吸 SAP 高分子",
+      "快速吸收导流",
+      "双层防漏隔边",
+      "弹力腰围魔术扣",
+      "锁味功能",
+      "清楚尿湿指示",
+      "中码 M：臀围 80-105 cm / 31-41 in",
+      "大码 L：臀围 95-120 cm / 37-47 in",
+      "加大码 XL：臀围 >110 cm / >43 in"
+    ],
+    "hk": [
+      "香港本地 Q 嘜優質品牌",
+      "金裝護理系列",
+      "進口木漿與瞬吸 SAP 高分子",
+      "快速吸收導流",
+      "雙層防漏隔邊",
+      "彈力腰圍魔術扣",
+      "鎖味功能",
+      "清楚尿濕指示",
+      "中碼 M：臀圍 80-105 cm / 31-41 in",
+      "大碼 L：臀圍 95-120 cm / 37-47 in",
+      "加大碼 XL：臀圍 >110 cm / >43 in"
+    ],
+    "en": [
+      "Hong Kong local Q-Mark quality brand",
+      "Gold care series",
+      "Imported wood pulp + instant-absorbent SAP",
+      "Fast absorption and liquid distribution",
+      "Double leak guards",
+      "Elastic waist with hook-and-loop tabs",
+      "Odor-locking protection",
+      "Clear wetness indicator",
+      "M: hip 80-105 cm / 31-41 in",
+      "L: hip 95-120 cm / 37-47 in",
+      "XL: hip >110 cm / >43 in"
+    ],
+    "ja": [
+      "香港ローカルQマーク品質ブランド",
+      "ゴールドケアシリーズ",
+      "輸入木材パルプ+瞬間吸収SAP",
+      "すばやい吸収と拡散",
+      "二重漏れ防止ギャザー",
+      "伸縮ウエスト面ファスナー",
+      "ニオイロック機能",
+      "分かりやすい尿濡れ表示",
+      "M：ヒップ 80-105 cm / 31-41 in",
+      "L：ヒップ 95-120 cm / 37-47 in",
+      "XL：ヒップ >110 cm / >43 in"
+    ]
+  },
+  "images": [
+    {
+      "file": "加零一金装一箱M码.png",
+      "caption": {
+        "zh": "金装护理 · 箱装 M码",
+        "hk": "金裝護理 · 箱裝 M碼",
+        "en": "Gold care | Carton pack M size",
+        "ja": "ゴールドケア｜カートン Mサイズ"
+      }
+    },
+    {
+      "file": "加零一金装L码.png",
+      "caption": {
+        "zh": "金装护理 · L码",
+        "hk": "金裝護理 · L碼",
+        "en": "Gold care | L size",
+        "ja": "ゴールドケア｜Lサイズ"
+      }
+    }
+  ]
+}

@@ -15,9 +15,9 @@ export default function StandardsSection() {
   ];
 
   return (
-    <section id="standards" className="py-20 md:py-32 bg-white border-t border-black/5">
+    <section id="standards" className="py-20 md:py-32 bg-brand-rice border-t border-brand-line/70">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 lg:px-16 text-center">
-        <div className="text-[10px] uppercase tracking-[0.5em] text-brand-green font-bold mb-6">Certified Excellence</div>
+        <div className="text-[10px] uppercase tracking-[0.5em] text-brand-indigo font-bold mb-6 accent-knot inline-block">Certified Excellence</div>
         <h2 className="text-3xl sm:text-4xl font-serif text-brand-dark mb-6 md:mb-10 leading-tight tracking-tighter max-w-2xl mx-auto">
           {t.title}
         </h2>
@@ -35,7 +35,7 @@ export default function StandardsSection() {
               transition={{ delay: i * 0.2 }}
               className="flex flex-col items-center"
             >
-              <div className="w-20 h-20 bg-brand-muted border border-black/5 flex items-center justify-center mb-8 grayscale hover:grayscale-0 transition-all duration-700">
+              <div className="w-20 h-20 bg-brand-muted border border-brand-line flex items-center justify-center mb-8 grayscale hover:grayscale-0 transition-all duration-700">
                 <s.icon className="w-8 h-8 text-brand-green stroke-[1]" />
               </div>
               <h4 className="text-sm font-bold uppercase tracking-[0.2em] mb-2">{s.label}</h4>
