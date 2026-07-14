@@ -3,7 +3,7 @@ import fallbackBrandStoryImage from './photo/story-lixia.jpg';
 import dairyPicture6 from './photo/Dairy/facial/facial Tissues5/Picture6.webp';
 import videoPlaylist from './videoList.json';
 import homeVisualMedia from './homeVisualMedia.json';
-import { getTodaysSolarTermImage } from './seasonalSolarTerms';
+import { getCurrentSolarTermImage } from './seasonalSolarTerms';
 
 type LocalizedText = string | Partial<Record<'zh' | 'en' | 'ja' | 'hk', string>>;
 type LocalizedTextArray =
@@ -45,7 +45,7 @@ type HomeVisualMedia = {
   images?: string[];
 };
 
-const brandStoryImage = getTodaysSolarTermImage() ?? fallbackBrandStoryImage;
+const brandStoryImage = getCurrentSolarTermImage() ?? fallbackBrandStoryImage;
 
 const preferOptimizedImageEntries = (entries: Array<[string, string]>) => {
   const optimizedStems = new Set(

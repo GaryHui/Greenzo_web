@@ -1,7 +1,7 @@
 import heroMainImage from './photo/hero-seasonal.jpg';
 import fallbackBrandStoryImage from './photo/story-lixia.jpg';
-import { getTodaysSolarTermImage } from './seasonalSolarTerms';
+import { getCurrentSolarTermImage } from './seasonalSolarTerms';
 
-const brandStoryImage = getTodaysSolarTermImage() ?? fallbackBrandStoryImage;
+const brandStoryImage = getCurrentSolarTermImage() ?? fallbackBrandStoryImage;
 
 export { heroMainImage, brandStoryImage };
