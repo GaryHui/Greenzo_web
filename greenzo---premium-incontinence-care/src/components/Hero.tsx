@@ -44,7 +44,7 @@ export default function Hero() {
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif text-brand-dark leading-[1] md:leading-[0.95] mb-6 md:mb-10 font-extralight tracking-tighter">
             {t.title.split(' ').map((word, i) => (
-              <span key={i} className={word === 'Comfort' || word === 'Dignity' || word === '舒适' || word === '尊严' || word === '心地' ? 'italic text-brand-green decoration-brand-vermilion' : ''}>
+              <span key={i} className={word === 'Comfort' || word === 'Dignity' || word === '舒适' || word === '尊严' || word === '心地' ? 'italic text-brand-indigo decoration-brand-vermilion' : ''}>
                 {word}{' '}
               </span>
             ))}
@@ -57,13 +57,13 @@ export default function Hero() {
               onClick={() => {
                 window.location.href = '/articles';
               }}
-              className="w-full sm:w-auto px-8 sm:px-10 md:px-12 py-4 sm:py-5 bg-brand-indigo text-white text-[10px] uppercase tracking-[0.25em] sm:tracking-[0.3em] font-sans font-bold hover:shadow-2xl hover:translate-y-[-2px] transition-all duration-500"
+              className="w-full sm:w-auto px-8 sm:px-10 md:px-12 py-4 sm:py-5 bg-brand-vermilion text-white text-[10px] uppercase tracking-[0.25em] sm:tracking-[0.3em] font-sans font-bold hover:shadow-2xl hover:translate-y-[-2px] transition-all duration-500"
             >
               {t.cta}
             </button>
             <div 
               onClick={() => document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' })}
-              className="self-start text-[10px] font-sans border-b border-black/40 pb-1 cursor-pointer font-bold tracking-[0.2em] hover:text-brand-vermilion hover:border-brand-vermilion transition-all"
+              className="self-start text-[10px] font-sans border-b border-black/40 pb-1 cursor-pointer font-bold tracking-[0.2em] hover:text-brand-indigo hover:border-brand-indigo transition-all"
             >
               GALLERY
             </div>
@@ -84,7 +84,7 @@ export default function Hero() {
               />
             </div>
             {/* Minimalist Accent Box */}
-            <div className="absolute -bottom-10 -left-10 bg-brand-rice/85 backdrop-blur-md border border-brand-line p-10 shadow-sm max-w-[280px] hidden lg:block transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-x-28">
+            <div className="absolute -bottom-10 -left-10 bg-white/90 backdrop-blur-md border border-brand-line p-10 shadow-sm max-w-[280px] hidden lg:block transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-x-28">
               <p className="text-brand-dark font-serif italic text-xl leading-snug">"{t.quote}"</p>
             </div>
           </div>

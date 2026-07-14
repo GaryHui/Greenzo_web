@@ -17,7 +17,7 @@ export default function Navbar() {
   ] as const;
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-brand-rice/92 backdrop-blur-md border-b border-brand-line/70">
+    <nav className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-brand-line/70">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 lg:px-16 h-20 md:h-24 flex items-center justify-between gap-4">
         <a href="/" className="flex flex-col items-start min-w-0" aria-label="Greenzo home">
           <img

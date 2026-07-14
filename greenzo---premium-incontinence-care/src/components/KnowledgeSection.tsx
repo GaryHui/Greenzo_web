@@ -29,7 +29,7 @@ export default function KnowledgeSection() {
         <motion.a
           href={`/articles/${article.slug}`}
           whileHover={{ y: -2 }}
-          className="mt-10 block border border-black/10 bg-brand-rice/85 p-6 md:p-8 transition-all hover:shadow-lg hover:border-brand-vermilion/40"
+          className="mt-10 block border border-black/10 bg-white/90 p-6 md:p-8 transition-all hover:shadow-lg hover:border-brand-vermilion/40"
         >
           <div className="text-[10px] uppercase tracking-[0.28em] font-bold text-black/40">
             {article.publishedAt}
@@ -51,7 +51,7 @@ export default function KnowledgeSection() {
         {hasMoreArticles && (
           <a
             href="/articles"
-            className="inline-flex mt-6 px-6 py-3 border border-black/10 bg-brand-rice/85 text-[10px] uppercase tracking-[0.24em] font-bold text-black/60 hover:bg-brand-green hover:text-white hover:border-brand-green transition-all"
+            className="inline-flex mt-6 px-6 py-3 border border-black/10 bg-white/90 text-[10px] uppercase tracking-[0.24em] font-bold text-black/60 hover:bg-brand-indigo hover:text-white hover:border-brand-indigo transition-all"
           >
             {language === 'zh' && '阅读更多'}
             {language === 'hk' && '閱讀更多'}

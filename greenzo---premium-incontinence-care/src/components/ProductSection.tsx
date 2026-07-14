@@ -299,11 +299,11 @@ export default function ProductSection() {
                 className={`w-full sm:w-auto justify-center sm:justify-start flex items-center gap-3 px-5 sm:px-6 md:px-8 py-4 md:py-5 border transition-all duration-500 relative overflow-hidden group ${
                   isActive
                     ? 'bg-brand-indigo text-white border-brand-indigo'
-                    : 'bg-white text-brand-dark border-black/5 hover:border-brand-green'
+                    : 'bg-white text-brand-dark border-brand-line hover:border-brand-indigo'
                 }`}
               >
                 <Icon
-                  className={`w-5 h-5 transition-transform duration-500 group-hover:scale-110 ${isActive ? 'text-brand-green' : 'text-black/20'}`}
+                  className={`w-5 h-5 transition-transform duration-500 group-hover:scale-110 ${isActive ? 'text-white' : 'text-black/20'}`}
                 />
                 <span className="text-[11px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.2em] font-bold text-center sm:text-left">
                   {mainTabLabels[categoryId] ?? categoryId}
@@ -311,7 +311,7 @@ export default function ProductSection() {
                 {isActive && (
                   <motion.div
                     layoutId="activeTab"
-                    className="absolute bottom-0 left-0 right-0 h-1 bg-brand-vermilion"
+                    className="absolute bottom-0 left-0 right-0 h-1 bg-brand-green"
                   />
                 )}
               </button>
@@ -329,8 +329,8 @@ export default function ProductSection() {
                   onClick={() => setActiveSubCategory(subId)}
                   className={`px-4 sm:px-5 py-2.5 border text-[10px] sm:text-[11px] uppercase tracking-[0.25em] font-bold transition-all ${
                     isActive
-                      ? 'bg-brand-vermilion text-white border-brand-vermilion'
-                      : 'bg-white text-brand-dark border-black/5 hover:border-brand-green'
+                      ? 'bg-brand-green text-white border-brand-green'
+                      : 'bg-white text-brand-dark border-brand-line hover:border-brand-indigo'
                   }`}
                 >
                   {subTabLabels[subId] ?? subId}
@@ -359,7 +359,7 @@ export default function ProductSection() {
                 className="flex flex-col group cursor-pointer"
                 onClick={() => setSelectedProduct(product)}
               >
-                <div className="bg-brand-rice flex flex-col p-5 sm:p-6 md:p-8 transition-all duration-700 group-hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)] relative border border-brand-line/70">
+                <div className="bg-white flex flex-col p-5 sm:p-6 md:p-8 transition-all duration-700 group-hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)] relative border border-brand-line/70">
                   <div className="absolute inset-0 bg-brand-muted opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
                   <div className="flex-1 flex items-center justify-center relative z-10">
                     <div className={`w-full h-full relative p-1 sm:p-2 md:p-4 transition-transform duration-1000 ease-[0.16, 1, 0.3, 1] group-hover:scale-[1.03] flex items-center justify-center ${polaroidTilt[index % polaroidTilt.length]}`}>
@@ -384,7 +384,7 @@ export default function ProductSection() {
                     <h3 className="text-xl sm:text-2xl font-serif font-light text-brand-dark transition-colors duration-500">{product.name}</h3>
                   </div>
                 </div>
-                <p className="mt-4 md:mt-6 text-[11px] text-black/40 uppercase tracking-[0.2em] sm:tracking-widest font-bold group-hover:text-brand-green transition-colors">
+                <p className="mt-4 md:mt-6 text-[11px] text-black/40 uppercase tracking-[0.2em] sm:tracking-widest font-bold group-hover:text-brand-indigo transition-colors">
                   View Details & Specs —
                 </p>
               </motion.div>

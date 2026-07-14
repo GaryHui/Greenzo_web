@@ -289,7 +289,7 @@ export default function GallerySection() {
                     className={`w-2.5 h-2.5 rounded-full border transition-all ${
                       isActive
                         ? 'bg-brand-vermilion border-brand-vermilion scale-110'
-                        : 'bg-white border-black/20 hover:border-brand-green'
+                        : 'bg-white border-black/20 hover:border-brand-indigo'
                     }`}
                   />
                 );

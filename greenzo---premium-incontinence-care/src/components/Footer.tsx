@@ -82,7 +82,7 @@ export default function Footer() {
   };
 
   return (
-    <footer id="contact" className="bg-brand-indigo text-white/90 pt-16 md:pt-24 pb-10 md:pb-12">
+    <footer id="contact" className="bg-[#003B73] text-white/90 pt-16 md:pt-24 pb-10 md:pb-12">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 lg:px-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-16 mb-14 md:mb-24">
           <div className="col-span-full lg:col-span-1">
@@ -126,7 +126,7 @@ export default function Footer() {
                       <>
                         <div
                           className={`w-12 h-12 bg-white rounded-lg p-1.5 flex items-center justify-center transition-all ${
-                            isActive ? 'ring-2 ring-brand-green ring-offset-2 ring-offset-brand-indigo' : ''
+                            isActive ? 'ring-2 ring-brand-green ring-offset-2 ring-offset-[#003B73]' : ''
                           }`}
                         >
                           <img
@@ -202,7 +202,7 @@ export default function Footer() {
                       href={amapUrl}
                       target="_blank"
                       rel="noreferrer noopener"
-                      className="inline-flex text-[10px] uppercase tracking-[0.24em] font-bold text-brand-vermilion hover:text-white transition-colors"
+                      className="inline-flex text-[10px] uppercase tracking-[0.24em] font-bold text-[#7EE0C3] hover:text-white transition-colors"
                     >
                       {(t as any).mapNav}
                     </a>
