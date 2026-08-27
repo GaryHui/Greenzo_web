@@ -1,4 +1,5 @@
 import { lazy, Suspense, useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { hasStoredLanguagePreference, useLanguageStore, type Language } from './translations';
 
 const HomePage = lazy(() => import('./components/HomePage'));
@@ -72,23 +73,32 @@ export default function App() {
 
   if (articleRoute?.type === 'home') {
     return (
-      <Suspense fallback={<SectionFallback />}>
-        <ArticlesHomePage />
-      </Suspense>
+      <>
+        <Suspense fallback={<SectionFallback />}>
+          <ArticlesHomePage />
+        </Suspense>
+        <Analytics />
+      </>
     );
   }
 
   if (articleRoute?.type === 'detail' && articleRoute.slug) {
     return (
-      <Suspense fallback={<SectionFallback />}>
-        <ArticlePage slug={articleRoute.slug} />
-      </Suspense>
+      <>
+        <Suspense fallback={<SectionFallback />}>
+          <ArticlePage slug={articleRoute.slug} />
+        </Suspense>
+        <Analytics />
+      </>
     );
   }
 
   return (
-    <Suspense fallback={<SectionFallback />}>
-      <HomePage />
-    </Suspense>
+    <>
+      <Suspense fallback={<SectionFallback />}>
+        <HomePage />
+      </Suspense>
+      <Analytics />
+    </>
   );
 }
