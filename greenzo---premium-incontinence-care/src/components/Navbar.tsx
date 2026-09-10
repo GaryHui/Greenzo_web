@@ -1,7 +1,8 @@
 import { useLanguageStore, translations } from '../translations';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
-import logoNav from '../photo/logo-nav.webp';
+import logoNav from '../photo/logo-animated.gif';
+import logoStill from '../photo/logo-animated-still.png';
 
 export default function Navbar() {
   const { language, setLanguage } = useLanguageStore();
@@ -20,13 +21,17 @@ export default function Navbar() {
     <nav className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-brand-line/70">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 lg:px-16 h-20 md:h-24 flex items-center justify-between gap-4">
         <a href="/" className="flex flex-col items-start min-w-0" aria-label="Greenzo home">
+          <picture className="block w-24 sm:w-28 aspect-[640/440]">
+            <source media="(prefers-reduced-motion: reduce)" srcSet={logoStill} />
           <img
             src={logoNav}
             alt="Greenzo"
-            width={180}
-            height={109}
-            className="h-auto w-24 sm:w-28 object-contain"
+            width={640}
+            height={440}
+            decoding="async"
+            className="w-full h-full object-contain"
           />
+          </picture>
           <div className="mt-1 flex items-center gap-2 min-w-0">
             <div className="h-px w-6 bg-black/10 shrink-0"></div>
             <div className="text-[9px] sm:text-[10px] tracking-[0.22em] sm:tracking-[0.3em] text-brand-indigo/45 font-bold whitespace-nowrap">

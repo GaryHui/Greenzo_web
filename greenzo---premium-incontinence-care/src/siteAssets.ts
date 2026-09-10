@@ -1,5 +1,5 @@
-import heroMainImage from './photo/hero-adult-care.gif';
-import heroStillImage from './photo/hero-adult-care.jpg';
+import heroMainImage from './photo/hero-opening-care.gif';
+import heroStillImage from './photo/hero-opening-care.jpg';
 import fallbackBrandStoryImage from './photo/story-lixia.jpg';
 import { getCurrentSolarTermImage } from './seasonalSolarTerms';
 

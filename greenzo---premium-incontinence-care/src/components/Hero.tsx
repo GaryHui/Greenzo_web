@@ -72,14 +72,14 @@ export default function Hero() {
         </div>
 
         <div className="md:col-span-6 lg:col-span-7 flex justify-center md:justify-end animate-[fadeInRight_1s_cubic-bezier(0.16,1,0.3,1)_0.2s_both]">
-          <div className="group relative w-full max-w-[440px] md:max-w-[min(440px,calc((100svh-8rem)*1536/2730))]">
-            <picture className="block aspect-[1536/2730] overflow-hidden">
+          <div className="group relative w-full max-w-[440px] md:max-w-[min(440px,calc((100svh-8rem)*560/747))]">
+            <picture className="block aspect-[560/747] overflow-hidden">
               <source media="(prefers-reduced-motion: reduce)" srcSet={heroStillImage} />
               <img 
                 src={heroMainImage}
                 alt="Greenzo adult diapers — cotton soft breathable"
-                width={640}
-                height={1138}
+                width={560}
+                height={747}
                 referrerPolicy="no-referrer"
                 loading="eager"
                 fetchPriority="high"
