@@ -10,7 +10,7 @@ const labels = {
   en: ['Catch a drop. Discover more.', 'Move the diaper to catch drops and discover Guanzhong care features.', 'Start game', 'Catch the next drop', 'Pause', 'Resume', 'Play again', 'Round complete', 'Caught', 'sec', 'Move your mouse · Drag your finger · Use arrow keys', 'Caught! Discover a care feature', 'Discovered', 'Features refer to the Guanzhong Q-Mark Gold Adult Diaper. This game does not represent actual absorption capacity.', 'View products'],
   ja: ['一滴キャッチ、ケアをもっと知る', 'おむつで水滴を受け止め、莞衆の特長を見つけましょう。', 'ゲーム開始', '次の水滴へ', '一時停止', '再開', 'もう一度', 'ラウンド終了', 'キャッチ', '秒', 'マウス移動・指でドラッグ・矢印キー', 'キャッチ！ケアの特長をご紹介', '発見', '莞衆 Qマーク ゴールド成人用紙おむつの特長を紹介するゲームです。実際の吸収量を示すものではありません。', '製品を見る'],
 };
-type Mode = 'ready' | 'playing' | 'feature' | 'paused' | 'done';
+type Mode = 'ready' | 'playing' | 'paused' | 'done';
 type Point = { x: number; y: number };
 
 function Diaper() {
@@ -65,9 +65,9 @@ export default function WaterDropGame({ onComplete }: { onComplete: () => void }
       falling.current = { ...falling.current, y: prevY + dt * .25 };
       const r = board.current?.getBoundingClientRect();
       if (r && Math.abs(falling.current.x-player.current.x) < 49/r.width && prevY <= player.current.y+30/r.height && falling.current.y >= player.current.y-30/r.height) {
-        setScore(s => s+1); setMode('feature'); return;
-      }
-      if (falling.current.y > 1.08) resetDrop(); else setDrop(falling.current);
+        setScore(s => s+1);
+        resetDrop();
+      } else if (falling.current.y > 1.08) resetDrop(); else setDrop(falling.current);
       frame = requestAnimationFrame(tick);
     };
     const pause = () => { keys.current.clear(); setMode('paused'); };
@@ -80,6 +80,9 @@ export default function WaterDropGame({ onComplete }: { onComplete: () => void }
     <div className="game-heading"><div><p className="game-eyebrow">GREENZO PLAY</p><h2>{t[0]}</h2><p>{t[1]}</p></div><Droplets size={38} aria-hidden="true" /></div>
     <div className="game-shell">
       <div className="game-toolbar"><span>{t[8]} <strong>{score}</strong></span><span><strong>{remaining}</strong> {t[9]}</span><button disabled={mode !== 'playing'} onClick={() => setMode('paused')}><Pause size={16}/>{t[4]}</button></div>
+      <div className="game-live-tip" role="status" aria-live="polite" aria-atomic="true">
+        {score > 0 ? <div key={score}><span>{t[11]}</span><strong>{features[(score-1)%features.length]}</strong></div> : <span>{t[1]}</span>}
+      </div>
       <div ref={board} className={`game-board ${mode === 'playing' ? 'is-playing' : ''}`} tabIndex={0} role="group" aria-label={`${t[1]} ${t[10]}`} onBlur={() => keys.current.clear()}
         onPointerDown={e => { if (mode !== 'playing') return; e.currentTarget.setPointerCapture(e.pointerId); const r = e.currentTarget.getBoundingClientRect(); move((e.clientX-r.left)/r.width, (e.clientY-r.top)/r.height); }}
         onPointerMove={e => { if (mode !== 'playing') return; const r = e.currentTarget.getBoundingClientRect(); move((e.clientX-r.left)/r.width, (e.clientY-r.top)/r.height); }}
@@ -88,10 +91,9 @@ export default function WaterDropGame({ onComplete }: { onComplete: () => void }
         {mode === 'playing' && <div className="game-drop" style={{ left: `${drop.x*100}%`, top: `${drop.y*100}%` }} aria-hidden="true"><svg viewBox="0 0 30 40"><path d="M15 1C12 8 2 19 2 26a13 13 0 0026 0C28 19 18 8 15 1Z" fill="#61b6db"/><path d="M8 25q0 7 6 8" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round"/></svg></div>}
         <div className="game-diaper" style={{ left: `${position.x*100}%`, top: `${position.y*100}%` }}><Diaper/></div>
         {mode !== 'playing' && <div className="game-overlay"><div className="game-card" aria-live="polite"><Droplets className="game-card-icon" size={32} aria-hidden="true"/>
-          <p>{mode === 'feature' ? t[11] : mode === 'done' ? t[7] : mode === 'paused' ? t[4] : t[1]}</p>
-          {mode === 'feature' && <><h3>{features[(score-1)%features.length]}</h3><p className="game-product-name">{product.name[language]}</p></>}
+          <p>{mode === 'done' ? t[7] : mode === 'paused' ? t[4] : t[1]}</p>
           {mode === 'done' && <><h3>{score} <Droplets size={26}/></h3><p>{t[12]} {Math.min(score,features.length)} / {features.length}</p></>}
-          <button ref={action} className="game-primary" onClick={() => mode === 'paused' ? setMode('playing') : play(mode === 'ready' || mode === 'done')}><Play size={18}/>{mode === 'ready' ? t[2] : mode === 'feature' ? t[3] : mode === 'paused' ? t[5] : t[6]}</button>
+          <button ref={action} className="game-primary" onClick={() => mode === 'paused' ? setMode('playing') : play(mode === 'ready' || mode === 'done')}><Play size={18}/>{mode === 'ready' ? t[2] : mode === 'paused' ? t[5] : t[6]}</button>
           {mode === 'done' && <a className="game-product-link" href="#products">{t[14]}</a>}
         </div></div>}
       </div><p className="game-hint">{t[10]}</p>

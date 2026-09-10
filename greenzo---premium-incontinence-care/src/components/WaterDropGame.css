@@ -8,6 +8,12 @@
 .game-toolbar strong { font-size:24px; margin:0 5px; font-variant-numeric:tabular-nums; }
 .game-toolbar button { display:flex; gap:6px; align-items:center; padding:8px; cursor:pointer; }
 .game-toolbar button:disabled { opacity:.35; cursor:default; }
+.game-live-tip { height:96px; display:flex; align-items:center; justify-content:center; text-align:center; padding:10px 16px; background:#e7f3ed; border-bottom:1px solid #d9e8df; color:#365e4c; pointer-events:none; overflow:auto; }
+.game-live-tip span { display:block; font-size:14px; line-height:1.5; }
+.game-live-tip strong { display:block; font-size:16px; line-height:1.5; margin-top:4px; }
+.game-live-tip>div { animation:game-tip-in .25s ease-out; }
+@keyframes game-tip-in { from { opacity:0; } to { opacity:1; } }
+@media(prefers-reduced-motion:reduce) { .game-live-tip>div { animation:none; } }
 .game-board { height:420px; position:relative; overflow:hidden; background:radial-gradient(ellipse at 50% 0%,#fff 5%,#edf7f2 65%); }
 .game-board.is-playing { cursor:none; touch-action:none; }
 .game-waterline { position:absolute; bottom:-80px; width:140%; left:-20%; height:130px; border-radius:50%; background:#d7eae0; border-top:1px solid #bedbce; }
