@@ -9,6 +9,7 @@ const ProductSection = lazy(() => import('./ProductSection'));
 const StandardsSection = lazy(() => import('./StandardsSection'));
 const KnowledgeSection = lazy(() => import('./KnowledgeSection'));
 const BrandStory = lazy(() => import('./BrandStory'));
+const WaterDropGame = lazy(() => import('./CarePlayground'));
 
 function SectionFallback() {
   return <div className="py-12 md:py-16" aria-hidden="true" />;
@@ -75,6 +76,9 @@ export default function HomePage() {
         </ViewportSection>
         <ViewportSection anchorId="products" minHeight="min-h-[760px]">
           <ProductSection />
+        </ViewportSection>
+        <ViewportSection anchorId="water-game" minHeight="min-h-[700px]">
+          <WaterDropGame />
         </ViewportSection>
         <ViewportSection anchorId="standards">
           <StandardsSection />

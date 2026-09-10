@@ -7,6 +7,7 @@ import logoStill from '../photo/logo-animated-still.png';
 export default function Navbar() {
   const { language, setLanguage } = useLanguageStore();
   const t = translations[language].nav;
+  const gameLabel = { zh: '互动乐园', hk: '互動樂園', en: 'Play & discover', ja: 'ケアゲーム' }[language];
   const [isOpen, setIsOpen] = useState(false);
   const isArticlePage = window.location.pathname.startsWith('/articles/');
 
@@ -61,6 +62,7 @@ export default function Navbar() {
             <li className="group">
               <a href="#contact" className="hover:text-brand-dark transition-colors">{t.contact}</a>
             </li>
+            <li className="group"><a href="/#water-game" className="hover:text-brand-dark transition-colors">{gameLabel}</a></li>
           </ul>
           
           <div className="flex gap-3 lg:gap-4 text-[10px] font-sans font-bold text-black/30 border-l border-black/10 pl-6 lg:pl-12 h-6 items-center">
@@ -95,6 +97,7 @@ export default function Navbar() {
           <a href="#story" onClick={() => setIsOpen(false)} className="text-lg font-medium">{t.story}</a>
           <a href="#knowledge" onClick={() => setIsOpen(false)} className="text-lg font-medium">{(t as any).knowledge}</a>
           <a href="#contact" onClick={() => setIsOpen(false)} className="text-lg font-medium">{t.contact}</a>
+          <a href="/#water-game" onClick={() => setIsOpen(false)} className="text-lg font-medium">{gameLabel}</a>
           <div className="flex flex-wrap gap-3 mt-4 pt-4 border-t border-black/5">
             {languages.map((lang) => (
               <button
