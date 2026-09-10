@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useLanguageStore, translations } from '../translations';
-import { heroMainImage, heroStillImage } from '../siteAssets';
+import { heroMainImage } from '../siteAssets';
+import HeroCarousel from './HeroCarousel';
 
 export default function Hero() {
   const { language } = useLanguageStore();
@@ -72,22 +73,7 @@ export default function Hero() {
         </div>
 
         <div className="md:col-span-6 lg:col-span-7 flex justify-center md:justify-end animate-[fadeInRight_1s_cubic-bezier(0.16,1,0.3,1)_0.2s_both]">
-          <div className="group relative w-full max-w-[440px] md:max-w-[min(440px,calc((100svh-8rem)*560/747))]">
-            <picture className="block aspect-[560/747] overflow-hidden">
-              <source media="(prefers-reduced-motion: reduce)" srcSet={heroStillImage} />
-              <img 
-                src={heroMainImage}
-                alt="Greenzo adult diapers — cotton soft breathable"
-                width={560}
-                height={747}
-                referrerPolicy="no-referrer"
-                loading="eager"
-                fetchPriority="high"
-                decoding="async"
-                className="w-full h-full object-contain"
-              />
-            </picture>
-          </div>
+          <HeroCarousel chinese={language === 'zh' || language === 'hk'} />
         </div>
       </div>
     </section>
