@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useLanguageStore, translations } from '../translations';
-import { heroMainImage } from '../siteAssets';
+import { heroMainImage, heroStillImage } from '../siteAssets';
 
 export default function Hero() {
   const { language } = useLanguageStore();
@@ -12,6 +12,7 @@ export default function Hero() {
     const link = document.createElement('link');
     link.rel = 'preload';
     link.as = 'image';
+    link.media = '(prefers-reduced-motion: no-preference)';
     link.href = heroMainImage;
     link.setAttribute('fetchpriority', 'high');
     link.setAttribute('data-greenzo-hero-preload', 'true');
@@ -71,22 +72,21 @@ export default function Hero() {
         </div>
 
         <div className="md:col-span-6 lg:col-span-7 flex justify-center md:justify-end animate-[fadeInRight_1s_cubic-bezier(0.16,1,0.3,1)_0.2s_both]">
-          <div className="group relative w-full max-w-[440px] sm:max-w-[500px]">
-            <div className="aspect-[4/5] jp-paper rounded-none overflow-hidden shadow-sm border border-brand-line">
+          <div className="group relative w-full max-w-[440px] md:max-w-[min(440px,calc((100svh-8rem)*1536/2730))]">
+            <picture className="block aspect-[1536/2730] overflow-hidden">
+              <source media="(prefers-reduced-motion: reduce)" srcSet={heroStillImage} />
               <img 
                 src={heroMainImage}
-                alt="Soft care"
+                alt="Greenzo adult diapers — cotton soft breathable"
+                width={640}
+                height={1138}
                 referrerPolicy="no-referrer"
                 loading="eager"
                 fetchPriority="high"
                 decoding="async"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 grayscale-[0.2]"
+                className="w-full h-full object-contain"
               />
-            </div>
-            {/* Minimalist Accent Box */}
-            <div className="absolute -bottom-10 -left-10 bg-white/90 backdrop-blur-md border border-brand-line p-10 shadow-sm max-w-[280px] hidden lg:block transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-x-28">
-              <p className="text-brand-dark font-serif italic text-xl leading-snug">"{t.quote}"</p>
-            </div>
+            </picture>
           </div>
         </div>
       </div>
